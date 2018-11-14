@@ -26,3 +26,8 @@ git pull
 ```
 
 Il se peut (si votre binome a été plus rapide que vous) que vous rencontriez des conflits à ce moment là, c'est maintenant que votre IDE est votre ami :)
+Une fois les conflit résolu vous pouvez clôturer votre branche (attention c'est définitif !!)
+
+```
+git flow feature finish featureOnAFaitLeTour
+```
