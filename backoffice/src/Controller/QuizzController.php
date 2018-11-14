@@ -14,9 +14,7 @@ class QuizzController extends AbstractController
     public function index(ThemeRepository $themeRepo)
     {
         $themeList = $themeRepo->findAll();
-        dump($themeList);
-        dd($this->json($themeList));
-        
-        return $this->json();
+    
+        return $this->json($themeList);
     }
 }
