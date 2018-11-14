@@ -18,7 +18,6 @@ const Infos = ({ active }) => (
   <div id="icons">
     <svg
       version="1.1"
-      id="Calque_1"
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
@@ -27,7 +26,7 @@ const Infos = ({ active }) => (
       {!active && (
         <g>
           <linearGradient
-            id="SVGID_1_"
+            id="INFOS"
             gradientUnits="userSpaceOnUse"
             x1="-94.5838"
             y1="91.8301"
@@ -38,7 +37,7 @@ const Infos = ({ active }) => (
             <stop offset="1" style={{ stopColor: '#F8C32A' }} />
           </linearGradient>
           <path
-            fill="url(#SVGID_1_)"
+            fill="url(#INFOS)"
             d="M297.6-91.1c-282.8,0-512,229.2-512,512s229.2,512,512,512s512-229.2,512-512S580.4-91.1,297.6-91.1z
               M388.7,364.9l-0.2,1.5c-2.5,14.1-3.6,28.8-3.2,43.5c0.3,16.6,0.9,33.3,1.6,49.9l0,1.3c0,33.4-2.2,67.3-6.6,100.6
               c-4.3,34.2-9.9,68.3-16.7,101.1c-6.5,31.6-12.7,64.2-18.2,96.8l-0.1,0.5c-3.9,20.7-16.4,36.9-36.3,46.9c-11.8,5.9-23.6,8.8-35.2,8.8
@@ -57,7 +56,7 @@ const Infos = ({ active }) => (
       {active && (
         <g>
           <linearGradient
-            id="SVGID_1_"
+            id="INFOS_ACTIVE"
             gradientUnits="userSpaceOnUse"
             x1="-94.5838"
             y1="91.8301"
@@ -68,7 +67,7 @@ const Infos = ({ active }) => (
             <stop offset="1" style={{ stopColor: '#3E3269' }} />
           </linearGradient>
           <path
-            fill="url(#SVGID_1_)"
+            fill="url(#INFOS_ACTIVE)"
             d="M297.6-91.1c-282.8,0-512,229.2-512,512s229.2,512,512,512s512-229.2,512-512S580.4-91.1,297.6-91.1z
               M388.7,364.9l-0.2,1.5c-2.5,14.1-3.6,28.8-3.2,43.5c0.3,16.6,0.9,33.3,1.6,49.9l0,1.3c0,33.4-2.2,67.3-6.6,100.6
               c-4.3,34.2-9.9,68.3-16.7,101.1c-6.5,31.6-12.7,64.2-18.2,96.8l-0.1,0.5c-3.9,20.7-16.4,36.9-36.3,46.9c-11.8,5.9-23.6,8.8-35.2,8.8

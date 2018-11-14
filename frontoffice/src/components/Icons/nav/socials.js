@@ -49,7 +49,7 @@ const Socials = ({ active }) => (
       {active && (
         <g>
           <linearGradient
-            id="SOCIALS"
+            id="SOCIALS_ACTIVE"
             gradientUnits="userSpaceOnUse"
             x1="52.9606"
             y1="44.51"
@@ -60,7 +60,7 @@ const Socials = ({ active }) => (
             <stop offset="1" style={{ stopColor: '#3E3269' }} />
           </linearGradient>
           <path
-            fill="url(#SOCIALS)"
+            fill="url(#SOCIALS_ACTIVE)"
             d="M639.9,590.7c-53.8,0-101.9,25.2-133,64.4L122.9,463.7c3.6-13.7,5.5-28,5.5-42.8
               c0-14.8-1.9-29.1-5.5-42.8l383.9-191.4c31.1,39.2,79.2,64.4,133,64.4c93.6,0,169.8-76.2,169.8-169.8S733.5-88.4,639.9-88.4
               S470.1-12.2,470.1,81.4c0,14.8,1.9,29.1,5.5,42.8L91.6,315.5c-31.1-39.2-79.2-64.4-133-64.4c-93.6,0-169.8,76.2-169.8,169.8
