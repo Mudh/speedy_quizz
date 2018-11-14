@@ -25,7 +25,4 @@ git checkout develop
 git pull
 ```
 
-git checkout master #
-git pull # update local master from remote master
-git checkout <your_branch>
-git merge master # solve merge conflicts if you have`
+Il se peut (si votre binome a été plus rapide que vous) que vous rencontriez des conflits à ce moment là, c'est maintenant que votre IDE est votre ami :)
