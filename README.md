@@ -25,6 +25,7 @@ git checkout develop
 git pull
 ```
 
+A ce stade là si git vous annonce que votre repo est à jour et qu'il n'y a rien de nouveau, vous pouvez directement fermé votre feature. Dans le cas contraire lisez la suite (vous pouvez quand même la lire sans ça !).
 Ensuite on rebascule sur notre feature et on merge la **develop** dedans.
 
 ```
@@ -33,3 +34,8 @@ git merge develop
 ```
 
 Il se peut (si votre binome a été plus rapide que vous) que vous rencontriez des conflits à ce moment là, c'est maintenant que votre IDE est votre ami :)
+Une fois vos conflits résolus vous pouvez clôturer votre branche ! Encore une fois n'oubliez pas de prévenir votre binôme que vous allez le faire, on sait jamais il a peut-être, encore une fois (il vous en veut ^^), été plus rapide que vous !
+
+```
+git flow feature finish featureOnAFaitLeTour
+```
