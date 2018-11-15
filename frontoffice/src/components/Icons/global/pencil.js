@@ -13,7 +13,13 @@ import '../icons.scss';
 
 /**
  * Code
- */
+
+
+/** 
+ * Pas de dégradé pour cette icone donc 
+*  il faudra la remplir en css avec la propiété 'fill' 
+*/
+
 const Pencil = () => (
   <div id="icons">
     <svg

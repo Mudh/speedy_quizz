@@ -39,3 +39,9 @@ Une fois vos conflits résolus vous pouvez clôturer votre branche ! Encore une 
 ```
 git flow feature finish featureOnAFaitLeTour
 ```
+
+Et en dernier lieu pour éviter les frayeurs, on pousse sur github depuis la **develop** (normalement git flow nous remet dessus après la fermeture de la feature)
+
+```
+git push
+```
