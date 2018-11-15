@@ -5,6 +5,8 @@ namespace App\DataFixtures;
 use Faker\Factory;
 use App\Entity\Home;
 use Faker\ORM\Doctrine\Populator;
+use App\DataFixtures\Faker\StepProvider;
+use App\DataFixtures\Faker\JokerProvider;
 use App\DataFixtures\Faker\ThemeProvider;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use App\DataFixtures\Faker\QuestionProvider;
@@ -19,6 +21,8 @@ class AppFixtures extends Fixture
         $generator->addProvider(new ThemeProvider($generator));
         $generator->addProvider(new QuestionProvider($generator));
         $generator->addProvider(new ResponseProvider($generator));
+        $generator->addProvider(new JokerProvider($generator));
+        $generator->addProvider(new StepProvider($generator));
         
 
         $populator = new Populator($generator, $em);
@@ -56,6 +60,19 @@ class AppFixtures extends Fixture
 
             'isCorrect' => false,
         ));
+
+        $populator->addEntity('App\Entity\Joker', 4, array(
+            'name' => function() use ($generator) { 
+                return $generator->jokerList(); 
+            }
+        ));
+
+        $populator->addEntity('App\Entity\Step', 9, array(
+            'name' => function() use ($generator) { 
+                return $generator->unique()->stepList(); 
+            }
+        ));
+
 
         $populator->execute();
 

@@ -48,6 +48,16 @@ class Question
      */
     private $response;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Step", inversedBy="questions")
+     */
+    private $step;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="question")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->theme = new ArrayCollection();
@@ -160,6 +170,30 @@ class Question
                 $response->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStep(): ?Step
+    {
+        return $this->step;
+    }
+
+    public function setStep(?Step $step): self
+    {
+        $this->step = $step;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
