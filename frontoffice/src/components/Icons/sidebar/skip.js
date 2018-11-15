@@ -62,6 +62,7 @@ const Skip = () => (
       </g>
       )}
     </svg>
+    <span className="logo__commentary">(2) Skip</span>
   </div>
 );
 

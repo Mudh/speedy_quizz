@@ -1,31 +1,25 @@
 .sideRightLog{
   display: flex;
   flex-direction: column;
- 
   justify-content:space-between;
   background-color: #fbd64a;
   top: 0;
   right:0;
   position : fixed;
-  width: 15%;
+  width: 25%;
   height: 100%;
-  text-align: center;
-
+  
   & h2{
     margin : 1em 1.5em;
     font-size: 1.5em;
     border-bottom: 1px solid rgba( 0, 25, 26, 0.5);
     padding-bottom: 1em;
-  }
-
-  & p{  
-    font-size: 1em;
-    padding-bottom: 1.5em;
+    text-align: center;
   }
 
   &__pfinish{
     border-bottom: 1px solid rgba( 0, 25, 26, 0.5);
-    margin : 1em 1.5em;
+    margin : 1em;
   }
 
   &__button button{
@@ -33,11 +27,12 @@
     font-size : 1.5em;
     padding:0.5em 1em;
     background-color: white;
-    margin-bottom: 0.9em;
+    margin: 0.9em 2.68em;
+  }
+
+  & #icons{
+    margin-left: 4em;
   }
 }
-
-
-
 
 
