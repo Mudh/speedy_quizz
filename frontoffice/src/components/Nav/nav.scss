@@ -14,16 +14,14 @@
   justify-content:space-between;
   padding: 0 1rem;
   height: 100%;
-}
 
-.toolbar__navigation-items a{
-  color: #fdec4c;
-  text-decoration: none;
-}
-
-.toolbar__navigation-items a:hover,
-.toolbar__navigation-items a:active{
-  color: #fa923f;
+  &-items a{
+    color: #fdec4c;
+    text-decoration: none;
+  &:hover,&:active{
+     color: #fa923f;
+    }
+  }
 }
 li{
   padding : 0.9em;

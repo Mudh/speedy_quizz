@@ -1,5 +1,8 @@
-.SideRightLog__container{
+.sideRightLog{
+  display: flex;
   flex-direction: column;
+ 
+  justify-content:space-between;
   background-color: #fbd64a;
   top: 0;
   right:0;
@@ -7,27 +10,34 @@
   width: 15%;
   height: 100%;
   text-align: center;
-  
-}
-.SideRightLog__container h2{
-  margin : 1em 1.5em;
-  font-size: 1.5em;
-  border-bottom: 1px solid rgba( 0, 25, 26, 0.5);
-  padding-bottom: 1em;
-}
-.SideRightLog__container p{
-  
-  font-size: 1em;
-  padding-bottom: 1.5em;
+
+  & h2{
+    margin : 1em 1.5em;
+    font-size: 1.5em;
+    border-bottom: 1px solid rgba( 0, 25, 26, 0.5);
+    padding-bottom: 1em;
+  }
+
+  & p{  
+    font-size: 1em;
+    padding-bottom: 1.5em;
+  }
+
+  &__pfinish{
+    border-bottom: 1px solid rgba( 0, 25, 26, 0.5);
+    margin : 1em 1.5em;
+  }
+
+  &__button button{
+    border-radius: 12px;
+    font-size : 1.5em;
+    padding:0.5em 1em;
+    background-color: white;
+    margin-bottom: 0.9em;
+  }
 }
 
-.SideRightLog__container__p1{
-border-bottom: 1px solid rgba( 0, 25, 26, 0.5);
-margin : 1em 1.5em;
-}
-.SideRightLog__button button{
-  border-radius: 12px;
-  font-size : 1.5em;
-  padding:0.5em 1em;
-  background-color: white;
-}
+
+
+
+
