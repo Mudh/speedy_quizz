@@ -40,7 +40,7 @@ const Home = () => {
       <p className="home__paragraph">
         Testez-vous et mesurez-vous à la communauté de SpeedyQuizer
       </p>
-      <Button btnClass="home__btn-start" btnText="commencer" />
+      <Button btnClass="primary" btnText="commencer" />
       <h2 className="home__subtitle">Quiz les plus populaires</h2>
       <div className="home__themes">
         {themes.map(theme => (

@@ -56,7 +56,7 @@ const SideRightLog = () => (
           </li>
         </ul>
       </div>
-      <Button btnClass="sideRightLog__button" btnText="New Game" />
+      <Button btnClass="primary" btnText="New Game" />
     </div>
   </aside>
 );

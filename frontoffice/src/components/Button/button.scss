@@ -1,2 +1,30 @@
 @import '../../styles/colors';
 @import '../../styles/functions';
+
+.primary {
+  margin-top: rem(35);
+  border: none;
+  background: $bgButton;
+  font-family: 'Schoolbell', cursive;
+  border-radius: 10px;
+  padding: rem(5) rem(12);
+  font-size: rem(21);
+  color: $purpleText;
+  box-shadow: 0 6px 0 0 rgba($purpleText, 1);
+  &:active {
+    box-shadow: 0 0 0 0 rgba($purpleText, 1);
+    transform: translateY(2px);
+  }
+}
+
+.close {
+  font-family: 'Schoolbell', cursive;
+  color: $purpleText;
+  font-size: rem(45);
+  background: transparent;
+  border: none;
+  padding: rem(10);
+  transform: rotate(45deg);
+  height: 20px;
+  line-height: 0;
+}
