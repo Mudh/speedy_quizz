@@ -63,6 +63,7 @@ const Revive = () => (
       </g>
       )}
     </svg>
+    <span className="logo__commentary">(3) Revive/s</span>
   </div>
 );
 

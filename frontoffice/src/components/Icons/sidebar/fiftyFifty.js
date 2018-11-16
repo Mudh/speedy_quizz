@@ -63,6 +63,7 @@ const FiftyFifty = () => (
       </g>
       )}
     </svg>
+    <span className="logo__commentary">(2) 50/50</span>
   </div>
 );
 

@@ -46,6 +46,7 @@ const Credits = () => (
       </g>
       )}
     </svg>
+    <span className="logo__commentary"> (2) Partie/s</span>
   </div>
 );
 

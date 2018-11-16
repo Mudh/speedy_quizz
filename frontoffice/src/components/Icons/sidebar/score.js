@@ -43,6 +43,7 @@ const Score = () => (
       </g>
       )}
     </svg>
+    <span className="logo__commentary">14056 Points </span>
   </div>
 );
 
