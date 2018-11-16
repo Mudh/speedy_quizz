@@ -2,6 +2,8 @@
  * NPM import
  */
 import React from 'react';
+import Nav from '../Nav';
+import SideRightLog from '../SideRightLog';
 
 /**
  * Local import
@@ -16,10 +18,11 @@ import './app.scss';
  */
 const App = () => (
   <div id="app">
-    Hello World !
+    <Nav />
+    <SideRightLog />
+);
   </div>
 );
-
 /**
  * Export
  */
