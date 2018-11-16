@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import Nav from '../Nav';
+import SideRightLog from '../SideRightLog';
 
 /**
  * Local import
@@ -19,6 +20,7 @@ const App = () => (
   <div id="app">
     <Nav />
     <Home />
+    <SideRightLog />
   </div>
 );
 /**

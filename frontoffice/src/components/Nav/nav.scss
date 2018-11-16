@@ -16,12 +16,14 @@
   &-items a {
     color: #fdec4c;
     text-decoration: none;
+
     &:hover,
     &:active {
       color: #fa923f;
     }
   }
 }
+
 li {
-  padding: 0.9em;
+  padding: 0.9em 0;
 }
