@@ -19,6 +19,48 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+    public function FindFiveQuestionsStepOne($theme) {
+        $queryBuilder = $this->createQueryBuilder('question')
+            ->join('question.step', 's')
+            ->join('question.theme', 't')
+            ->andWhere('t.title = :theme')
+            ->andWhere('s.name = :step')
+            ->setParameter(':step', 'step1')
+            ->setParameter(':theme', $theme)
+            ->setMaxResults(5)
+            ->getQuery();
+
+            return $queryBuilder->execute();
+    }
+
+    public function FindFiveQuestionsStepTwo($theme) {
+        $queryBuilder = $this->createQueryBuilder('question')
+            ->join('question.step', 's')
+            ->join('question.theme', 't')
+            ->andWhere('t.title = :theme')
+            ->andWhere('s.name = :step')
+            ->setParameter(':step', 'step2')
+            ->setParameter(':theme', $theme)
+            ->setMaxResults(5)
+            ->getQuery();
+
+            return $queryBuilder->execute();
+    }
+
+    public function FindFiveQuestionsStepThree($theme) {
+        $queryBuilder = $this->createQueryBuilder('question')
+            ->join('question.step', 's')
+            ->join('question.theme', 't')
+            ->andWhere('t.title = :theme')
+            ->andWhere('s.name = :step')
+            ->setParameter(':step', 'step3')
+            ->setParameter(':theme', $theme)
+            ->setMaxResults(5)
+            ->getQuery();
+
+            return $queryBuilder->execute();
+    }
+
     // /**
     //  * @return Question[] Returns an array of Question objects
     //  */

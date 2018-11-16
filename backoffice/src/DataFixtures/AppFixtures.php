@@ -4,10 +4,13 @@ namespace App\DataFixtures;
 
 use Faker\Factory;
 use App\Entity\Home;
+use App\Entity\Role;
 use App\Entity\User;
+use App\Entity\Coeff;
 use Faker\ORM\Doctrine\Populator;
 use App\DataFixtures\Faker\StepProvider;
 use App\DataFixtures\Faker\JokerProvider;
+use App\DataFixtures\Faker\LevelProvider;
 use App\DataFixtures\Faker\ThemeProvider;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use App\DataFixtures\Faker\QuestionProvider;
@@ -32,6 +35,7 @@ class AppFixtures extends Fixture
         $generator->addProvider(new ResponseProvider($generator));
         $generator->addProvider(new JokerProvider($generator));
         $generator->addProvider(new StepProvider($generator));
+        $generator->addProvider(new LevelProvider($generator));
       
         
 
@@ -53,22 +57,20 @@ class AppFixtures extends Fixture
             }
         ));
 
+        $populator->addEntity('App\Entity\Response', 35, array(
+            'response' => function() use ($generator) { 
+                return $generator->unique()->responseList(); 
+            },
+        ));
+
         $populator->addEntity('App\Entity\Question', 15, array(
             'title' => function() use ($generator) { 
-                return $generator->questionList(); 
+                return $generator->unique()->questionList(); 
             },
 
             'points' => 2,
             'likes' => 0,
             'isValidated' => true
-        ));
-
-        $populator->addEntity('App\Entity\Response', 35, array(
-            'response' => function() use ($generator) { 
-                return $generator->responseList(); 
-            },
-
-            'isCorrect' => false,
         ));
 
         $populator->addEntity('App\Entity\Joker', 4, array(
@@ -77,15 +79,33 @@ class AppFixtures extends Fixture
             }
         ));
 
-        $populator->addEntity('App\Entity\Step', 9, array(
+        $populator->addEntity('App\Entity\Step', 3, array(
             'name' => function() use ($generator) { 
                 return $generator->unique()->stepList(); 
             }
         ));
 
+        $populator->addEntity('App\Entity\Level', 3, array(
+            'name' => function() use ($generator) { 
+                return $generator->unique()->levelList(); 
+            },
+        ));
+
+
+        $populator->addEntity('App\Entity\Role', 1, array(
+            'coderole' => function() use ($generator) { 
+                return 'ROLE_USER'; 
+            },
+
+            'name' => function() use ($generator) { 
+                return 'Utilisateur';
+            }
+        ));
+            
+
         $user = new User;
         
-        $populator->addEntity('App\Entity\User', 15, array(
+        $populator->addEntity('App\Entity\User', 5, array(
             'username' => function() use ($generator) { 
                 return $generator->unique()->userName(); 
             },
@@ -114,7 +134,8 @@ class AppFixtures extends Fixture
             },
             'updated_time' => function() use ($generator) { 
                 return $generator->dateTime(); 
-            }
+            },
+
         ));
 
 

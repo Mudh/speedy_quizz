@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ThemeRepository")
@@ -20,16 +21,20 @@ class Theme
 
     /**
      * @ORM\Column(type="string", length=150)
+     * @JMS\Exclude();
+     * 
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @JMS\Exclude();
      */
     private $description;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Question", mappedBy="theme")
+     * @JMS\Exclude();
      */
     private $questions;
 

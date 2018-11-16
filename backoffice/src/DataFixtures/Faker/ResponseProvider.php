@@ -10,8 +10,8 @@ class ResponseProvider extends \Faker\Provider\Base {
         "Saturne", // id 1 
         "Uranus", // id 1 
         "Jupiter", // id 2
-        "Uranus", // id 2
-        "Saturne", // id 2
+        "Terre", // id 2
+        "Mars", // id 2
         "Neptune", // id 2
         "9", // id 3
         "8", // id 3

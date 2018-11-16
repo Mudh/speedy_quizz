@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CoeffRepository;
 use App\Repository\ThemeRepository;
 use JMS\Serializer\SerializerBuilder;
 use App\Repository\QuestionRepository;
@@ -22,23 +23,58 @@ class QuizzController extends AbstractController
     }
 
     /**
-     * @Route("/quizz/test", name="quizz_test_list")
+     * @Route("/quizz/test/", name="quizz_test_list")
      */
-    public function test(QuestionRepository $questionRepo)
+    public function getQuestions(QuestionRepository $questionRepo, CoeffRepository $coeffRepo)
     {
-        $questions = $questionRepo->findAll(); 
+        $level = 'Difficile';
+        $theme = 'Espace';
 
-        foreach ($questions as $question) {
+        $coeff = $coeffRepo->findByLevelName($level);
+        
+        $questionsStepOne = $questionRepo->FindFiveQuestionsStepOne($theme);
+        $questionsStepTwo = $questionRepo->FindFiveQuestionsStepTwo($theme);
+        $questionsStepThree = $questionRepo->FindFiveQuestionsStepThree($theme);
+
+        foreach ($questionsStepOne as $question) {
             $question->setTitle(htmlentities($question->getTitle()));
-            
+        
             foreach($question->getResponse() as $response) {
                 $response->setResponse(htmlentities($response->getResponse()));
             }
         }
 
+        foreach ($questionsStepTwo as $question) {
+            $question->setTitle(htmlentities($question->getTitle()));
+
+            foreach($question->getResponse() as $response) {
+
+                $response->setResponse(htmlentities($response->getResponse()));
+            }
+        }
+
+        foreach ($questionsStepThree as $question) {
+            $question->setTitle(htmlentities($question->getTitle()));
+
+            foreach($question->getResponse() as $response) {
+                $response->setResponse(htmlentities($response->getResponse()));
+            }
+        }
+        
+       
         $serializer = SerializerBuilder::create()->build();
-        $jsonContent = $serializer->serialize($questions, 'json');
-    
+
+        $data = [
+            'questionsList' => [
+                'step1' => $questionsStepOne,
+                'step2' => $questionsStepTwo,
+                'step3' => $questionsStepThree
+            ],
+            'coefficient' => $coeff,
+        ];
+
+        $jsonContent = $serializer->serialize($data, 'json');
+       
         return new Response($jsonContent);
     }
 }

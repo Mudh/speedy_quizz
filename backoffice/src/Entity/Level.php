@@ -29,14 +29,15 @@ class Level
     private $time;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Step", inversedBy="levels")
+     * @ORM\OneToMany(targetEntity="App\Entity\Coeff", mappedBy="level")
      */
-    private $step;
+    private $coeffs;
 
     public function __construct()
     {
-        $this->step = new ArrayCollection();
+        $this->coeffs = new ArrayCollection();
     }
+
 
     public function getId(): ?int
     {
@@ -68,26 +69,31 @@ class Level
     }
 
     /**
-     * @return Collection|Step[]
+     * @return Collection|Coeff[]
      */
-    public function getStep(): Collection
+    public function getCoeffs(): Collection
     {
-        return $this->step;
+        return $this->coeffs;
     }
 
-    public function addStep(Step $step): self
+    public function addCoeff(Coeff $coeff): self
     {
-        if (!$this->step->contains($step)) {
-            $this->step[] = $step;
+        if (!$this->coeffs->contains($coeff)) {
+            $this->coeffs[] = $coeff;
+            $coeff->setLevel($this);
         }
 
         return $this;
     }
 
-    public function removeStep(Step $step): self
+    public function removeCoeff(Coeff $coeff): self
     {
-        if ($this->step->contains($step)) {
-            $this->step->removeElement($step);
+        if ($this->coeffs->contains($coeff)) {
+            $this->coeffs->removeElement($coeff);
+            // set the owning side to null (unless already changed)
+            if ($coeff->getLevel() === $this) {
+                $coeff->setLevel(null);
+            }
         }
 
         return $this;

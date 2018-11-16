@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\StepRepository")
@@ -24,24 +25,23 @@ class Step
     private $name;
 
     /**
-     * @ORM\Column(type="float")
-     */
-    private $coeff;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Question", mappedBy="step")
+     * @JMS\Exclude();
      */
     private $questions;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Level", mappedBy="step")
+     * @ORM\OneToMany(targetEntity="App\Entity\Coeff", mappedBy="step")
+     * @JMS\Exclude();
      */
-    private $levels;
+    private $coeffs;
+
 
     public function __construct()
     {
         $this->questions = new ArrayCollection();
-        $this->levels = new ArrayCollection();
+        $this->coeffs = new ArrayCollection();
+    
     }
 
     public function getId(): ?int
@@ -57,18 +57,6 @@ class Step
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getCoeff(): ?float
-    {
-        return $this->coeff;
-    }
-
-    public function setCoeff(float $coeff): self
-    {
-        $this->coeff = $coeff;
 
         return $this;
     }
@@ -105,30 +93,34 @@ class Step
     }
 
     /**
-     * @return Collection|Level[]
+     * @return Collection|Coeff[]
      */
-    public function getLevels(): Collection
+    public function getCoeffs(): Collection
     {
-        return $this->levels;
+        return $this->coeffs;
     }
 
-    public function addLevel(Level $level): self
+    public function addCoeff(Coeff $coeff): self
     {
-        if (!$this->levels->contains($level)) {
-            $this->levels[] = $level;
-            $level->addStep($this);
+        if (!$this->coeffs->contains($coeff)) {
+            $this->coeffs[] = $coeff;
+            $coeff->setStep($this);
         }
 
         return $this;
     }
 
-    public function removeLevel(Level $level): self
+    public function removeCoeff(Coeff $coeff): self
     {
-        if ($this->levels->contains($level)) {
-            $this->levels->removeElement($level);
-            $level->removeStep($this);
+        if ($this->coeffs->contains($coeff)) {
+            $this->coeffs->removeElement($coeff);
+            // set the owning side to null (unless already changed)
+            if ($coeff->getStep() === $this) {
+                $coeff->setStep(null);
+            }
         }
 
         return $this;
     }
+
 }

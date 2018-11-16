@@ -89,7 +89,7 @@ class User implements UserInterface
     private $updated_time;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Role", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Role", inversedBy="users", cascade={"persist"})
      */
     private $role;
 
