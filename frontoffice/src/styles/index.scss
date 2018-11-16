@@ -1,5 +1,9 @@
 @import 'reset';
 
-body {
+html,
+body,
+#root {
   background-color: #eaeaea;
+  height: 100%;
+  font-family: 'Schoolbell', cursive;
 }
