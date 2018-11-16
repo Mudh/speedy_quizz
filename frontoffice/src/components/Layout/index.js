@@ -14,7 +14,9 @@ import './layout.scss';
 /**
  * Code
  */
-const Layout = ({ children }) => <main className="layout">{children}</main>;
+const Layout = ({ layoutClass, children }) => (
+  <main className={`layout ${layoutClass}`}>{children}</main>
+);
 /**
  * Export
  */

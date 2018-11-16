@@ -2,8 +2,12 @@
 @import '../../styles/functions';
 
 .home {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   height: 100%;
   width: calc(100% - 80px);
+
   &__header {
     display: flex;
     justify-content: flex-end;
@@ -59,12 +63,6 @@
       box-shadow: 0 0 0 0 rgba($purpleText, 1);
       transform: translateY(2px);
     }
-  }
-
-  .layout {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
   }
 
   &__themes {

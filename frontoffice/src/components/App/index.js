@@ -3,13 +3,12 @@
  */
 import React from 'react';
 import Nav from '../Nav';
-import SideRightLog from '../SideRightLog';
 
 /**
  * Local import
  */
 // Components
-
+import Home from '../Home';
 // Styles
 import './app.scss';
 
@@ -19,8 +18,7 @@ import './app.scss';
 const App = () => (
   <div id="app">
     <Nav />
-    <SideRightLog />
-);
+    <Home />
   </div>
 );
 /**
