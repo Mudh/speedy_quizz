@@ -11,7 +11,7 @@ import './nav.scss';
 import 'src/components/Icons/icons.scss';
 
 const Nav = props => (
-  <header className="toolbar">
+  <aside className="toolbar">
     <nav className="toolbar__navigation">
       <ul className="toolbar__navigation-top">
         <li>
@@ -53,7 +53,7 @@ const Nav = props => (
         </li>
       </ul>
     </nav>
-  </header>
+  </aside>
 );
 
 export default Nav;

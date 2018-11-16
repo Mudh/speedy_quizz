@@ -1,41 +1,68 @@
-.sideRightLog{
-  display: flex;
-  flex-direction: column;
-  justify-content:space-between;
-  background: -moz-linear-gradient(-45deg, #f2e346 0%, #ffd149 100%); 
-  background: -webkit-linear-gradient(-45deg, #f2e346 0%,#ffd149 100%); 
-  background: linear-gradient(135deg, #f2e346 0%,#ffd149 100%); 
-  top: 0;
-  right:0;
-  position : fixed;
-  width: 25%;
-  height: 100%;
-  
-  & h2{
-    margin : 1em 1.5em;
+@import '../../styles/functions';
+@import '../../styles/colors';
+
+.sideRightLog {
+  background: -moz-linear-gradient(-45deg, #f2e346 0%, #fcbd00 100%);
+  background: -webkit-linear-gradient(-45deg, #f2e346 0%, #fcbd00 100%);
+  background: linear-gradient(135deg, #f2e346 0%, #fcbd00 100%);
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: url('../../assets/img/sidebar_bg_pattern.png') repeat center
+      center/7px;
+    width: rem(220);
+    height: 100%;
+    padding: 0 rem(33) rem(20);
+  }
+
+  h2 {
     font-size: 1.5em;
-    border-bottom: 1px solid rgba( 0, 25, 26, 0.5);
-    padding-bottom: 1em;
+    border-bottom: 1px solid $purpleText;
+    padding: rem(20) 0;
     text-align: center;
+    color: $purpleText;
   }
 
-  &__pfinish{
-    border-bottom: 1px solid rgba( 0, 25, 26, 0.5);
-    margin : 1em;
+  &__party,
+  &__jokers {
+    border-bottom: 1px solid $purpleText;
+    padding: rem(15) 0;
+  }
+  &__items {
+    display: flex;
+    align-items: center;
+    padding: rem(10) 0;
+    span {
+      color: $purpleText;
+      font-size: rem(18);
+    }
+    svg {
+      margin-right: rem(17);
+      width: 25px;
+      height: 25px;
+    }
   }
 
-  &__button button{
-    border-radius: 12px;
-    font-size : 1.5em;
-    padding:0.5em 1em;
-    background-color: white;
-    margin: 1em 6em;
-  
+  &__button {
+    margin-top: rem(35);
+    border: none;
+    background: $bgButton;
+    font-family: 'Schoolbell', cursive;
+    border-radius: 10px;
+    padding: rem(5) rem(12);
+    font-size: rem(21);
+    color: $purpleText;
+    box-shadow: 0 6px 0 0 rgba($purpleText, 1);
+
+    &:active {
+      box-shadow: 0 0 0 0 rgba($purpleText, 1);
+      transform: translateY(2px);
+    }
   }
 
-  & #icons{
-    margin-left: 4em;
+  svg {
+    width: 30px;
   }
 }
-
-
