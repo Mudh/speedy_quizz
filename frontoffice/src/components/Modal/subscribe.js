@@ -2,6 +2,7 @@
  * NPM import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 /**
  * Local import
  */
@@ -16,7 +17,7 @@ import './modal.scss';
  * Code
  */
 const Subscribe = ({ closeSubscribe, switchToLogin }) => (
-  <ModalLayout modalClass="subscribe" onClickCloseModal={closeSubscribe}>
+  <ModalLayout modalClass="subscribe" onClick={closeSubscribe}>
     <Button btnClass="close" btnText="+" onClick={closeSubscribe} />
     <SubscribeForm />
     <span>
@@ -25,6 +26,11 @@ const Subscribe = ({ closeSubscribe, switchToLogin }) => (
     <Button btnClass="primary" btnText="valider" />
   </ModalLayout>
 );
+
+Subscribe.propTypes = {
+  closeSubscribe: PropTypes.func.isRequired,
+  switchToLogin: PropTypes.func.isRequired,
+};
 /**
  * Export
  */

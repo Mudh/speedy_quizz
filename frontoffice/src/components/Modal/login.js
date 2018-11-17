@@ -17,7 +17,7 @@ import './modal.scss';
  * Code
  */
 const Login = ({ closeLogin, switchToSubscribe }) => (
-  <ModalLayout modalClass="login" onClickCloseModal={closeLogin}>
+  <ModalLayout modalClass="login" onClick={closeLogin}>
     <Button btnClass="close" btnText="+" onClick={closeLogin} />
     <LoginForm />
     <span>
@@ -29,6 +29,7 @@ const Login = ({ closeLogin, switchToSubscribe }) => (
 
 Login.propTypes = {
   closeLogin: PropTypes.func.isRequired,
+  switchToSubscribe: PropTypes.func.isRequired,
 };
 /**
  * Export

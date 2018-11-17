@@ -14,9 +14,9 @@ import './modal.scss';
 /**
  * Code
  */
-const ModalLayout = ({ modalClass, onClickCloseModal, children }) => (
+const ModalLayout = ({ modalClass, onClick, children }) => (
   <Modal>
-    <span className="modal__overlay" onClick={onClickCloseModal} />
+    <span className="modal__overlay" onClick={onClick} />
     <div className={`modal__wrapper modal__${modalClass}`}>
       <div className="modal__form">{children}</div>
     </div>
@@ -25,7 +25,7 @@ const ModalLayout = ({ modalClass, onClickCloseModal, children }) => (
 
 ModalLayout.propTypes = {
   modalClass: PropTypes.string.isRequired,
-  onClickCloseModal: PropTypes.func.isrequired,
+  onClick: PropTypes.func.isRequired,
 };
 /**
  * Export
