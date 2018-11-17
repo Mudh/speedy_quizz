@@ -2,13 +2,12 @@
  * NPM import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Local import
  */
 // Components
-import Layout from '../Layout';
-import Like from '../Icons/global/like';
 
 // Styles
 import './button.scss';
@@ -20,6 +19,10 @@ const Button = ({ btnText, btnClass }) => (
   <button className={btnClass}>{btnText}</button>
 );
 
+Button.propTypes = {
+  btnText: PropTypes.string.isRequired,
+  btnClass: PropTypes.string,
+};
 /**
  * Export
  */

@@ -2,7 +2,7 @@
  * NPM import
  */
 import React from 'react';
-
+import PropTypes from 'prop-types';
 /**
  * Local import
  */
@@ -107,6 +107,9 @@ const Podium = ({ active }) => (
   </svg>
 );
 
+Podium.propTypes = {
+  active: PropTypes.bool.isRequired,
+};
 /**
  * Export
  */

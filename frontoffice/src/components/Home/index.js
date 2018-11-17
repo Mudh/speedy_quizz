@@ -2,7 +2,6 @@
  * NPM import
  */
 import React from 'react';
-
 /**
  * Local import
  */
@@ -54,6 +53,7 @@ const Home = () => {
     </Layout>
   );
 };
+
 /**
  * Export
  */

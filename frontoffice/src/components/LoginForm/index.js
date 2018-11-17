@@ -17,26 +17,26 @@ import './form.scss';
 
 class LoginForm extends React.Component {
   static propTypes = {
-    inputValue: PropTypes.string.isRequired,
-    onChangeInput: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
-    onSubmitValue: PropTypes.func.isRequired,
+    // inputValue: PropTypes.string.isRequired,
+    // onChangeInput: PropTypes.func.isRequired,
+    // name: PropTypes.string.isRequired,
+    // onSubmitValue: PropTypes.func.isRequired,
   };
 
   /*
    * Handlers
    */
-  handleSubmit = evt => {
-    evt.preventDefault();
-    const { onSubmitValue, name, inputValue } = this.props;
-    onSubmitValue(name, inputValue);
-  };
+  // handleSubmit = evt => {
+  //   evt.preventDefault();
+  //   const { onSubmitValue, name, inputValue } = this.props;
+  //   onSubmitValue(name, inputValue);
+  // };
 
-  handleChange = evt => {
-    const valueInput = evt.target.value;
-    const { onChangeInput } = this.props;
-    onChangeInput(valueInput);
-  };
+  // handleChange = evt => {
+  //   const valueInput = evt.target.value;
+  //   const { onChangeInput } = this.props;
+  //   onChangeInput(valueInput);
+  // };
 
   render() {
     const { inputValue } = this.props;
