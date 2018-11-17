@@ -3,6 +3,7 @@
  */
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const SWITCH_MODAL = 'SWITCH_MODAL';
 
 // initial state
 const initialState = {
@@ -15,13 +16,20 @@ export default (state = initialState, action = {}) => {
     case OPEN_MODAL:
       return {
         ...state,
-        [action.modalType]: true,
+        [action.modalName]: true,
       };
 
     case CLOSE_MODAL:
       return {
         ...state,
-        [action.modalType]: false,
+        [action.modalName]: false,
+      };
+
+    case SWITCH_MODAL:
+      return {
+        ...state,
+        [action.modalToClose]: false,
+        [action.modalToOpen]: true,
       };
 
     default:
@@ -30,11 +38,18 @@ export default (state = initialState, action = {}) => {
 };
 
 // action creator
-export const openModal = modalType => ({
+export const openModal = modalName => ({
   type: OPEN_MODAL,
-  modalType,
+  modalName,
 });
-export const closeModal = modalType => ({
+
+export const closeModal = modalName => ({
   type: CLOSE_MODAL,
-  modalType,
+  modalName,
+});
+
+export const switchModal = (modalToClose, modalToOpen) => ({
+  type: SWITCH_MODAL,
+  modalToClose,
+  modalToOpen,
 });

@@ -16,12 +16,12 @@ import './modal.scss';
 /**
  * Code
  */
-const Login = ({ closeLogin }) => (
+const Login = ({ closeLogin, switchToSubscribe }) => (
   <ModalLayout modalClass="login" onClickCloseModal={closeLogin}>
     <Button btnClass="close" btnText="+" onClick={closeLogin} />
     <LoginForm />
     <span>
-      Pas encore inscrit ? <a href="">Cliquez ici</a>
+      Pas encore inscrit ? <span onClick={switchToSubscribe}>Cliquez ici</span>
     </span>
     <Button btnClass="primary" btnText="valider" />
   </ModalLayout>

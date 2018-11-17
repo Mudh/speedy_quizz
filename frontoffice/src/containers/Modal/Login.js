@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Login from '../../components/Modal/login';
 
 // action creators
-import { closeModal } from '../../store/reducers/modal';
+import { closeModal, switchModal } from '../../store/reducers/modal';
 
 // === State (données) ===
 const mapStateToProps = state => ({});
@@ -14,6 +14,9 @@ const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({
   closeLogin: () => {
     dispatch(closeModal('login'));
+  },
+  switchToSubscribe: () => {
+    dispatch(switchModal('login', 'subscribe'));
   },
 });
 

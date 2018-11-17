@@ -10,12 +10,16 @@ import { openModal } from '../store/reducers/modal';
 // === State (données) ===
 const mapStateToProps = state => ({
   isLoginOpen: state.modal.login,
+  isSubscribeOpen: state.modal.subscribe,
 });
 
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({
   openLogin: () => {
     dispatch(openModal('login'));
+  },
+  openSubscribe: () => {
+    dispatch(openModal('subscribe'));
   },
 });
 

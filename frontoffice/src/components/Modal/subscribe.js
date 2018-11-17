@@ -15,15 +15,12 @@ import './modal.scss';
 /**
  * Code
  */
-const Subscribe = () => (
-  <ModalLayout
-    modalClass="subscribe"
-    onClickCloseModal={() => console.log('ça clique')}
-  >
-    <Button btnClass="close" btnText="+" />
+const Subscribe = ({ closeSubscribe, switchToLogin }) => (
+  <ModalLayout modalClass="subscribe" onClickCloseModal={closeSubscribe}>
+    <Button btnClass="close" btnText="+" onClick={closeSubscribe} />
     <SubscribeForm />
     <span>
-      Déjà membre ? <a href="">Cliquez ici</a>
+      Déjà membre ? <span onClick={switchToLogin}>Cliquez ici</span>
     </span>
     <Button btnClass="primary" btnText="valider" />
   </ModalLayout>
