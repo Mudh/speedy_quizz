@@ -10,6 +10,7 @@
   }
 
   &--login,
+  &--add-question,
   &--subscribe {
     justify-content: flex-start;
     flex-direction: column;
@@ -58,6 +59,12 @@
       border-top: 1px solid $purpleText;
       padding: 1.2em;
       width: 100%;
+    }
+  }
+
+  &--add-question {
+    .form-input {
+      width: rem(400);
     }
   }
 

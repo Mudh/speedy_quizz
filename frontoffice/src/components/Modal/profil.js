@@ -2,6 +2,7 @@
  * NPM import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 /**
  * Local import
  */
@@ -15,13 +16,17 @@ import './modal.scss';
 /**
  * Code
  */
-const Profil = ({ closeProfil, switchToLogin }) => (
+const Profil = ({ closeProfil }) => (
   <ModalLayout modalClass="profil" onClickCloseModal={closeProfil}>
     <Button btnClass="close" btnText="+" onClick={closeProfil} />
     <ProfilForm />
     <Button btnClass="primary" btnText="valider" />
   </ModalLayout>
 );
+
+// Profil.propTypes = {
+//   closeProfil: PropTypes.func.isRequired,
+// };
 /**
  * Export
  */
