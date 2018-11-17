@@ -9,6 +9,7 @@ import React from 'react';
 import Layout from '../Layout';
 import Button from '../Button';
 import Like from '../Icons/global/like';
+import Profil from '../Modal/profil';
 import Login from '../../containers/Modal/Login';
 import Subscribe from '../../containers/Modal/Subscribe';
 
@@ -27,6 +28,7 @@ const Home = ({ openLogin, openSubscribe, isLoginOpen, isSubscribeOpen }) => {
   ];
   const login = isLoginOpen ? <Login /> : null;
   const subscribe = isSubscribeOpen ? <Subscribe /> : null;
+  const profil = <Profil />; // Pour tester la modale en attendant la page
 
   return (
     <Layout layoutClass="home">
@@ -51,6 +53,7 @@ const Home = ({ openLogin, openSubscribe, isLoginOpen, isSubscribeOpen }) => {
       </div>
       {login}
       {subscribe}
+      {/* {profil} */}
     </Layout>
   );
 };

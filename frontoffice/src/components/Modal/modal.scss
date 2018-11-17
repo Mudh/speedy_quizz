@@ -64,4 +64,10 @@
       padding: rem(5) rem(25);
     }
   }
+
+  &__profil {
+    .modal__form {
+      align-items: flex-end;
+    }
+  }
 }

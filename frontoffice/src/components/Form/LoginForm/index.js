@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 // Components
 
 // Styles
-import './loginForm.scss';
+import '../form.scss';
 
 /**
  * Code
@@ -42,7 +42,7 @@ class LoginForm extends React.Component {
     const { inputValue } = this.props;
 
     return (
-      <form className="form" onSubmit={this.handleSubmit}>
+      <form className="form form--login" onSubmit={this.handleSubmit}>
         <label>Email :</label>
         <input
           className="form-input"

@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 // Components
 
 // Styles
-import './subscribeForm.scss';
+import '../form.scss';
 
 /**
  * Code
@@ -42,7 +42,7 @@ class SubscribeForm extends React.Component {
     const { inputValue } = this.props;
 
     return (
-      <form className="form" onSubmit={this.handleSubmit}>
+      <form className="form form--subscribe" onSubmit={this.handleSubmit}>
         <label>Nom :</label>
         <input
           className="form-input"

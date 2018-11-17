@@ -1,10 +1,23 @@
-@import '../../../styles/colors';
-@import '../../../styles/functions';
+@import '../../styles/colors';
+@import '../../styles/functions';
 
 .form {
   display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
+
+  &--profil {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  &--login,
+  &--subscribe {
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+
+  textarea {
+    outline: none;
+  }
 
   label {
     font-size: rem(17);
@@ -13,7 +26,8 @@
     padding-top: rem(20);
   }
 
-  &-input {
+  &-input,
+  &-textarea {
     background: transparent;
     border-top: none;
     border-bottom: 1px solid $purpleText;
@@ -44,6 +58,28 @@
       border-top: 1px solid $purpleText;
       padding: 1.2em;
       width: 100%;
+    }
+  }
+
+  fieldset {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    &:last-child {
+      margin-top: rem(21);
+      margin-left: rem(40);
+      padding-left: rem(40);
+      border-left: 1px solid $purpleText;
+
+      label {
+        padding-top: 0;
+      }
+    }
+
+    .form-input,
+    .input-textarea {
+      padding: rem(5) 0 0.7rem;
     }
   }
 }
