@@ -2,14 +2,14 @@
  * NPM import
  */
 import React from 'react';
-import Nav from '../Nav';
-import SideRightLog from '../SideRightLog';
 
 /**
  * Local import
  */
 // Components
-import Home from '../Home';
+import HomeVisitor from '../../containers/HomeVisitor';
+import Nav from '../Nav';
+import SideRightLog from '../SideRightLog';
 // Styles
 import './app.scss';
 
@@ -19,7 +19,7 @@ import './app.scss';
 const App = () => (
   <div id="app">
     <Nav />
-    <Home />
+    <HomeVisitor />
     <SideRightLog />
   </div>
 );

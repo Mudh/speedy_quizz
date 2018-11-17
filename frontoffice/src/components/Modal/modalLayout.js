@@ -25,7 +25,7 @@ const ModalLayout = ({ modalClass, onClickCloseModal, children }) => (
 
 ModalLayout.propTypes = {
   modalClass: PropTypes.string.isRequired,
-  onClickCloseModal: PropTypes.func.isRequired,
+  onClickCloseModal: PropTypes.func.isrequired,
 };
 /**
  * Export

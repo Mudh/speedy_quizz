@@ -9,7 +9,8 @@ import React from 'react';
 import Layout from '../Layout';
 import Button from '../Button';
 import Like from '../Icons/global/like';
-import Login from '../Modal/login';
+import Login from '../../containers/Modal/Login';
+import Subscribe from '../Modal/subscribe';
 
 // Styles
 import './home.scss';
@@ -17,21 +18,22 @@ import './home.scss';
 /**
  * Code
  */
-const Home = () => {
-  const toggle = true;
+const Home = ({ openLogin, isLoginOpen }) => {
   const themes = [
     'Grammaire Anglaise',
     'PHP OOP',
     'ES6 le nouveau Javascript',
     'La vie des Lamantins',
   ];
-
-  const login = toggle ? <Login /> : null;
+  console.log('is open', isLoginOpen);
+  const login = isLoginOpen ? <Login /> : null;
+  const toggleSubscribe = false;
+  const subscribe = toggleSubscribe ? <Subscribe /> : null;
 
   return (
     <Layout layoutClass="home">
       <header className="home__header">
-        <Button btnText="Connexion" />
+        <Button btnText="Connexion" onClick={openLogin} />
         <span>/</span>
         <Button btnText="Inscription" />
       </header>
@@ -50,6 +52,7 @@ const Home = () => {
         ))}
       </div>
       {login}
+      {subscribe}
     </Layout>
   );
 };

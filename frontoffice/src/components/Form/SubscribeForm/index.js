@@ -9,13 +9,13 @@ import PropTypes from 'prop-types';
 // Components
 
 // Styles
-import './form.scss';
+import './subscribeForm.scss';
 
 /**
  * Code
  */
 
-class LoginForm extends React.Component {
+class SubscribeForm extends React.Component {
   static propTypes = {
     // inputValue: PropTypes.string.isRequired,
     // onChangeInput: PropTypes.func.isRequired,
@@ -43,11 +43,29 @@ class LoginForm extends React.Component {
 
     return (
       <form className="form" onSubmit={this.handleSubmit}>
+        <label>Nom :</label>
+        <input
+          className="form-input"
+          type="text"
+          placeholder="Votre nom"
+          autoComplete="off"
+          value={inputValue}
+          onChange={this.handleChange}
+        />
+        <label>Prénom :</label>
+        <input
+          className="form-input"
+          type="text"
+          placeholder="Votre prénom"
+          autoComplete="off"
+          value={inputValue}
+          onChange={this.handleChange}
+        />
         <label>Email :</label>
         <input
           className="form-input"
           type="email"
-          placeholder="Entrez votre email"
+          placeholder="Votre email"
           autoComplete="off"
           value={inputValue}
           onChange={this.handleChange}
@@ -56,7 +74,7 @@ class LoginForm extends React.Component {
         <input
           className="form-input"
           type="password"
-          placeholder="Entrez votre mot de passe"
+          placeholder="Votre mot de passe"
           autoComplete="off"
           value={inputValue}
           onChange={this.handleChange}
@@ -69,4 +87,4 @@ class LoginForm extends React.Component {
 /**
  * Export
  */
-export default LoginForm;
+export default SubscribeForm;

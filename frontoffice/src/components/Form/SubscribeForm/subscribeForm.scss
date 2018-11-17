@@ -1,0 +1,77 @@
+@import '../../../styles/colors';
+@import '../../../styles/functions';
+
+.form {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+
+  label {
+    font-size: rem(17);
+    color: $purpleText;
+    font-weight: 600;
+    padding-top: rem(20);
+  }
+
+  &-input {
+    background: transparent;
+    border-top: none;
+    border-bottom: 1px solid $purpleText;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    padding: rem(5) 0 rem(10);
+    width: rem(250);
+    font-size: rem(22);
+    font-family: 'Schoolbell', cursive;
+    color: $purpleText;
+
+    &-pseudo {
+      color: $purpleText;
+      background-color: transparent;
+      font-size: rem(15);
+      border: none;
+      padding-bottom: 0.8em;
+      width: 10em;
+      text-align: right;
+    }
+
+    &-message {
+      color: $purpleText;
+      background-color: transparent;
+      font-size: 0.5em;
+      font-weight: 500;
+      border: none;
+      border-top: 1px solid $purpleText;
+      padding: 1.2em;
+      width: 100%;
+    }
+  }
+}
+
+::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: $purpleText;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: $purpleText;
+  opacity: 1;
+}
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: $purpleText;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: $purpleText;
+  opacity: 1;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: $purpleText;
+}
+
+::placeholder {
+  /* Most modern browsers support this now. */
+  color: $purpleText;
+}
