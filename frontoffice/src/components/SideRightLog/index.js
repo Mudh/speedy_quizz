@@ -44,11 +44,11 @@ const SideRightLog = () => (
           </li>
           <li className="sideRightLog__items">
             <Revive />
-            <span className="logo__commentary">x3 Revive/s</span>
+            <span className="logo__commentary">x3 Revive</span>
           </li>
           <li className="sideRightLog__items">
             <Timer />
-            <span className="logo__commentary">x4 Timer/s</span>
+            <span className="logo__commentary">x4 Timer</span>
           </li>
           <li className="sideRightLog__items">
             <FiftyFifty />
