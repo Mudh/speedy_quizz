@@ -2,8 +2,14 @@
 
 html,
 body,
-#root {
+#app-root {
   background-color: #eaeaea;
   height: 100%;
   font-family: 'Schoolbell', cursive;
+  overflow: hidden;
+}
+
+#modal-root {
+  position: relative;
+  z-index: 999;
 }

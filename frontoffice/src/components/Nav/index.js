@@ -10,50 +10,53 @@ import 'src/components/SideDrawer/DrawerToggleButton.scss';
 import './nav.scss';
 import 'src/components/Icons/icons.scss';
 
-const Nav = props => (
-  <aside className="toolbar">
-    <nav className="toolbar__navigation">
-      <ul className="toolbar__navigation-top">
-        <li>
-          <a href="#">
-            <Home />
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <Podium />
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <Faq />
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <Profil />
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <Disconnect />
-          </a>
-        </li>
-      </ul>
-      <ul className="toolbar__navigation-bottom">
-        <li>
-          <a href="#">
-            <Socials />
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <Infos />
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </aside>
-);
+const Nav = () => {
+  const active = false;
+  return (
+    <aside className="toolbar">
+      <nav className="toolbar__navigation">
+        <ul className="toolbar__navigation-top">
+          <li>
+            <a href="#">
+              <Home active={active} />
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <Podium active={active} />
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <Faq active={active} />
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <Profil active={active} />
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <Disconnect />
+            </a>
+          </li>
+        </ul>
+        <ul className="toolbar__navigation-bottom">
+          <li>
+            <a href="#">
+              <Socials />
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <Infos />
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+  );
+};
 
 export default Nav;

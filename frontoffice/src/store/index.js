@@ -2,11 +2,10 @@
  * npm import
  */
 import { createStore, applyMiddleware, compose } from 'redux';
-
 /**
  * local import
  */
-import reducer from './reducer';
+import reducers from './reducers';
 
 import ajax from './ajaxMiddleware';
 
@@ -26,7 +25,7 @@ const enhancers = compose(
 );
 
 // Store
-const store = createStore(reducer, enhancers);
+const store = createStore(reducers, enhancers);
 
 /**
  * Export

@@ -2,7 +2,7 @@
  * NPM import
  */
 import React from 'react';
-
+import PropTypes from 'prop-types';
 /**
  * Local import
  */
@@ -97,6 +97,9 @@ const Faq = ({ active }) => (
   </svg>
 );
 
+Faq.propTypes = {
+  active: PropTypes.bool.isRequired,
+};
 /**
  * Export
  */

@@ -2,13 +2,12 @@
  * NPM import
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * Local import
  */
 // Components
-import Layout from '../Layout';
-import Like from '../Icons/global/like';
 
 // Styles
 import './button.scss';
@@ -16,10 +15,17 @@ import './button.scss';
 /**
  * Code
  */
-const Button = ({ btnText, btnClass }) => (
-  <button className={btnClass}>{btnText}</button>
+const Button = ({ btnText, btnClass, onClick }) => (
+  <button className={btnClass} onClick={onClick}>
+    {btnText}
+  </button>
 );
 
+Button.propTypes = {
+  btnText: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  btnClass: PropTypes.string,
+};
 /**
  * Export
  */
