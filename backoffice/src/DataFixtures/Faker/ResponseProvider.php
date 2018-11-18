@@ -4,20 +4,15 @@ namespace App\DataFixtures\Faker;
 
 class ResponseProvider extends \Faker\Provider\Base {
 
-    protected static $responses1 = [
+    protected static $responses = [
         "Mercure", // id 1 
         "Venus", // id 1 
         "Saturne", // id 1 
         "Uranus", // id 1 
-    ];
-
-    protected static $responses2 = [
         "Jupiter", // id 2
         "Terre", // id 2
         "Mars", // id 2
         "Neptune", // id 2
-    ];
-    /*
         "9", // id 3
         "8", // id 3
         "voielactee", // id 4 
@@ -46,15 +41,11 @@ class ResponseProvider extends \Faker\Provider\Base {
         "1969", // id 14 
         "einstein", // id 15
     ];
-*/
-    public static function responseList1()
+
+    public static function responseList()
   {
-    return static::randomElement(static::$responses1);
+    return static::randomElement(static::$responses);
   }
 
-    public static function responseList2()
-  {
-    return static::randomElement(static::$responses2);
-  }
 
 }
