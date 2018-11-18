@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Utils\AccentEncoder;
 use App\Repository\CoeffRepository;
 use App\Repository\ThemeRepository;
 use JMS\Serializer\SerializerBuilder;
@@ -25,43 +26,19 @@ class QuizzController extends AbstractController
     /**
      * @Route("/quizz/test/", name="quizz_test_list")
      */
-    public function getQuestions(QuestionRepository $questionRepo, CoeffRepository $coeffRepo)
+    public function getQuestions(QuestionRepository $questionRepo, CoeffRepository $coeffRepo, AccentEncoder $accent)
     {
         $level = 'Difficile';
         $theme = 'Espace';
 
-        $coeff = $coeffRepo->findByLevelName($level);
+        $coeff = $coeffRepo->findByLevelName($level); // We search the good points coeff
         
-        $questionsStepOne = $questionRepo->FindFiveQuestionsStepOne($theme);
-        $questionsStepTwo = $questionRepo->FindFiveQuestionsStepTwo($theme);
-        $questionsStepThree = $questionRepo->FindFiveQuestionsStepThree($theme);
+        $questionsStepOne = $questionRepo->FindFiveQuestionsStepOne($theme); // 5 questions for step 1
+        $questionsStepTwo = $questionRepo->FindFiveQuestionsStepTwo($theme); // 5 questions for step 2
+        $questionsStepThree = $questionRepo->FindFiveQuestionsStepThree($theme); // 5 questions for step 3
 
-        foreach ($questionsStepOne as $question) {
-            $question->setTitle(htmlentities($question->getTitle()));
+        $accent->getQuestionsAccents($questionsStepOne, $questionsStepTwo, $questionsStepThree); // We use our service to encode correctly specials characters 
         
-            foreach($question->getResponse() as $response) {
-                $response->setResponse(htmlentities($response->getResponse()));
-            }
-        }
-
-        foreach ($questionsStepTwo as $question) {
-            $question->setTitle(htmlentities($question->getTitle()));
-
-            foreach($question->getResponse() as $response) {
-
-                $response->setResponse(htmlentities($response->getResponse()));
-            }
-        }
-
-        foreach ($questionsStepThree as $question) {
-            $question->setTitle(htmlentities($question->getTitle()));
-
-            foreach($question->getResponse() as $response) {
-                $response->setResponse(htmlentities($response->getResponse()));
-            }
-        }
-        
-       
         $serializer = SerializerBuilder::create()->build();
 
         $data = [
