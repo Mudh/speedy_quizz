@@ -8,6 +8,7 @@ import React from 'react';
  */
 // Components
 import HomeVisitor from '../../containers/HomeVisitor';
+import Quiz from '../Quiz';
 import Nav from '../Nav';
 import SideRightLog from '../SideRightLog';
 // Styles
@@ -20,6 +21,7 @@ const App = () => (
   <div id="app">
     <Nav />
     <HomeVisitor />
+    {/* <Quiz /> */}
     <SideRightLog />
   </div>
 );

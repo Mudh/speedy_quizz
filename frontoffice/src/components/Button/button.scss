@@ -28,3 +28,36 @@
   height: 20px;
   line-height: 0;
 }
+
+.stop {
+  border-radius: 100%;
+  border: none;
+  box-shadow: 0 10px 0 0 rgba($purpleText, 1);
+  background: #c92b00; /* Old browsers */
+  background: -moz-linear-gradient(
+    -45deg,
+    #c92b00 0%,
+    #913700 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    -45deg,
+    #c92b00 0%,
+    #913700 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    135deg,
+    #c92b00 0%,
+    #913700 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  width: rem(170);
+  height: rem(170);
+  line-height: 0;
+  font-family: 'Schoolbell', cursive;
+  color: $bgButton;
+  font-size: rem(45);
+
+  &:active {
+    box-shadow: 0 0 0 0 rgba($purpleText, 1);
+    transform: translateY(2px);
+  }
+}
