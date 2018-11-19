@@ -1,0 +1,50 @@
+@import '../../styles/colors';
+@import '../../styles/functions';
+
+.classement {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+
+  &__title {
+    margin-top: rem(105);
+    font-size: rem(70);
+    color: $yellowText;
+    margin-bottom: 5rem;
+
+  &__tables{
+    display: flex;
+
+  }
+  }
+
+  .table {
+
+    margin: rem(15);
+    background: $bgButton;
+    border-radius: 10px;
+    box-shadow: 10px 10px 0 0 rgba($purpleText, 1);
+    width: rem(500);
+    height: rem(250);
+
+    & li {
+      color: #26005b;
+      padding: 0.6rem 1.5rem;
+      font-size: rem(25);
+    }
+    
+    &__title {
+      padding: 0.6rem 1.5rem;
+      font-size: rem(35);
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      text-align: left;
+      color: $yellowText;
+      background-color: #26005b;
+    }
+  }
+}
+
+

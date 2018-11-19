@@ -8,6 +8,7 @@ import React from 'react';
  */
 // Components
 import HomeVisitor from '../../containers/HomeVisitor';
+import HomeMembre from '../HomeMembre';
 import Quiz from '../Quiz';
 import Nav from '../Nav';
 import SideRightLog from '../SideRightLog';
@@ -23,6 +24,8 @@ const App = () => (
     <HomeVisitor />
     {/* <Quiz /> */}
     <SideRightLog />
+   
+
   </div>
 );
 /**
