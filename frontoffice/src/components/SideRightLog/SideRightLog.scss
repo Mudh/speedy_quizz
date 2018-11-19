@@ -1,0 +1,51 @@
+@import '../../styles/functions';
+@import '../../styles/colors';
+
+.sideRightLog {
+  background: -moz-linear-gradient(-45deg, #f2e346 0%, #fcbd00 100%);
+  background: -webkit-linear-gradient(-45deg, #f2e346 0%, #fcbd00 100%);
+  background: linear-gradient(135deg, #f2e346 0%, #fcbd00 100%);
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: url('../../assets/img/sidebar_bg_pattern.png') repeat center
+      center/7px;
+    width: rem(220);
+    height: 100%;
+    padding: 0 rem(33) rem(20);
+  }
+
+  h2 {
+    font-size: 1.5em;
+    border-bottom: 1px solid $purpleText;
+    padding: rem(20) 0;
+    text-align: center;
+    color: $purpleText;
+  }
+
+  &__party,
+  &__jokers {
+    border-bottom: 1px solid $purpleText;
+    padding: rem(15) 0;
+  }
+  &__items {
+    display: flex;
+    align-items: center;
+    padding: rem(10) 0;
+    span {
+      color: $purpleText;
+      font-size: rem(18);
+    }
+    svg {
+      margin-right: rem(17);
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  svg {
+    width: 30px;
+  }
+}

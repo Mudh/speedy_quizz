@@ -1,0 +1,18 @@
+/*
+* FUNCTIONS
+*/
+
+// Fonction pour transformer les pixels en rem et éviter les conversions hasardeuses !
+// Y a juste à l'importer et l'utiliser comme ça => font-size: rem(20) ici 20 est pixel et sera converti en rem
+$baseFontSize: 16;
+@function rem($pixels, $context: $baseFontSize) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1rem;
+}

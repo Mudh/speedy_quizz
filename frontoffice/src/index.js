@@ -23,4 +23,4 @@ const rootComponent = (
   </Provider>
 );
 
-render(rootComponent, document.getElementById('root'));
+render(rootComponent, document.getElementById('app-root'));

@@ -7,7 +7,10 @@ import React from 'react';
  * Local import
  */
 // Components
-
+import HomeVisitor from '../../containers/HomeVisitor';
+import Quiz from '../Quiz';
+import Nav from '../Nav';
+import SideRightLog from '../SideRightLog';
 // Styles
 import './app.scss';
 
@@ -16,10 +19,12 @@ import './app.scss';
  */
 const App = () => (
   <div id="app">
-    Hello World !
+    <Nav />
+    <HomeVisitor />
+    {/* <Quiz /> */}
+    <SideRightLog />
   </div>
 );
-
 /**
  * Export
  */
