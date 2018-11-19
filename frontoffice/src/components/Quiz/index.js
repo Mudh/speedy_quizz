@@ -25,7 +25,7 @@ class Quiz extends React.Component {
     data: PropTypes.object.isRequired,
   };
 
-  handleNextQuestion = () => {
+  handleNextQuestion = evt => {
     const {
       data,
       step,
@@ -36,20 +36,31 @@ class Quiz extends React.Component {
       openScore,
     } = this.props;
 
+    // Récupération des valeurs (coeff + points de base) pour attribuer les points
     const initPoints = data.questionsList[`step${step}`][questionNumber].points;
     const stepCoeff = data.coefficient[step - 1].coeff;
 
+    // Vérification de la réponse
+    const targetId = parseInt(evt.target.id, 10);
+    const isCorrectAnswer = data.questionsList[`step${step}`][
+      questionNumber
+    ].response.find(answer => answer.id == targetId).is_correct;
+
+    // Ternaire pour attibuer ou non les points
+    let boolScore = isCorrectAnswer ? stepCoeff * initPoints : 0;
+
+    // Conditions en fonction des steps et des fins de steps
     if ((step === 1 || step === 2) && questionNumber === 4) {
       setTimeout(() => {
         nextStep();
-        updateScore(stepCoeff * initPoints);
+        updateScore(boolScore);
       }, 300);
     } else if (step === 3 && questionNumber === 4) {
-      openScore();
+      openScore(); // Ici on arrive à la fin du quiz donc on ouvre la modale de score
     } else {
       setTimeout(() => {
         nextQuestion();
-        updateScore(stepCoeff * initPoints);
+        updateScore(boolScore);
       }, 300);
     }
   };
@@ -77,7 +88,9 @@ class Quiz extends React.Component {
             {answers.map(answer => (
               <AnswerRadio
                 key={answer.id}
+                id={answer.id}
                 answer={answer.response}
+                name={question}
                 onChangeNext={this.handleNextQuestion}
               />
             ))}

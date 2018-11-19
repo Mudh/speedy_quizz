@@ -15,19 +15,21 @@ import './quiz.scss';
 /**
  * Code
  */
-const AnswerRadio = ({ done, onChangeNext, answer, name }) => {
+const AnswerRadio = ({ id, onChangeNext, answer, name }) => {
   return (
     <li className="quiz__answer">
-      <input type="radio" checked={done} name={name} onChange={onChangeNext} />
+      <input type="radio" id={id} name={name} onChange={onChangeNext} />
       <label className="task-label">{answer}</label>
     </li>
   );
 };
 
-// AnswerRadio.propTypes = {
-//   done: PropTypes.bool.isRequired,
-//   checkTask: PropTypes.func.isRequired,
-// };
+AnswerRadio.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  onChangeNext: PropTypes.func.isRequired,
+  answer: PropTypes.string.isRequired,
+};
 
 /**
  * Export
