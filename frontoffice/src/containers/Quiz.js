@@ -6,6 +6,7 @@ import Quiz from 'src/components/Quiz';
 
 // action creators
 import { nextQuestion, nextStep } from '../store/reducers/quiz';
+import { updatePoints } from '../store/reducers/sideRightLog';
 import { openModal } from '../store/reducers/modal';
 
 // === State (données) ===
@@ -23,6 +24,9 @@ const mapDispatchToProps = dispatch => ({
   },
   nextQuestion: () => {
     dispatch(nextQuestion());
+  },
+  updateScore: scoreValue => {
+    dispatch(updatePoints(scoreValue));
   },
   openScore: () => {
     dispatch(openModal('score'));

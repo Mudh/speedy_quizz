@@ -27,21 +27,30 @@ class Quiz extends React.Component {
 
   handleNextQuestion = () => {
     const {
+      data,
       step,
       questionNumber,
       nextQuestion,
       nextStep,
+      updateScore,
       openScore,
     } = this.props;
 
+    const initPoints = data.questionsList[`step${step}`][questionNumber].points;
+    const stepCoeff = data.coefficient[step - 1].coeff;
+
     if ((step === 1 || step === 2) && questionNumber === 4) {
-      setTimeout(() => nextStep(), 300);
-      // nextStep();
+      setTimeout(() => {
+        nextStep();
+        updateScore(stepCoeff * initPoints);
+      }, 300);
     } else if (step === 3 && questionNumber === 4) {
       openScore();
     } else {
-      setTimeout(() => nextQuestion(), 300);
-      // nextQuestion();
+      setTimeout(() => {
+        nextQuestion();
+        updateScore(stepCoeff * initPoints);
+      }, 300);
     }
   };
 
@@ -53,7 +62,7 @@ class Quiz extends React.Component {
 
     const score = isScoreOpen ? <Score /> : null;
 
-    console.log('data', data, answers);
+    console.log('data', data);
 
     return (
       <Layout layoutClass="quiz">

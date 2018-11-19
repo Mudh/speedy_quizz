@@ -22,7 +22,7 @@ import './SideRightLog.scss';
 /**
  * Code
  */
-const SideRightLog = () => (
+const SideRightLog = ({ points }) => (
   <aside className="sideRightLog">
     <div className="sideRightLog__wrapper">
       <div className="sideRightLog__Top">
@@ -30,11 +30,11 @@ const SideRightLog = () => (
         <ul className="sideRightLog__party">
           <li className="sideRightLog__items">
             <Credits />
-            <span className="logo__commentary">x2 Partie/s</span>
+            <span className="logo__commentary">x2 Parties</span>
           </li>
           <li className="sideRightLog__items">
             <Score />
-            <span className="logo__commentary">14056 Points </span>
+            <span className="logo__commentary">{points} Points </span>
           </li>
         </ul>
         <ul className="sideRightLog__jokers">
