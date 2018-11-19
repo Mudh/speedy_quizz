@@ -36,6 +36,7 @@
   }
 
   &__breadcrumb {
+    display: block;
     margin-top: rem(10);
     font-size: rem(20);
     color: $yellowText;
