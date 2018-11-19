@@ -47,4 +47,5 @@ class ResponseProvider extends \Faker\Provider\Base {
     return static::randomElement(static::$responses);
   }
 
+
 }

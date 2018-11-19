@@ -22,6 +22,8 @@ class QuestionProvider extends \Faker\Provider\Base {
         "Quelle grand scientifique a introduit la théorie de la relativité ?", //Einstein 3eme étape
     ];
 
+
+
     public static function questionList()
   {
     return static::randomElement(static::$questions);

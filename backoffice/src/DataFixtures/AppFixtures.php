@@ -7,6 +7,9 @@ use App\Entity\Home;
 use App\Entity\Role;
 use App\Entity\User;
 use App\Entity\Coeff;
+use App\Entity\Theme;
+use App\Entity\Question;
+use App\Entity\Response;
 use Faker\ORM\Doctrine\Populator;
 use App\DataFixtures\Faker\StepProvider;
 use App\DataFixtures\Faker\JokerProvider;
@@ -49,7 +52,7 @@ class AppFixtures extends Fixture
 
         $populator->addEntity('App\Entity\Theme', 9, array(
             'title' => function() use ($generator) { 
-                return $generator->themeList(); 
+                return $generator->unique()->themeList(); 
             },
 
             'description' => function() use ($generator) { 
@@ -57,25 +60,9 @@ class AppFixtures extends Fixture
             }
         ));
 
-        $populator->addEntity('App\Entity\Response', 35, array(
-            'response' => function() use ($generator) { 
-                return $generator->unique()->responseList(); 
-            },
-        ));
-
-        $populator->addEntity('App\Entity\Question', 15, array(
-            'title' => function() use ($generator) { 
-                return $generator->unique()->questionList(); 
-            },
-
-            'points' => 2,
-            'likes' => 0,
-            'isValidated' => true
-        ));
-
         $populator->addEntity('App\Entity\Joker', 4, array(
             'name' => function() use ($generator) { 
-                return $generator->jokerList(); 
+                return $generator->unique()->jokerList(); 
             }
         ));
 
@@ -91,7 +78,26 @@ class AppFixtures extends Fixture
             },
         ));
 
+        
+        $populator->addEntity('App\Entity\Response', 35, array(
+            'response' => function() use ($generator) { 
+                return $generator->unique()->responseList(); 
+            },
+        ));
 
+        $theme = new Theme();
+        $populator->addEntity('App\Entity\Question', 15, array(
+            'title' => function() use ($generator) { 
+                return $generator->unique()->questionList(); 
+            },
+
+            'points' => 2,
+            'likes' => 0,
+            'isValidated' => true,
+            'theme' => $theme->getTitle('Espace'),
+        ));
+        
+       
         $populator->addEntity('App\Entity\Role', 1, array(
             'coderole' => function() use ($generator) { 
                 return 'ROLE_USER'; 
