@@ -9,6 +9,7 @@ export const SWITCH_MODAL = 'SWITCH_MODAL';
 const initialState = {
   login: false,
   subscribe: false,
+  score: false,
 };
 
 export default (state = initialState, action = {}) => {

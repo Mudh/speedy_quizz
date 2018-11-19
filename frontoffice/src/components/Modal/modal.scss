@@ -29,7 +29,7 @@
   &__wrapper {
     position: relative;
     z-index: 2;
-    border-radius: 20px;
+    border-radius: rem(20);
     background: -moz-linear-gradient(-45deg, #f2e346 0%, #fcbd00 100%);
     background: -webkit-linear-gradient(-45deg, #f2e346 0%, #fcbd00 100%);
     background: linear-gradient(135deg, #f2e346 0%, #fcbd00 100%);
@@ -39,6 +39,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    border-radius: rem(20);
     background: url('../../assets/img/sidebar_bg_pattern.png') repeat center
       center/7px;
     padding: rem(20) rem(50) rem(40);
@@ -68,6 +69,13 @@
   &__profil {
     .modal__form {
       align-items: flex-end;
+    }
+  }
+  &__score {
+    p {
+      text-align: center;
+      margin-top: rem(35);
+      font-size: rem(25);
     }
   }
 }

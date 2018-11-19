@@ -6,7 +6,8 @@ import data from '../../data/questions';
 /**
  * Types
  */
-export const NEW_QUESTION = 'NEW_QUESTION';
+export const NEXT_STEP = 'NEXT_STEP';
+export const NEXT_QUESTION = 'NEXT_QUESTION';
 
 // initial state
 const initialState = {
@@ -17,7 +18,13 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case NEW_QUESTION:
+    case NEXT_STEP:
+      return {
+        ...state,
+        step: state.step + 1,
+        questionNumber: 0,
+      };
+    case NEXT_QUESTION:
       return {
         ...state,
         questionNumber: state.questionNumber + 1,
@@ -29,6 +36,9 @@ export default (state = initialState, action = {}) => {
 };
 
 // action creator
+export const nextStep = () => ({
+  type: NEXT_STEP,
+});
 export const nextQuestion = () => ({
-  type: NEW_QUESTION,
+  type: NEXT_QUESTION,
 });
