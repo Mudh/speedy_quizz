@@ -33,9 +33,9 @@ class QuizzController extends AbstractController
 
         $coeff = $coeffRepo->findByLevelName($level); // We search the good points coeff
         
-        $questionsStepOne = $questionRepo->FindFiveQuestionsStepOne($theme); // 5 questions for step 1
-        $questionsStepTwo = $questionRepo->FindFiveQuestionsStepTwo($theme); // 5 questions for step 2
-        $questionsStepThree = $questionRepo->FindFiveQuestionsStepThree($theme); // 5 questions for step 3
+        $questionsStepOne = $questionRepo->findFiveQuestionsStepOne($theme); // 5 questions for step 1
+        $questionsStepTwo = $questionRepo->findFiveQuestionsStepTwo($theme); // 5 questions for step 2
+        $questionsStepThree = $questionRepo->findFiveQuestionsStepThree($theme); // 5 questions for step 3
 
         $accent->getQuestionsAccents($questionsStepOne, $questionsStepTwo, $questionsStepThree); // We use our service to encode correctly specials characters 
         

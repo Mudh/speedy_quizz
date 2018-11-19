@@ -19,7 +19,7 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
-    public function FindFiveQuestionsStepOne($theme) {
+    public function findFiveQuestionsStepOne($theme) {
         $queryBuilder = $this->createQueryBuilder('question')
             ->join('question.step', 's')
             ->join('question.theme', 't')
@@ -33,7 +33,7 @@ class QuestionRepository extends ServiceEntityRepository
             return $queryBuilder->execute();
     }
 
-    public function FindFiveQuestionsStepTwo($theme) {
+    public function findFiveQuestionsStepTwo($theme) {
         $queryBuilder = $this->createQueryBuilder('question')
             ->join('question.step', 's')
             ->join('question.theme', 't')
@@ -47,7 +47,7 @@ class QuestionRepository extends ServiceEntityRepository
             return $queryBuilder->execute();
     }
 
-    public function FindFiveQuestionsStepThree($theme) {
+    public function findFiveQuestionsStepThree($theme) {
         $queryBuilder = $this->createQueryBuilder('question')
             ->join('question.step', 's')
             ->join('question.theme', 't')

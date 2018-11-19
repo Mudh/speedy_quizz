@@ -38,7 +38,7 @@ class Response
 
     public function getResponse(): ?string
     {
-        return $this->response;
+        return htmlentities($this->response);
     }
 
     public function setResponse(string $response): self

@@ -21,14 +21,14 @@ class Theme
 
     /**
      * @ORM\Column(type="string", length=150)
-     * @JMS\Exclude();
+     * 
      * 
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
-     * @JMS\Exclude();
+     * 
      */
     private $description;
 
