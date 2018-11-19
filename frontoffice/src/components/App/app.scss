@@ -1,6 +1,21 @@
 #app {
-  margin: 2em 0;
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 2em;
+  display: flex;
+  justify-content: space-between;
+  background: #4f32b6; /* Old browsers */
+  background: -moz-linear-gradient(
+    -45deg,
+    #4f32b6 0%,
+    #5e3aba 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    -45deg,
+    #4f32b6 0%,
+    #5e3aba 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    135deg,
+    #4f32b6 0%,
+    #5e3aba 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  height: 100%;
 }

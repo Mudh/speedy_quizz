@@ -1,0 +1,33 @@
+@import '../../styles/functions';
+
+.toolbar {
+  width: rem(80);
+  background-color: #26005b;
+  height: 100%;
+}
+.toolbar__navigation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: rem(21) rem(16);
+  height: 100%;
+
+  &-top,
+  &-bottom {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-top li a,
+  &-bottom li a {
+    display: block;
+    margin-bottom: rem(12);
+    text-decoration: none;
+    padding: rem(9);
+  }
+
+  &-bottom li:last-child a {
+    margin-bottom: 0;
+  }
+}
