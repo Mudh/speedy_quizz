@@ -15,10 +15,10 @@ import './quiz.scss';
 /**
  * Code
  */
-const AnswerRadio = ({ done, checkTask, answer, name }) => {
+const AnswerRadio = ({ done, onChangeNext, answer, name }) => {
   return (
     <li className="quiz__answer">
-      <input type="radio" checked={done} name={name} onChange={checkTask} />
+      <input type="radio" checked={done} name={name} onChange={onChangeNext} />
       <label className="task-label">{answer}</label>
     </li>
   );

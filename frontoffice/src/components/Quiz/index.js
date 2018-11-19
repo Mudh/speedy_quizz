@@ -18,20 +18,30 @@ import './quiz.scss';
 /**
  * Code
  */
-const Quiz = ({ data }) => {
-  console.log('data', data);
+const Quiz = ({ data, step, questionNumber, nextQuestion }) => {
+  const question = data.questionsList[`step${step}`][questionNumber].title;
+  const answers = data.questionsList[`step${step}`][questionNumber].response;
+  const totalQuestions = data.questionsList[`step${step}`].length;
+
+  console.log('data', data, answers);
+
   return (
     <Layout layoutClass="quiz">
       <section className="quiz__section">
         <QuizHeader
           theme="Le système solaire"
-          question="Sous quel forme le preterit se présente t’il à la fin d’un verbe ?"
-          questionNumber={1}
-          totalQuestions={5}
+          question={question}
+          questionNumber={questionNumber + 1}
+          totalQuestions={totalQuestions}
         />
         <ul className="quiz__answers">
-          <AnswerRadio answer="On met “ing” à la fin du verbe. Ex: “Playing”" />
-          <AnswerRadio answer="On met “ed” à la fin du verbe. Ex: “Played”" />
+          {answers.map(answer => (
+            <AnswerRadio
+              key={answer.id}
+              answer={answer.response}
+              onChangeNext={nextQuestion}
+            />
+          ))}
         </ul>
       </section>
       <footer className="quiz__footer">

@@ -6,19 +6,21 @@ import data from '../../data/questions';
 /**
  * Types
  */
-export const OPEN_MODAL = 'OPEN_MODAL';
+export const NEW_QUESTION = 'NEW_QUESTION';
 
 // initial state
 const initialState = {
   data: data,
+  step: 1,
+  questionNumber: 0,
 };
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case OPEN_MODAL:
+    case NEW_QUESTION:
       return {
         ...state,
-        [action.quizName]: true,
+        questionNumber: state.questionNumber + 1,
       };
 
     default:
@@ -27,7 +29,6 @@ export default (state = initialState, action = {}) => {
 };
 
 // action creator
-export const openQuiz = quizName => ({
-  type: OPEN_MODAL,
-  quizName,
+export const nextQuestion = () => ({
+  type: NEW_QUESTION,
 });
