@@ -1,6 +1,6 @@
 // import
 import axios from 'axios';
-
+import { SEND_REQUEST } from '../store/reducers/homeMembre';
 // Types
 
 const url = 'http://127.0.0.8000';
@@ -11,12 +11,15 @@ const url = 'http://127.0.0.8000';
 
 const ajax = store => next => action => {
   switch (action.type) {
-    case 'CHANGE_MESSAGE':
+    case SEND_REQUEST:
       {
         const state = store.getState();
         // ...
         axios
-          .get(url)
+          .post(url, {
+            firstName: 'Fred',
+            lastName: 'Flintstone',
+          })
           // succes
           .then(response => {
             console.log(response);

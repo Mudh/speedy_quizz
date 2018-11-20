@@ -18,7 +18,7 @@ import '../Home/home.scss';
  * Code
  */
 
-const HomeMembre = () => {
+const HomeMembre = ({ sendRequest }) => {
   const themes = [
     'Le système solaire',
     'La grammaire anglaise',
@@ -36,12 +36,17 @@ const HomeMembre = () => {
     <Layout layoutClass="homeMember">
       <h1 className="homeMember__title">Choisis ton thème et ta difficulté</h1>
       <section className="homeMember__themes">
-        {themes.map(theme => (
-          <div className="theme">
+        {themes.map((theme, index) => (
+          <div key={`${theme}${index}`} className="theme">
             <h2 className="theme__title">{theme}</h2>
             <div className="theme__levels">
               {levels.map(level => (
-                <Button key={level} btnClass="primary" btnText={level} />
+                <Button
+                  key={level}
+                  btnClass="primary"
+                  btnText={level}
+                  onClick={sendRequest}
+                />
               ))}
             </div>
           </div>
