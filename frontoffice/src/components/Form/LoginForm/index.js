@@ -17,48 +17,51 @@ import '../form.scss';
 
 class LoginForm extends React.Component {
   static propTypes = {
-    // inputValue: PropTypes.string.isRequired,
-    // onChangeInput: PropTypes.func.isRequired,
-    // name: PropTypes.string.isRequired,
-    // onSubmitValue: PropTypes.func.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    onChangeInput: PropTypes.func.isRequired,
+    onSubmitLogin: PropTypes.func.isRequired,
   };
 
   /*
    * Handlers
    */
-  // handleSubmit = evt => {
-  //   evt.preventDefault();
-  //   const { onSubmitValue, name, inputValue } = this.props;
-  //   onSubmitValue(name, inputValue);
-  // };
+  handleSubmit = evt => {
+    const { onSubmitLogin } = this.props;
+    if (evt.key === 'Enter') {
+      onSubmitLogin();
+    }
+  };
 
-  // handleChange = evt => {
-  //   const valueInput = evt.target.value;
-  //   const { onChangeInput } = this.props;
-  //   onChangeInput(valueInput);
-  // };
+  handleChange = evt => {
+    const { name, value } = evt.target;
+    const { onChangeInput } = this.props;
+    onChangeInput(name, value);
+  };
 
   render() {
-    const { inputValue } = this.props;
+    const { email, password } = this.props;
 
     return (
-      <form className="form form--login" onSubmit={this.handleSubmit}>
+      <form className="form form--login" onKeyUp={this.handleSubmit}>
         <label>Email :</label>
         <input
           className="form-input"
+          name="email"
           type="email"
           placeholder="Entrez votre email"
           autoComplete="off"
-          value={inputValue}
+          value={email}
           onChange={this.handleChange}
         />
         <label>Mot de passe :</label>
         <input
           className="form-input"
+          name="password"
           type="password"
           placeholder="Entrez votre mot de passe"
           autoComplete="off"
-          value={inputValue}
+          value={password}
           onChange={this.handleChange}
         />
       </form>
