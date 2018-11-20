@@ -22,7 +22,8 @@ const App = () => (
   <div id="app">
     <Nav />
     {/* <HomeVisitor /> */}
-    <Quiz />
+    <HomeMembre />
+    {/* <Quiz /> */}
     <SideRightLog />
   </div>
 );

@@ -10,7 +10,6 @@ import React from 'react';
 import Layout from '../Layout';
 import Button from '../Button';
 
-
 // Styles
 import './homeMembre.scss';
 import '../Home/home.scss';
@@ -20,48 +19,37 @@ import '../Home/home.scss';
  */
 
 const HomeMembre = () => {
-  const difficullvls = [
-    'Facile',
-    'Moyen',
-    'Difficile',
+  const themes = [
+    'Le système solaire',
+    'La grammaire anglaise',
+    'La vie des lamentins',
+    'Le système solaire',
+    'La grammaire anglaise',
+    'La vie des lamentins',
+    'Le système solaire',
+    'La grammaire anglaise',
+    'La vie des lamentins',
   ];
+  const levels = ['Facile', 'Moyen', 'Difficile'];
 
   return (
-    <Layout layoutClass="home">
-      <h1 className="home__title">Choisis ton thème et ta difficulté</h1>
-      <h2 className="home__subtitle"> Le thème de mon jeu</h2>
-      <div className="home__difficullvls">
-        {difficullvls.map(difficullvl => (
-          <div key={difficullvl} className="difficullvl">
-            <Button btnClass="home__btn-start" btnText={difficullvl} />
+    <Layout layoutClass="homeMember">
+      <h1 className="homeMember__title">Choisis ton thème et ta difficulté</h1>
+      <section className="homeMember__themes">
+        {themes.map(theme => (
+          <div className="theme">
+            <h2 className="theme__title">{theme}</h2>
+            <div className="theme__levels">
+              {levels.map(level => (
+                <Button key={level} btnClass="primary" btnText={level} />
+              ))}
+            </div>
           </div>
         ))}
-      </div>
+      </section>
     </Layout>
   );
 };
-const home2 = () => {
-  const difficullvls = [
-    'prout',
-    'Moyen',
-    'Difficile',
-  ];
-
-  return (
-    <Layout layoutClass="home">
-      <h1 className="home__title">Choisis ton thème et ta difficulté</h1>
-      <h2 className="home__subtitle"> Le thème de mon jeu</h2>
-      <div className="home__difficullvls">
-        {difficullvls.map(difficullvl => (
-          <div key={difficullvl} className="difficullvl">
-            <Button btnClass="home__btn-start" btnText={difficullvl} />
-          </div>
-        ))}
-      </div>
-    </Layout>
-  );
-};
-
 
 /**
  * Export
