@@ -1,5 +1,5 @@
 {
-  "extends": "airbnb",
+  "extends": ["airbnb", "prettier"],
   "parser": "babel-eslint",
   "env": {
     "browser": true
@@ -19,7 +19,17 @@
     "react/no-access-state-in-setstate": "warn",
     "react/jsx-one-expression-per-line": "off",
     "react/destructuring-assignment": "warn",
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "object-curly-newline": [
+      "error",
+      {
+        "ObjectPattern": {
+          "consistent": false,
+          "multiline": true,
+          "minProperties": 5
+        }
+      }
+    ]
   },
   "settings": {
     "import/resolver": "webpack"
