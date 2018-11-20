@@ -96,5 +96,17 @@
         border-radius: 3px;
       }
     }
+
+    &--text {
+      position: static;
+      margin-top: rem(45);
+      border: none;
+      opacity: 1;
+      width: 100%;
+      height: auto;
+      cursor: text;
+      font-family: 'Schoolbell', cursive;
+      padding: rem(20) rem(35);
+    }
   }
 }

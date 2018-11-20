@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Quiz from 'src/components/Quiz';
 
 // action creators
-import { nextQuestion, nextStep } from '../store/reducers/quiz';
+import { nextQuestion, nextStep, answerValue } from '../store/reducers/quiz';
 import { updatePoints } from '../store/reducers/sideRightLog';
 import { openModal } from '../store/reducers/modal';
 
@@ -14,6 +14,7 @@ const mapStateToProps = state => ({
   data: state.quiz.data,
   step: state.quiz.step,
   questionNumber: state.quiz.questionNumber,
+  answerValue: state.quiz.answerValue,
   isScoreOpen: state.modal.score,
 });
 
@@ -24,6 +25,9 @@ const mapDispatchToProps = dispatch => ({
   },
   nextQuestion: () => {
     dispatch(nextQuestion());
+  },
+  onChangeAnswer: textValue => {
+    dispatch(answerValue(textValue));
   },
   updateScore: scoreValue => {
     dispatch(updatePoints(scoreValue));
