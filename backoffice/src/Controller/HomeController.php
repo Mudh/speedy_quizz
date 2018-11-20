@@ -41,8 +41,8 @@ class HomeController extends AbstractController
      */
     public function homeLogued(ThemeRepository $themeRepo, AccentEncoder $accent)
     {
-        $themes = $themeRepo->findLastNine ();
-
+        $themes = $themeRepo->findLastNine();
+        
         $accent->getHomeAccent($themes,'');
 
 
