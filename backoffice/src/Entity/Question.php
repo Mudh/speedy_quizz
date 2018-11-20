@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as JMS;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
@@ -40,6 +41,7 @@ class Question
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Theme", inversedBy="questions")
+     * @JMS\Exclude();
      */
     private $theme;
 

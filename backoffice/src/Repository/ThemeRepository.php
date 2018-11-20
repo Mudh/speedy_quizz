@@ -19,6 +19,24 @@ class ThemeRepository extends ServiceEntityRepository
         parent::__construct($registry, Theme::class);
     }
 
+    public function findLastThree() {
+        $queryBuilder = $this->createQueryBuilder('theme')
+            ->orderBy('theme.id', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery();
+
+            return $queryBuilder->execute();
+    }
+
+    public function findLastNine() {
+        $queryBuilder = $this->createQueryBuilder('theme')
+            ->orderBy('theme.id', 'DESC')
+            ->setMaxResults(9)
+            ->getQuery();
+
+            return $queryBuilder->execute();
+    }
+
     // /**
     //  * @return Theme[] Returns an array of Theme objects
     //  */
