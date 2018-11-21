@@ -3,10 +3,13 @@
 
 .homeMember {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
   flex: 1;
+  &__main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+  }
 
   &__title {
     margin-top: rem(50);

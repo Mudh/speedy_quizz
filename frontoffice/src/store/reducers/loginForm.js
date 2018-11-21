@@ -9,7 +9,7 @@ export const FAKE_AUTH = 'FAKE_AUTH';
 const initialState = {
   email: '',
   password: '',
-  fakeAuth: false,
+  fakeAuth: true,
 };
 
 export default (state = initialState, action = {}) => {
