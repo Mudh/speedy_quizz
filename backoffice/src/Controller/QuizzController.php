@@ -7,6 +7,7 @@ use App\Repository\CoeffRepository;
 use App\Repository\ThemeRepository;
 use JMS\Serializer\SerializerBuilder;
 use App\Repository\QuestionRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,10 +27,14 @@ class QuizzController extends AbstractController
     /**
      * @Route("/quizz/test/", name="quizz_test_list")
      */
-    public function getQuestions(QuestionRepository $questionRepo, CoeffRepository $coeffRepo, AccentEncoder $accent)
+    public function getQuestions(QuestionRepository $questionRepo, CoeffRepository $coeffRepo, AccentEncoder $accent, Request $request)
     {
-        $level = 'Difficile';
-        $theme = 'Espace';
+        $content = $request->getContent();
+
+        $quizzData = json_decode($content, true);
+
+        $level = $quizzData['level'];
+        $theme = $quizzData['theme'];
 
         $coeff = $coeffRepo->findByLevelName($level); // We search the good points coeff
         
