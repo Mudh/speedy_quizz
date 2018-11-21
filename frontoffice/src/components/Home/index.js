@@ -2,6 +2,7 @@
  * NPM import
  */
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 /**
  * Local import
  */
@@ -20,7 +21,13 @@ import './home.scss';
 /**
  * Code
  */
-const Home = ({ openLogin, openSubscribe, isLoginOpen, isSubscribeOpen }) => {
+const Home = ({
+  openLogin,
+  openSubscribe,
+  isLoginOpen,
+  isSubscribeOpen,
+  fakeAuth,
+}) => {
   const themes = [
     'Grammaire Anglaise',
     'PHP OOP',
@@ -57,6 +64,7 @@ const Home = ({ openLogin, openSubscribe, isLoginOpen, isSubscribeOpen }) => {
       {subscribe}
       {/* {profil}
       {addQuestion} */}
+      {fakeAuth && <Redirect to="/loggued" />}
     </Layout>
   );
 };

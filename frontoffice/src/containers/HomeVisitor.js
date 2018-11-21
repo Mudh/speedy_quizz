@@ -11,6 +11,7 @@ import { openModal } from '../store/reducers/modal';
 const mapStateToProps = state => ({
   isLoginOpen: state.modal.login,
   isSubscribeOpen: state.modal.subscribe,
+  fakeAuth: state.loginForm.fakeAuth,
 });
 
 // === Dispatch (actions) ===

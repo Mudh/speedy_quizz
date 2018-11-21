@@ -2,7 +2,7 @@
  * NPM import
  */
 import React from 'react';
-
+import { Redirect } from 'react-router-dom';
 /**
  * Local import
  */
@@ -18,7 +18,7 @@ import '../Home/home.scss';
  * Code
  */
 
-const HomeMembre = ({ sendRequest }) => {
+const HomeMembre = ({ sendRequest, fakeAuth }) => {
   const themes = [
     'Le système solaire',
     'La grammaire anglaise',
@@ -52,6 +52,7 @@ const HomeMembre = ({ sendRequest }) => {
           </div>
         ))}
       </section>
+      {!fakeAuth && <Redirect to="/" />}
     </Layout>
   );
 };

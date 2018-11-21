@@ -8,6 +8,7 @@ import {
   Link,
   Redirect,
   withRouter,
+  Switch,
 } from 'react-router-dom';
 /**
  * Local import
@@ -25,24 +26,28 @@ import './app.scss';
 /**
  * Code
  */
-const App = () => (
-  <div id="app">
-    <Router>
-      <div>
-        <Nav />
 
-        <Route exact path="/" component={HomeVisitor} />
-        <Route exact path="/classement" component={Classement} />
-        <Route exact path="/faq" render={() => <div>FAQ</div>} />
-        <Route exact path="/profil" render={() => <div>Profil</div>} />
-
-        {/* <HomeMembre /> */}
-        {/* <Quiz /> */}
-        {/* <SideRightLog /> */}
-      </div>
-    </Router>
-  </div>
-);
+const App = () => {
+  return (
+    <div id="app">
+      <Router>
+        <div>
+          <Nav />
+          <Switch>
+            <Route exact path="/" component={HomeVisitor} />
+            <Route exact path="/loggued" component={HomeMembre} />
+            <Route exact path="/classement" component={Classement} />
+            <Route exact path="/faq" render={() => <div>FAQ</div>} />
+            <Route exact path="/profil" render={() => <div>Profil</div>} />
+            <Route exact path="/quiz" component={Quiz} />
+            <Route render={() => <div>404</div>} />
+          </Switch>
+          {/* <SideRightLog /> */}
+        </div>
+      </Router>
+    </div>
+  );
+};
 /**
  * Export
  */

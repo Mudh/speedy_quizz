@@ -8,7 +8,9 @@ import Home from 'src/components/HomeMembre';
 import { sendRequest } from '../store/reducers/homeMembre';
 
 // === State (données) ===
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  fakeAuth: state.loginForm.fakeAuth,
+});
 
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({
