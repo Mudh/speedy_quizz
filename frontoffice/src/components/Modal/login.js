@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
  */
 // Components
 import ModalLayout from './modalLayout';
-import LoginForm from '../Form/LoginForm';
+import LoginForm from '../../containers/LoginForm';
 import Button from '../Button';
 // Styles
 import './modal.scss';
@@ -16,14 +16,14 @@ import './modal.scss';
 /**
  * Code
  */
-const Login = ({ closeLogin, switchToSubscribe }) => (
+const Login = ({ closeLogin, switchToSubscribe, onSubmitLogin }) => (
   <ModalLayout modalClass="login" onClick={closeLogin}>
     <Button btnClass="close" btnText="+" onClick={closeLogin} />
     <LoginForm />
     <span>
       Pas encore inscrit ? <span onClick={switchToSubscribe}>Cliquez ici</span>
     </span>
-    <Button btnClass="primary" btnText="valider" />
+    <Button btnClass="primary" btnText="valider" onClick={onSubmitLogin} />
   </ModalLayout>
 );
 

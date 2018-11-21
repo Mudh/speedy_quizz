@@ -21,8 +21,8 @@ import './app.scss';
 const App = () => (
   <div id="app">
     <Nav />
-    {/* <HomeVisitor /> */}
-    <HomeMembre />
+    <HomeVisitor />
+    {/* <HomeMembre /> */}
     {/* <Quiz /> */}
     <SideRightLog />
   </div>
