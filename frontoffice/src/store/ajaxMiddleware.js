@@ -3,7 +3,7 @@ import axios from 'axios';
 import { SUBMIT_LOGIN } from '../store/reducers/loginForm';
 // Types
 
-const url = 'http://localhost:3000/login';
+const url = 'http://127.0.0.1:8000';
 
 /**
  * Middleware de gestion ajax
