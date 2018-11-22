@@ -42,21 +42,22 @@ const Profil = () => (
             </p>
           </li>
         </ul>
-        <p className="profil__text">
-          <Pencil /> Modifier
-        </p>
+        <span className="profil__modify">
+          <Pencil />
+          <span className="profil__text">Modifier</span>
+        </span>
       </div>
       <div className="profil__right">
-        <span className="profil__text , line">Questions proposées</span>
-
+        <h3 className="profil__subtitle">Questions proposées</h3>
+        <span class="hr" />
         <ul>
-          <li className="profil__text">• Quand est ce qu'il fera beau ?</li>
-          <li className="profil__text">• C'est loin l'Australie ?</li>
+          <li className="profil__question">• Quand est ce qu'il fera beau ?</li>
+          <li className="profil__question">• C'est loin l'Australie ?</li>
         </ul>
-        <p className="profil__text">
+        <span className="profil__modify">
           <Pencil />
-          Proposez une question
-        </p>
+          <span className="profil__text">Proposez une question</span>
+        </span>
       </div>
     </div>
   </Layout>
