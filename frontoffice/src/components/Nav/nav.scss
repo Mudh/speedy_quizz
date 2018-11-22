@@ -2,32 +2,62 @@
 
 .toolbar {
   width: rem(80);
-  background-color: #26005b;
+  background-color: hsl(265, 100%, 18%);
   height: 100%;
-}
-.toolbar__navigation {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: rem(21) rem(16);
-  height: 100%;
+  min-width: 80px;
 
-  &-top,
-  &-bottom {
+  &__navigation {
     display: flex;
     flex-direction: column;
-  }
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: rem(21) 0;
+    height: 100%;
 
-  &-top li a,
-  &-bottom li a {
-    display: block;
-    margin-bottom: rem(12);
-    text-decoration: none;
-    padding: rem(9);
-  }
+    &-top,
+    &-bottom {
+      display: flex;
+      flex-direction: column;
+    }
 
-  &-bottom li:last-child a {
-    margin-bottom: 0;
+    &-top li a,
+    &-bottom li a {
+      display: flex;
+      justify-content: flex-end;
+      width: 64px;
+      margin-bottom: rem(12);
+      text-decoration: none;
+      padding: rem(9);
+    }
+    &-top li {
+      a {
+        border-radius: 0 10px 10px 0;
+        .icon {
+          &__inactive {
+            visibility: visible;
+          }
+          &__active {
+            visibility: hidden;
+          }
+        }
+      }
+      .selected {
+        background: -moz-linear-gradient(-45deg, #f2e346 0%, #fcbd00 100%);
+        background: -webkit-linear-gradient(-45deg, #f2e346 0%, #fcbd00 100%);
+        background: linear-gradient(135deg, #f2e346 0%, #fcbd00 100%);
+        .icon {
+          &__inactive {
+            visibility: hidden;
+          }
+          &__active {
+            visibility: visible;
+          }
+        }
+      }
+    }
+
+    &-bottom li:last-child a {
+      margin-bottom: 0;
+    }
   }
 }

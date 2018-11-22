@@ -3,12 +3,17 @@
 
 .quiz {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-direction: column;
-  height: 100%;
   flex: 1;
-  padding: 0 rem(28) 0 rem(20);
+
+  &__main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+    padding: 0 rem(28) 0 rem(20);
+    flex: 1;
+  }
 
   &__section,
   &__footer {

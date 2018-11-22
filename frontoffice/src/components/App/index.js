@@ -37,10 +37,22 @@ const App = () => {
             <Route exact path="/" component={HomeVisitor} />
             <Route exact path="/loggued" component={HomeMembre} />
             <Route exact path="/classement" component={Classement} />
-            <Route exact path="/faq" render={() => <div>FAQ</div>} />
-            <Route exact path="/profil" render={() => <div>Profil</div>} />
+            <Route
+              exact
+              path="/faq"
+              render={() => <div className="construc">FAQ en construction</div>}
+            />
+            <Route
+              exact
+              path="/profil"
+              render={() => (
+                <div className="construc">Profil en construction</div>
+              )}
+            />
             <Route exact path="/quiz" component={Quiz} />
-            <Route render={() => <div>404</div>} />
+            <Route
+              render={() => <div className="construc">404 en construction</div>}
+            />
           </Switch>
           {/* <SideRightLog /> */}
         </div>

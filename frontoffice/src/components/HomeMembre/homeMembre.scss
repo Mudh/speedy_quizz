@@ -4,11 +4,13 @@
 .homeMember {
   display: flex;
   flex: 1;
+
   &__main {
     display: flex;
     align-items: center;
     flex-direction: column;
     height: 100%;
+    overflow-y: scroll;
   }
 
   &__title {
@@ -19,7 +21,7 @@
 
   &__themes {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     margin-top: rem(105);
   }
@@ -49,4 +51,18 @@
       margin: 0 rem(8) 0;
     }
   }
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba($purpleText, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba($purpleText, 0.7);
 }
