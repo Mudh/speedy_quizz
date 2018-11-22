@@ -1,6 +1,7 @@
 // import
 import axios from 'axios';
 import { SUBMIT_LOGIN } from '../store/reducers/loginForm';
+import { SUBMIT_SUBSCRIBE } from '../store/reducers/subscribeForm';
 // Types
 
 const url = 'http://127.0.0.1:8000';
@@ -34,6 +35,35 @@ const ajax = store => next => action => {
           .catch(error => {
             console.error(error);
           });
+      }
+      break;
+
+    case SUBMIT_SUBSCRIBE:
+      {
+        const state = store.getState();
+        console.log({
+          firstname: state.subscribeForm.lastname,
+          lastname: state.subscribeForm.firstname,
+          username: state.subscribeForm.nickname,
+          email: state.subscribeForm.email,
+          password: state.subscribeForm.password,
+        });
+        // axios
+        //   .post(url, {
+        //     firstname: state.subscribeForm.lastname,
+        //     lastname: state.subscribeForm.firstname,
+        //     username: state.subscribeForm.nickname,
+        //     email: state.loginForm.email,
+        //     password: state.loginForm.password,
+        //   })
+        //   // succes
+        //   .then(response => {
+        //     console.log(response);
+        //   })
+        //   // echec
+        //   .catch(error => {
+        //     console.error(error);
+        //   });
       }
       break;
 
