@@ -3,7 +3,7 @@ import axios from 'axios';
 import { SUBMIT_LOGIN } from '../store/reducers/loginForm';
 // Types
 
-const url = 'http://127.0.0.1:8000';
+const url = 'http://127.0.0.1:8000/login';
 
 /**
  * Middleware de gestion ajax
@@ -18,13 +18,12 @@ const ajax = store => next => action => {
         axios
           .post(
             url,
-            {},
             {
               auth: {
-                email: state.loginForm.email,
-                password: state.loginForm.password,
+                email: "adrien66@orange.fr",
+                password: "123",
               },
-            },
+            }, 
           )
           // succes
           .then(response => {

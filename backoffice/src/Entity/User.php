@@ -2,14 +2,19 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Table(name="app_users")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(
+ *  fields={"email"},
+ *  message="Cet email est déjà utilisé; connectez-vous")
  */
 class User implements UserInterface
 {
@@ -22,6 +27,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="Merci d'entrer votre pseudo")
+     * @Assert\Length(
+     * min = 3,
+     * minMessage="Merci d'entrer un pseudo d'au moins 3 caractères",
+     * max = 25,
+     * maxMessage="Votre pseudo ne peut pas faire + de 25 caractères"
+     * )
      */
     private $username;
 
@@ -35,26 +47,55 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Le mot de passe ne peut pas être vide")
+     * @Assert\Length(
+     *     min = 5,
+     *     minMessage="Merci d'entrer un mot de passe d'au moins 5 caractères",
+     *     max = 255,
+     *     maxMessage="Votre mot de passe ne peut pas faire + de 30 caractères"
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\NotBlank(message="Merci d'entrer votre prénom")
+     * @Assert\Length(
+     *    max = 50,
+     *    maxMessage="Prénom trop long"
+     * )
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\NotBlank(message="Merci d'entrer votre nom")
+     * @Assert\Length(
+     *    max = 70,
+     *    maxMessage="Nom trop long"
+     * )
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\Email(
+     *     message = "Merci d'entrer un email valide !",
+     * )
+     * @Assert\NotBlank(message="L'adresse email ne peut pas être vide")
+     * @Assert\Length(
+     *    max = 150,
+     *    maxMessage="email trop long"
+     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Assert\Length(
+     *    max = 500,
+     *    maxMessage="Description trop longue"
+     * )
      */
     private $description;
 
@@ -121,10 +162,10 @@ class User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string) $this->username;
     }
 
-    public function setUsername(string $username): self
+    public function setUsername($username)
     {
         $this->username = $username;
 
@@ -187,7 +228,7 @@ class User implements UserInterface
         return $this->firstname;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
 
@@ -199,7 +240,7 @@ class User implements UserInterface
         return $this->lastname;
     }
 
-    public function setLastname(string $lastname): self
+    public function setLastname($lastname)
     {
         $this->lastname = $lastname;
 
@@ -211,7 +252,7 @@ class User implements UserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail($email)
     {
         $this->email = $email;
 
@@ -223,7 +264,7 @@ class User implements UserInterface
         return $this->description;
     }
 
-    public function setDescription(?string $description): self
+    public function setDescription($description)
     {
         $this->description = $description;
 
