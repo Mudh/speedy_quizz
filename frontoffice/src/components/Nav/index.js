@@ -1,4 +1,13 @@
+/**
+ * NPM import
+ */
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
+/**
+ * Local import
+ */
+// Components
 import Disconnect from 'src/components/Icons/nav/disconnect';
 import Faq from 'src/components/Icons/nav/faq';
 import Home from 'src/components/Icons/nav/home';
@@ -6,9 +15,8 @@ import Infos from 'src/components/Icons/nav/infos';
 import Podium from 'src/components/Icons/nav/podium';
 import Socials from 'src/components/Icons/nav/socials';
 import Profil from 'src/components/Icons/nav/profil';
-import 'src/components/SideDrawer/DrawerToggleButton.scss';
+
 import './nav.scss';
-import 'src/components/Icons/icons.scss';
 
 const Nav = () => {
   const active = false;
@@ -17,24 +25,24 @@ const Nav = () => {
       <nav className="toolbar__navigation">
         <ul className="toolbar__navigation-top">
           <li>
-            <a href="#">
+            <NavLink exact to="/" activeClassName="selected">
               <Home active={active} />
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="#">
+            <NavLink to="/classement" activeClassName="selected">
               <Podium active={active} />
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="#">
+            <NavLink to="/faq" activeClassName="selected">
               <Faq active={active} />
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="#">
+            <NavLink to="/profil" activeClassName="selected">
               <Profil active={active} />
-            </a>
+            </NavLink>
           </li>
           <li>
             <a href="#">
@@ -49,6 +57,9 @@ const Nav = () => {
             </a>
           </li>
           <li>
+            {/* <NavLink to="/profil" activeClassName="selected">
+              <Infos />
+            </NavLink> */}
             <a href="#">
               <Infos />
             </a>

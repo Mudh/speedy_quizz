@@ -2,16 +2,17 @@
  * NPM import
  */
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 /**
  * Local import
  */
 // Components
-import Layout from '../Layout';
 import Button from '../Button';
 import QuizHeader from './QuizHeader';
 import AnswerRadio from './answerRadio';
+import Layout from '../../containers/Layout';
 import Score from '../../containers/Modal/Score';
 
 // Styles
@@ -111,7 +112,14 @@ class Quiz extends React.Component {
   };
 
   render() {
-    const { data, step, questionNumber, isScoreOpen, answerValue } = this.props;
+    const {
+      data,
+      step,
+      questionNumber,
+      isScoreOpen,
+      answerValue,
+      fakeAuth,
+    } = this.props;
     const question = data.questionsList[`step${step}`][questionNumber].title;
     const answers = data.questionsList[`step${step}`][questionNumber].response;
     const totalQuestions = data.questionsList[`step${step}`].length;
@@ -161,6 +169,7 @@ class Quiz extends React.Component {
           <Button btnClass="stop" btnText="STOP" />
         </footer>
         {score}
+        {!fakeAuth && <Redirect to="/loggued" />}
       </Layout>
     );
   }

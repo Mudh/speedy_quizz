@@ -1,0 +1,103 @@
+@import '../../styles/colors';
+@import '../../styles/functions';
+
+.profil {
+  display: flex;
+  flex: 1;
+  color: $yellowText;
+
+  &__main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__title {
+    margin-top: rem(50);
+    font-size: rem(45);
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  &__subtitle {
+    display: inline-block;
+    font-size: rem(22);
+  }
+
+  .hr {
+    display: inline-block;
+    border-bottom: 1px solid #fdec44;
+    width: calc(100% - 210px);
+    margin: 0 0 5px 20px;
+  }
+
+  &__subtitle,
+  &__question {
+    margin-bottom: rem(15);
+  }
+
+  &__left {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    width: 40%;
+    padding: 0 rem(20);
+  }
+
+  &__right {
+    width: 60%;
+    padding: 0 rem(20);
+    border-left: 1px solid $yellowText;
+  }
+
+  &__item {
+    display: flex;
+    border-bottom: 1px solid $yellowText;
+    flex-direction: column;
+    margin-bottom: rem(20);
+  }
+
+  &__label,
+  &__question {
+    font-size: rem(17);
+  }
+
+  &__question:last-child {
+    margin-bottom: rem(25);
+  }
+
+  &__text,
+  &__description {
+    padding: rem(5) 0 rem(16);
+    font-size: rem(22);
+  }
+
+  &__description {
+    line-height: 1.1;
+  }
+
+  &__modify {
+    display: flex;
+    margin-top: rem(5);
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+
+    .profil__text {
+      padding: 0;
+    }
+
+    svg {
+      margin-right: rem(10);
+      width: rem(20);
+      height: rem(20);
+      fill: $yellowText;
+    }
+  }
+}

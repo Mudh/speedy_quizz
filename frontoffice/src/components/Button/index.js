@@ -15,9 +15,10 @@ import './button.scss';
 /**
  * Code
  */
-const Button = ({ btnText, btnClass, onClick }) => (
+const Button = ({ btnText, btnClass, onClick, children }) => (
   <button className={btnClass} onClick={onClick}>
     {btnText}
+    {children}
   </button>
 );
 
