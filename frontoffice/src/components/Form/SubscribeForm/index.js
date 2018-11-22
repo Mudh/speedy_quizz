@@ -17,66 +17,84 @@ import '../form.scss';
 
 class SubscribeForm extends React.Component {
   static propTypes = {
-    // inputValue: PropTypes.string.isRequired,
-    // onChangeInput: PropTypes.func.isRequired,
-    // name: PropTypes.string.isRequired,
-    // onSubmitValue: PropTypes.func.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+    firstname: PropTypes.string.isRequired,
+    nickname: PropTypes.string.isRequired,
+    onChangeInput: PropTypes.func.isRequired,
+    onSubmitSubscribe: PropTypes.func.isRequired,
   };
 
   /*
    * Handlers
    */
-  // handleSubmit = evt => {
-  //   evt.preventDefault();
-  //   const { onSubmitValue, name, inputValue } = this.props;
-  //   onSubmitValue(name, inputValue);
-  // };
+  handleSubmit = evt => {
+    const { onSubmitSubscribe } = this.props;
+    if (evt.key === 'Enter') {
+      onSubmitSubscribe();
+    }
+  };
 
-  // handleChange = evt => {
-  //   const valueInput = evt.target.value;
-  //   const { onChangeInput } = this.props;
-  //   onChangeInput(valueInput);
-  // };
+  handleChange = evt => {
+    const { name, value } = evt.target;
+    const { onChangeInput } = this.props;
+    onChangeInput(name, value);
+  };
 
   render() {
-    const { inputValue } = this.props;
+    const { email, password, lastname, firstname, nickname } = this.props;
 
     return (
-      <form className="form form--subscribe" onSubmit={this.handleSubmit}>
+      <form className="form form--subscribe" onKeyUp={this.handleSubmit}>
         <label>Nom :</label>
         <input
           className="form-input"
+          name="lastname"
           type="text"
           placeholder="Votre nom"
           autoComplete="off"
-          value={inputValue}
+          value={lastname}
           onChange={this.handleChange}
         />
         <label>Prénom :</label>
         <input
           className="form-input"
+          name="firstname"
           type="text"
           placeholder="Votre prénom"
           autoComplete="off"
-          value={inputValue}
+          value={firstname}
+          onChange={this.handleChange}
+        />
+        <label>Pseudo :</label>
+        <input
+          className="form-input"
+          name="nickname"
+          type="text"
+          placeholder="Votre pseudo"
+          autoComplete="off"
+          value={nickname}
           onChange={this.handleChange}
         />
         <label>Email :</label>
         <input
           className="form-input"
+          name="email"
           type="email"
           placeholder="Votre email"
           autoComplete="off"
-          value={inputValue}
+          value={email}
           onChange={this.handleChange}
         />
         <label>Mot de passe :</label>
         <input
           className="form-input"
+          name="password"
           type="password"
           placeholder="Votre mot de passe"
           autoComplete="off"
-          value={inputValue}
+          value={password}
           onChange={this.handleChange}
         />
       </form>
