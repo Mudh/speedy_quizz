@@ -9,10 +9,10 @@ import PropTypes from 'prop-types';
  * Local import
  */
 // Components
-import Layout from '../Layout';
 import Button from '../Button';
 import QuizHeader from './QuizHeader';
 import AnswerRadio from './answerRadio';
+import Layout from '../../containers/Layout';
 import Score from '../../containers/Modal/Score';
 
 // Styles

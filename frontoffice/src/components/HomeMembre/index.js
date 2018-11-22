@@ -2,12 +2,12 @@
  * NPM import
  */
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 /**
  * Local import
  */
 // Components
-import Layout from '../Layout';
+import Layout from '../../containers/Layout';
 import Button from '../Button';
 
 // Styles
@@ -41,13 +41,18 @@ const HomeMembre = ({ sendRequest, fakeAuth }) => {
             <h2 className="theme__title">{theme}</h2>
             <div className="theme__levels">
               {levels.map(level => (
+                <NavLink key={level} to="/quiz" className="primaryDemo">
+                  {level}
+                </NavLink>
+              ))}
+              {/* {levels.map(level => (
                 <Button
                   key={level}
                   btnClass="primary"
                   btnText={level}
                   onClick={sendRequest}
                 />
-              ))}
+              ))} */}
             </div>
           </div>
         ))}

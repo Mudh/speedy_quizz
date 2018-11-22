@@ -7,7 +7,7 @@ import React from 'react';
  * Local import
  */
 // Components
-import Layout from '../Layout';
+import Layout from '../../containers/Layout';
 
 // Styles
 import './classement.scss';

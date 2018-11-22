@@ -1,0 +1,79 @@
+@import '../../styles/colors';
+@import '../../styles/functions';
+
+.profil {
+  display: flex;
+  flex: 1;
+  color: $yellowText;
+
+  &__main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: scroll;
+  }
+
+  &__content {
+    display: flex;
+    align-items: space-between;
+  }
+
+  &__title {
+    margin-top: rem(50);
+    font-size: rem(45);
+    text-align: center;
+    margin-bottom: 1em;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
+    padding: 0 rem(20);
+  }
+
+  &__right {
+    width: 60%;
+    border-left: 1px solid $yellowText;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: rem(20);
+  }
+
+  &__label {
+    font-size: rem(17);
+    font-weight: 600;
+  }
+
+  &__text,
+  &__description {
+    padding: rem(5) 0 rem(16);
+    font-size: rem(22);
+  }
+
+  &__description {
+    line-height: 1.1;
+  }
+
+  svg {
+    margin-right: rem(17);
+    width: 25px;
+    height: 25px;
+    fill: $yellowText;
+  }
+}
+
+span.line:after {
+  content: '';
+  width: 65%;
+  border-bottom: $yellowText solid 1px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: -100%;
+  margin-left: 1em;
+}

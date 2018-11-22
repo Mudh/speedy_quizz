@@ -16,10 +16,11 @@ import {
 // Components
 import Nav from '../Nav';
 import Classement from '../Classement';
+import Profil from '../Profil';
 import Quiz from '../../containers/Quiz';
-import SideRightLog from '../../containers/SideRightLog';
 import HomeVisitor from '../../containers/HomeVisitor';
 import HomeMembre from '../../containers/HomeMembre';
+
 // Styles
 import './app.scss';
 
@@ -42,19 +43,20 @@ const App = () => {
               path="/faq"
               render={() => <div className="construc">FAQ en construction</div>}
             />
-            <Route
+            <Route exact path="/profil" component={Profil} />
+            {/* <Route
               exact
               path="/profil"
               render={() => (
                 <div className="construc">Profil en construction</div>
               )}
-            />
+            /> */}
             <Route exact path="/quiz" component={Quiz} />
             <Route
               render={() => <div className="construc">404 en construction</div>}
             />
+            <Route exact path="/classement" component={Quiz} />
           </Switch>
-          {/* <SideRightLog /> */}
         </div>
       </Router>
     </div>

@@ -15,10 +15,10 @@ import './layout.scss';
 /**
  * Code
  */
-const Layout = ({ layoutClass, children }) => (
+const Layout = ({ layoutClass, children, fakeAuth }) => (
   <main className={`layout ${layoutClass}`}>
     <div className={`${layoutClass}__main`}>{children}</div>
-    {layoutClass !== 'home' && <SideRightLog />}
+    {layoutClass !== 'home' && fakeAuth && <SideRightLog />}
   </main>
 );
 
