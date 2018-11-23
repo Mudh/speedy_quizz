@@ -169,7 +169,7 @@ class Quiz extends React.Component {
           <Button btnClass="stop" btnText="STOP" />
         </footer>
         {score}
-        {!fakeAuth && <Redirect to="/loggued" />}
+        {!fakeAuth && <Redirect to="/" />}
       </Layout>
     );
   }

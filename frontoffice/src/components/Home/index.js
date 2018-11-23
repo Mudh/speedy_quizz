@@ -64,7 +64,6 @@ const Home = ({
       {subscribe}
       {/* {profil}
       {addQuestion} */}
-      {fakeAuth && <Redirect to="/loggued" />}
     </Layout>
   );
 };

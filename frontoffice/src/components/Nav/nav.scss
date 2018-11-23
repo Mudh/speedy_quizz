@@ -21,6 +21,7 @@
     }
 
     &-top li a,
+    &-top li span,
     &-bottom li a {
       display: flex;
       justify-content: flex-end;
@@ -28,7 +29,9 @@
       margin-bottom: rem(12);
       text-decoration: none;
       padding: rem(9);
+      cursor: pointer;
     }
+
     &-top li {
       a {
         border-radius: 0 10px 10px 0;

@@ -23,6 +23,7 @@ const mapDispatchToProps = dispatch => ({
   },
   onSubmitLogin: () => {
     // dispatch(onSubmitLogin());
+    dispatch(closeModal('login'));
     dispatch(fakeAuth());
   },
 });

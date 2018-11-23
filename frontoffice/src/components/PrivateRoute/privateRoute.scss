@@ -1,0 +1,68 @@
+@import '../../styles/colors';
+@import '../../styles/functions';
+
+.homeMember {
+  display: flex;
+  flex: 1;
+
+  &__main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  &__title {
+    margin-top: rem(50);
+    font-size: rem(45);
+    color: $yellowText;
+  }
+
+  &__themes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: rem(105);
+  }
+
+  .theme {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 rem(10) rem(105);
+
+    &__title {
+      font-size: rem(25);
+      color: $yellowText;
+    }
+
+    &__levels {
+      display: flex;
+      margin-top: rem(20);
+      justify-content: space-between;
+    }
+
+    .primary {
+      font-size: rem(17);
+      border-radius: 6px;
+      padding: rem(3) rem(15);
+      min-width: rem(80);
+      margin: 0 rem(8) 0;
+    }
+  }
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba($purpleText, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba($purpleText, 0.7);
+}
