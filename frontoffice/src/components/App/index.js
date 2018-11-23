@@ -20,6 +20,7 @@ import Profil from '../Profil';
 import Quiz from '../../containers/Quiz';
 import HomeVisitor from '../../containers/HomeVisitor';
 import HomeMembre from '../../containers/HomeMembre';
+import Cgu from '../Cgu';
 
 // Styles
 import './app.scss';
