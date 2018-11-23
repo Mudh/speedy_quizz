@@ -4,7 +4,7 @@ import { SUBMIT_LOGIN } from '../store/reducers/loginForm';
 import { SUBMIT_SUBSCRIBE } from '../store/reducers/subscribeForm';
 // Types
 
-const url = 'http://127.0.0.1:8000';
+const url = 'http://127.0.0.1:8000/login';
 
 /**
  * Middleware de gestion ajax
