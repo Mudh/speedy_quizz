@@ -47,22 +47,22 @@ const ajax = store => next => action => {
           email: state.subscribeForm.email,
           password: state.subscribeForm.password,
         });
-        // axios
-        //   .post(url, {
-        //     firstname: state.subscribeForm.lastname,
-        //     lastname: state.subscribeForm.firstname,
-        //     username: state.subscribeForm.nickname,
-        //     email: state.loginForm.email,
-        //     password: state.loginForm.password,
-        //   })
-        //   // succes
-        //   .then(response => {
-        //     console.log(response);
-        //   })
-        //   // echec
-        //   .catch(error => {
-        //     console.error(error);
-        //   });
+        axios
+          .post(url, {
+            firstname: state.subscribeForm.lastname,
+            lastname: state.subscribeForm.firstname,
+            username: state.subscribeForm.nickname,
+            email: state.subscribeForm.email,
+            password: state.subscribeForm.password,
+          })
+          // succes
+          .then(response => {
+            console.log(response);
+          })
+          // echec
+          .catch(error => {
+            console.error(error);
+          });
       }
       break;
 
