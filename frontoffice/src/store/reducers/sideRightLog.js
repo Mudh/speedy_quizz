@@ -5,7 +5,12 @@ export const UPDATE_POINTS = 'UPDATE_POINTS';
 
 // initial state
 const initialState = {
+  parties: 2,
   points: 100,
+  skip: 2,
+  revive: 3,
+  timer: 4,
+  fiftyFifty: 3,
 };
 
 export default (state = initialState, action = {}) => {
