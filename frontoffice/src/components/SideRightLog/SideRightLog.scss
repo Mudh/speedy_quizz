@@ -30,6 +30,11 @@
     border-bottom: 1px solid $purpleText;
     padding: rem(15) 0;
   }
+
+  &__jokers {
+    cursor: pointer;
+  }
+
   &__items {
     display: flex;
     align-items: center;

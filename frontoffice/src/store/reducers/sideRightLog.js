@@ -2,6 +2,7 @@
  * Types
  */
 export const UPDATE_POINTS = 'UPDATE_POINTS';
+export const UPDATE_JOKER_COUNT = 'UPDATE_JOKER_COUNT';
 
 // initial state
 const initialState = {
@@ -21,6 +22,12 @@ export default (state = initialState, action = {}) => {
         points: state.points + action.newPoints,
       };
 
+    case UPDATE_JOKER_COUNT:
+      return {
+        ...state,
+        [action.id]: state[action.id] - 1,
+      };
+
     default:
       return state;
   }
@@ -30,4 +37,9 @@ export default (state = initialState, action = {}) => {
 export const updatePoints = newPoints => ({
   type: UPDATE_POINTS,
   newPoints,
+});
+
+export const updateJokerCount = id => ({
+  type: UPDATE_JOKER_COUNT,
+  id,
 });
