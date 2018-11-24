@@ -10,7 +10,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // Components
 import Nav from '../../containers/Nav';
 import Classement from '../Classement';
-import Profil from '../Profil';
+import Profil from '../../containers/Profil';
 import PrivateRoute from '../../containers/PrivateRoute';
 import Quiz from '../../containers/Quiz';
 import HomeVisitor from '../../containers/HomeVisitor';

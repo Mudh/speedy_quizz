@@ -2,15 +2,13 @@
  * NPM import
  */
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 /**
  * Local import
  */
 // Components
 import Button from '../Button';
 import Like from '../Icons/global/like';
-import Profil from '../Modal/profil';
-import AddQuestion from '../Modal/addQuestion';
 import Layout from '../../containers/Layout';
 import Login from '../../containers/Modal/Login';
 import Subscribe from '../../containers/Modal/Subscribe';
@@ -21,13 +19,7 @@ import './home.scss';
 /**
  * Code
  */
-const Home = ({
-  openLogin,
-  openSubscribe,
-  isLoginOpen,
-  isSubscribeOpen,
-  fakeAuth,
-}) => {
+const Home = ({ openLogin, openSubscribe, isLoginOpen, isSubscribeOpen }) => {
   const themes = [
     'Grammaire Anglaise',
     'PHP OOP',
@@ -36,8 +28,6 @@ const Home = ({
   ];
   const login = isLoginOpen ? <Login /> : null;
   const subscribe = isSubscribeOpen ? <Subscribe /> : null;
-  const profil = <Profil />; // Pour tester la modale en attendant la page
-  const addQuestion = <AddQuestion />; // Pour tester la modale en attendant la page
 
   return (
     <Layout layoutClass="home">
@@ -62,12 +52,16 @@ const Home = ({
       </div>
       {login}
       {subscribe}
-      {/* {profil}
-      {addQuestion} */}
     </Layout>
   );
 };
 
+Home.propTypes = {
+  openLogin: PropTypes.func.isRequired,
+  openSubscribe: PropTypes.func.isRequired,
+  isLoginOpen: PropTypes.bool.isRequired,
+  isSubscribeOpen: PropTypes.bool.isRequired,
+};
 /**
  * Export
  */

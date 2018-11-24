@@ -9,6 +9,8 @@ export const SWITCH_MODAL = 'SWITCH_MODAL';
 const initialState = {
   login: false,
   subscribe: false,
+  profil: false,
+  addQuestion: false,
   score: false,
 };
 
