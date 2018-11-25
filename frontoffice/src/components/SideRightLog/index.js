@@ -22,18 +22,7 @@ import './SideRightLog.scss';
 /**
  * Code
  */
-const SideRightLog = ({
-  parties,
-  points,
-  skip,
-  revive,
-  timer,
-  fiftyFifty,
-  updateSkipCount,
-  updateReviveCount,
-  updateTimerCount,
-  updateFiftyFityCount,
-}) => (
+const SideRightLog = ({ parties, points, skip, revive, timer, fiftyFifty }) => (
   <aside className="sideRightLog">
     <div className="sideRightLog__wrapper">
       <div className="sideRightLog__Top">
@@ -49,19 +38,19 @@ const SideRightLog = ({
           </li>
         </ul>
         <ul className="sideRightLog__jokers">
-          <li className="sideRightLog__items" onClick={updateSkipCount}>
+          <li className="sideRightLog__items">
             <Skip />
             <span className="logo__commentary">x{skip} Skip</span>
           </li>
-          <li className="sideRightLog__items" onClick={updateReviveCount}>
+          <li className="sideRightLog__items">
             <Revive />
             <span className="logo__commentary">x{revive} Revive</span>
           </li>
-          <li className="sideRightLog__items" onClick={updateTimerCount}>
+          <li className="sideRightLog__items">
             <Timer />
             <span className="logo__commentary">x{timer} Timer</span>
           </li>
-          <li className="sideRightLog__items" onClick={updateFiftyFityCount}>
+          <li className="sideRightLog__items">
             <FiftyFifty />
             <span className="logo__commentary">x{fiftyFifty} 50/50</span>
           </li>

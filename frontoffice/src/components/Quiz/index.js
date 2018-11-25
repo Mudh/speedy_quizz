@@ -14,6 +14,10 @@ import QuizHeader from './QuizHeader';
 import AnswerRadio from './answerRadio';
 import Layout from '../../containers/Layout';
 import Score from '../../containers/Modal/Score';
+import FiftyFifty from 'src/components/Icons/sidebar/fiftyFifty';
+import Revive from 'src/components/Icons/sidebar/revive';
+import Skip from 'src/components/Icons/sidebar/skip';
+import Timer from 'src/components/Icons/sidebar/timer';
 
 // Styles
 import './quiz.scss';
@@ -119,14 +123,16 @@ class Quiz extends React.Component {
       isScoreOpen,
       answerValue,
       fakeAuth,
+      updateSkipCount,
+      updateReviveCount,
+      updateTimerCount,
+      updateFiftyFityCount,
     } = this.props;
     const question = data.questionsList[`step${step}`][questionNumber].title;
     const answers = data.questionsList[`step${step}`][questionNumber].response;
     const totalQuestions = data.questionsList[`step${step}`].length;
 
     const score = isScoreOpen ? <Score /> : null;
-
-    console.log('data', data);
 
     return (
       <Layout layoutClass="quiz">
@@ -166,7 +172,19 @@ class Quiz extends React.Component {
           </form>
         </section>
         <footer className="quiz__footer">
+          <Button btnClass="primary round" onClick={updateSkipCount}>
+            <Skip />
+          </Button>
+          <Button btnClass="primary round" onClick={updateReviveCount}>
+            <Revive />
+          </Button>
           <Button btnClass="stop" btnText="STOP" />
+          <Button btnClass="primary round" onClick={updateTimerCount}>
+            <Timer />
+          </Button>
+          <Button btnClass="primary round" onClick={updateFiftyFityCount}>
+            <FiftyFifty />
+          </Button>
         </footer>
         {score}
         {!fakeAuth && <Redirect to="/" />}

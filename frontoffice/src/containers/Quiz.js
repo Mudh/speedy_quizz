@@ -6,7 +6,7 @@ import Quiz from 'src/components/Quiz';
 
 // action creators
 import { nextQuestion, nextStep, answerValue } from '../store/reducers/quiz';
-import { updatePoints } from '../store/reducers/sideRightLog';
+import { updatePoints, updateJokerCount } from '../store/reducers/sideRightLog';
 import { openModal } from '../store/reducers/modal';
 
 // === State (données) ===
@@ -35,6 +35,18 @@ const mapDispatchToProps = dispatch => ({
   },
   openScore: () => {
     dispatch(openModal('score'));
+  },
+  updateSkipCount: () => {
+    dispatch(updateJokerCount('skip'));
+  },
+  updateReviveCount: () => {
+    dispatch(updateJokerCount('revive'));
+  },
+  updateTimerCount: () => {
+    dispatch(updateJokerCount('timer'));
+  },
+  updateFiftyFityCount: () => {
+    dispatch(updateJokerCount('fiftyFifty'));
   },
 });
 

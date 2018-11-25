@@ -22,11 +22,14 @@ export default (state = initialState, action = {}) => {
         points: state.points + action.newPoints,
       };
 
-    case UPDATE_JOKER_COUNT:
+    case UPDATE_JOKER_COUNT: {
+      const isPositive =
+        state[action.id] === 0 ? state[action.id] : state[action.id] - 1;
       return {
         ...state,
-        [action.id]: state[action.id] - 1,
+        [action.id]: isPositive,
       };
+    }
 
     default:
       return state;
