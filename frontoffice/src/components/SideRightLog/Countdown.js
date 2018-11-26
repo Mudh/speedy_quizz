@@ -16,20 +16,19 @@ import './SideRightLog.scss';
  * Code
  */
 class CountdownPure extends React.PureComponent {
-  componentDidMount() {
-    const { setCurrentTimer, currentTimer } = this.props;
-    setInterval(() => {
-      setCurrentTimer(1);
-      console.log(currentTimer);
-    }, 1000);
+  componentDidUpdate(nextProps) {
+    const { timer } = this.props;
+    return timer.used !== nextProps.timer.used;
   }
+
   render() {
+    const { timer, levelTimer, extraTimer } = this.props;
+    const timerUpdate = timer.used ? extraTimer : levelTimer;
+
     const countDownDisplay = ({ minutes, seconds, completed }) => {
       if (completed) {
-        // Render a completed state
         return <span className="logo__commentary">Finish!</span>;
       } else {
-        // Render a countdown
         return (
           <span>
             {minutes}:{seconds}
@@ -40,8 +39,8 @@ class CountdownPure extends React.PureComponent {
     return (
       <span className="logo__commentary">
         <Countdown
-          onComplete={console.log('fin du decompte')}
-          date={Date.now() + 120000}
+          onComplete={() => console.log('fin du decompte')}
+          date={Date.now() + timerUpdate}
           renderer={countDownDisplay}
         />
       </span>

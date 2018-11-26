@@ -5,19 +5,16 @@ import { connect } from 'react-redux';
 import Countdown from '../components/SideRightLog/Countdown';
 
 // action creators
-import { setCurrentTimer } from '../store/reducers/sideRightLog';
 
 // === State (données) ===
 const mapStateToProps = state => ({
-  currentTimer: state.sideRightLog.currentTimer,
+  timer: state.sideRightLog.timer,
+  levelTimer: state.sideRightLog.levelTimer,
+  extraTimer: state.sideRightLog.extraTimer,
 });
 
 // === Dispatch (actions) ===
-const mapDispatchToProps = dispatch => ({
-  setCurrentTimer: count => {
-    dispatch(setCurrentTimer(count));
-  },
-});
+const mapDispatchToProps = dispatch => ({});
 
 // Container - connect
 const CountdownContainer = connect(

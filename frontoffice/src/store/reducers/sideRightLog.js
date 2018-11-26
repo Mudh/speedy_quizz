@@ -6,7 +6,9 @@ export const UPDATE_JOKER_COUNT = 'UPDATE_JOKER_COUNT';
 export const RESET_OWNED_POINTS = 'RESET_OWNED_POINTS';
 export const SET_JOKER_REVIVE = 'SET_JOKER_REVIVE';
 export const SET_JOKER_FIFTY = 'SET_JOKER_FIFTY';
-export const SET_CURRENT_TIMER = 'SET_CURRENT_TIMER';
+export const SET_START_TIMER = 'SET_START_TIMER';
+export const SET_END_TIMER = 'SET_END_TIMER';
+export const SET_JOKER_TIMER = 'SET_JOKER_TIMER';
 
 // initial state
 const initialState = {
@@ -18,7 +20,10 @@ const initialState = {
   fiftyFifty: { count: 3, used: false },
   timer: { count: 4, used: false },
   filteredQuestion: undefined,
-  currentTimer: 0,
+  levelTimer: 120000,
+  startTimer: 0,
+  endTimer: 0,
+  extraTimer: 0,
 };
 
 export default (state = initialState, action = {}) => {
@@ -49,11 +54,26 @@ export default (state = initialState, action = {}) => {
         filteredQuestion: action.question,
       };
 
-    case SET_CURRENT_TIMER:
+    case SET_START_TIMER:
       return {
         ...state,
-        currentTimer: state.currentTimer + action.currentTimer,
+        startTimer: Math.floor(Date.now() / 1000),
       };
+
+    case SET_END_TIMER:
+      return {
+        ...state,
+        endTimer: Math.floor(Date.now() / 1000),
+      };
+
+    case SET_JOKER_TIMER: {
+      const elapsedTime = (state.endTimer - state.startTimer) * 1000;
+      const extraTime = state.levelTimer - elapsedTime + 30000;
+      return {
+        ...state,
+        extraTimer: extraTime,
+      };
+    }
 
     case UPDATE_JOKER_COUNT: {
       const isPositive =
@@ -95,7 +115,15 @@ export const setJokerFifty = question => ({
   question,
 });
 
-export const setCurrentTimer = count => ({
-  type: SET_CURRENT_TIMER,
-  count,
+export const setJokerTimer = () => ({
+  type: SET_JOKER_TIMER,
+});
+
+export const setStartTimer = () => ({
+  type: SET_START_TIMER,
+});
+
+export const setEndTimer = endValue => ({
+  type: SET_END_TIMER,
+  endValue,
 });

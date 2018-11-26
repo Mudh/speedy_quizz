@@ -150,8 +150,7 @@ class Quiz extends React.Component {
   };
 
   handleRevivejoker = () => {
-    const { setJokerRevive, resetOwnedPoints, updateReviveCount } = this.props;
-    updateReviveCount();
+    const { setJokerRevive, resetOwnedPoints } = this.props;
     setJokerRevive();
     resetOwnedPoints();
   };
@@ -160,6 +159,12 @@ class Quiz extends React.Component {
     const { setJokerFiftyFifty, questionNumber } = this.props;
     setJokerFiftyFifty(questionNumber);
     console.log(questionNumber);
+  };
+
+  handleTimerJoker = () => {
+    const { setEndTimer, setJokerTimer } = this.props;
+    setEndTimer();
+    setJokerTimer();
   };
 
   componentDidUpdate(nextProps) {
@@ -179,12 +184,13 @@ class Quiz extends React.Component {
       isScoreOpen,
       answerValue,
       fakeAuth,
-      updateTimerCount,
       skip,
       revive,
       timer,
       fiftyFifty,
       filteredQuestion,
+      startTimer,
+      endTimer,
     } = this.props;
     const question = data.questionsList[`step${step}`][questionNumber].title;
 
@@ -282,7 +288,10 @@ class Quiz extends React.Component {
           >
             <FiftyFifty />
           </Button>
-          <Button btnClass={jokersClassNames(timer)} onClick={updateTimerCount}>
+          <Button
+            btnClass={jokersClassNames(timer)}
+            onClick={this.handleTimerJoker}
+          >
             <Timer />
           </Button>
         </footer>

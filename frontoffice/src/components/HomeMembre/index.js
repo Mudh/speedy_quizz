@@ -18,7 +18,7 @@ import '../Home/home.scss';
  * Code
  */
 
-const HomeMembre = ({ sendRequest, fakeAuth }) => {
+const HomeMembre = ({ sendRequest, fakeAuth, setStartTimer }) => {
   const themes = [
     'Le système solaire',
     'La grammaire anglaise',
@@ -41,7 +41,12 @@ const HomeMembre = ({ sendRequest, fakeAuth }) => {
             <h2 className="theme__title">{theme}</h2>
             <div className="theme__levels">
               {levels.map(level => (
-                <NavLink key={level} to="/quiz" className="primaryDemo">
+                <NavLink
+                  key={level}
+                  to="/quiz"
+                  className="primaryDemo"
+                  onClick={setStartTimer}
+                >
                   {level}
                 </NavLink>
               ))}
