@@ -44,7 +44,7 @@ export default {
           {
             id: 998,
             response: 'Vrai',
-            is_correct: false,
+            is_correct: true,
           },
           {
             id: 1015,
@@ -77,7 +77,7 @@ export default {
           {
             id: 1008,
             response: '149,6 millions de KM',
-            is_correct: false,
+            is_correct: true,
           },
         ],
         step: {
@@ -128,7 +128,7 @@ export default {
           {
             id: 987,
             response: 'Non',
-            is_correct: false,
+            is_correct: true,
           },
           {
             id: 996,

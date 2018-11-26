@@ -22,7 +22,14 @@ import './SideRightLog.scss';
 /**
  * Code
  */
-const SideRightLog = ({ parties, points, skip, revive, timer, fiftyFifty }) => {
+const SideRightLog = ({
+  parties,
+  totalPoints,
+  skip,
+  revive,
+  timer,
+  fiftyFifty,
+}) => {
   console.log(skip);
   return (
     <aside className="sideRightLog">
@@ -36,7 +43,7 @@ const SideRightLog = ({ parties, points, skip, revive, timer, fiftyFifty }) => {
             </li>
             <li className="sideRightLog__items">
               <Score />
-              <span className="logo__commentary">{points} Points</span>
+              <span className="logo__commentary">{totalPoints} Points</span>
             </li>
           </ul>
           <ul className="sideRightLog__jokers">

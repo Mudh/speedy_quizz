@@ -5,8 +5,18 @@ import { connect } from 'react-redux';
 import Quiz from 'src/components/Quiz';
 
 // action creators
-import { nextQuestion, nextStep, answerValue } from '../store/reducers/quiz';
-import { updatePoints, updateJokerCount } from '../store/reducers/sideRightLog';
+import {
+  nextQuestion,
+  nextStep,
+  answerValue,
+  resetQuestion,
+} from '../store/reducers/quiz';
+import {
+  updatePoints,
+  updateJokerCount,
+  resetOwnedPoints,
+  setJokerRevive,
+} from '../store/reducers/sideRightLog';
 import { openModal } from '../store/reducers/modal';
 
 // === State (données) ===
@@ -21,6 +31,7 @@ const mapStateToProps = state => ({
   revive: state.sideRightLog.revive,
   timer: state.sideRightLog.timer,
   fiftyFifty: state.sideRightLog.fiftyFifty,
+  ownedPoints: state.sideRightLog.ownedPoints,
 });
 
 // === Dispatch (actions) ===
@@ -51,6 +62,13 @@ const mapDispatchToProps = dispatch => ({
   },
   updateFiftyFityCount: () => {
     dispatch(updateJokerCount('fiftyFifty'));
+  },
+  resetOwnedPoints: () => {
+    dispatch(resetOwnedPoints());
+  },
+  setJokerRevive: () => {
+    dispatch(setJokerRevive());
+    dispatch(resetQuestion());
   },
 });
 

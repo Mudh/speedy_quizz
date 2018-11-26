@@ -3,11 +3,14 @@
  */
 export const UPDATE_POINTS = 'UPDATE_POINTS';
 export const UPDATE_JOKER_COUNT = 'UPDATE_JOKER_COUNT';
+export const RESET_OWNED_POINTS = 'RESET_OWNED_POINTS';
+export const SET_JOKER_REVIVE = 'SET_JOKER_REVIVE';
 
 // initial state
 const initialState = {
   parties: 2,
-  points: 100,
+  totalPoints: 100,
+  ownedPoints: 0,
   skip: { count: 2, used: false },
   revive: { count: 3, used: false },
   fiftyFifty: { count: 3, used: false },
@@ -19,7 +22,20 @@ export default (state = initialState, action = {}) => {
     case UPDATE_POINTS:
       return {
         ...state,
-        points: state.points + action.newPoints,
+        totalPoints: state.totalPoints + action.newPoints,
+        ownedPoints: state.ownedPoints + action.newPoints,
+      };
+
+    case RESET_OWNED_POINTS:
+      return {
+        ...state,
+        ownedPoints: 0,
+      };
+
+    case SET_JOKER_REVIVE:
+      return {
+        ...state,
+        totalPoints: state.totalPoints - state.ownedPoints,
       };
 
     case UPDATE_JOKER_COUNT: {
@@ -47,4 +63,12 @@ export const updatePoints = newPoints => ({
 export const updateJokerCount = id => ({
   type: UPDATE_JOKER_COUNT,
   id,
+});
+
+export const resetOwnedPoints = id => ({
+  type: RESET_OWNED_POINTS,
+});
+
+export const setJokerRevive = id => ({
+  type: SET_JOKER_REVIVE,
 });

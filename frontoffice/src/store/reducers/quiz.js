@@ -9,6 +9,7 @@ import data from '../../data/questions';
 export const NEXT_STEP = 'NEXT_STEP';
 export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const ANSWER_VALUE = 'ANSWER_VALUE';
+export const RESET_QUESTION = 'RESET_QUESTION';
 
 // initial state
 const initialState = {
@@ -33,6 +34,12 @@ export default (state = initialState, action = {}) => {
         questionNumber: state.questionNumber + 1,
       };
 
+    case RESET_QUESTION:
+      return {
+        ...state,
+        questionNumber: 0,
+      };
+
     case ANSWER_VALUE:
       return {
         ...state,
@@ -48,10 +55,17 @@ export default (state = initialState, action = {}) => {
 export const nextStep = () => ({
   type: NEXT_STEP,
 });
+
 export const nextQuestion = () => ({
   type: NEXT_QUESTION,
 });
+
 export const answerValue = answer => ({
   type: ANSWER_VALUE,
+  answer,
+});
+
+export const resetQuestion = answer => ({
+  type: RESET_QUESTION,
   answer,
 });

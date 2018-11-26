@@ -87,6 +87,7 @@ class Quiz extends React.Component {
       nextQuestion,
       nextStep,
       updateScore,
+      resetOwnedPoints,
     } = this.props;
 
     // Récupération des valeurs (coeff + points de base) pour attribuer les points
@@ -107,6 +108,7 @@ class Quiz extends React.Component {
       setTimeout(() => {
         nextStep();
         updateScore(boolScore);
+        resetOwnedPoints();
       }, 150);
     } else {
       setTimeout(() => {
@@ -144,6 +146,13 @@ class Quiz extends React.Component {
     }
   };
 
+  handleRevivejoker = () => {
+    const { setJokerRevive, resetOwnedPoints, updateReviveCount } = this.props;
+    updateReviveCount();
+    setJokerRevive();
+    resetOwnedPoints();
+  };
+
   render() {
     const {
       data,
@@ -159,6 +168,7 @@ class Quiz extends React.Component {
       revive,
       timer,
       fiftyFifty,
+      ownedPoints,
     } = this.props;
     const question = data.questionsList[`step${step}`][questionNumber].title;
     const answers = data.questionsList[`step${step}`][questionNumber].response;
@@ -170,6 +180,8 @@ class Quiz extends React.Component {
       classNames('primary round', {
         isDisabled: jokerUseValue.used || jokerUseValue.count === 0,
       });
+
+    console.log('points gagnés', ownedPoints, data);
 
     return (
       <Layout layoutClass="quiz">
@@ -217,7 +229,7 @@ class Quiz extends React.Component {
           </Button>
           <Button
             btnClass={jokersClassNames(revive)}
-            onClick={updateReviveCount}
+            onClick={this.handleRevivejoker}
           >
             <Revive />
           </Button>
