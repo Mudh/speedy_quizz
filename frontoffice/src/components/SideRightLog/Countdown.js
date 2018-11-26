@@ -37,13 +37,13 @@ class CountdownPure extends React.PureComponent {
       }
     };
     return (
-      <span className="logo__commentary">
+      <div className="sideRightLog__countdown">
         <Countdown
           onComplete={() => console.log('fin du decompte')}
           date={Date.now() + timerUpdate}
           renderer={countDownDisplay}
         />
-      </span>
+      </div>
     );
   }
 }
