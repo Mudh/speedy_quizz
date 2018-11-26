@@ -17,6 +17,10 @@ const mapStateToProps = state => ({
   answerValue: state.quiz.answerValue,
   isScoreOpen: state.modal.score,
   fakeAuth: state.loginForm.fakeAuth,
+  skip: state.sideRightLog.skip,
+  revive: state.sideRightLog.revive,
+  timer: state.sideRightLog.timer,
+  fiftyFifty: state.sideRightLog.fiftyFifty,
 });
 
 // === Dispatch (actions) ===

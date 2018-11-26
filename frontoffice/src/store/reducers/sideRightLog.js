@@ -8,10 +8,10 @@ export const UPDATE_JOKER_COUNT = 'UPDATE_JOKER_COUNT';
 const initialState = {
   parties: 2,
   points: 100,
-  skip: 2,
-  revive: 3,
-  timer: 4,
-  fiftyFifty: 3,
+  skip: { count: 2, used: false },
+  revive: { count: 3, used: false },
+  fiftyFifty: { count: 3, used: false },
+  timer: { count: 4, used: false },
 };
 
 export default (state = initialState, action = {}) => {
@@ -24,7 +24,9 @@ export default (state = initialState, action = {}) => {
 
     case UPDATE_JOKER_COUNT: {
       const isPositive =
-        state[action.id] === 0 ? state[action.id] : state[action.id] - 1;
+        state[action.id].count === 0
+          ? { count: state[action.id].count, used: true }
+          : { count: state[action.id].count - 1, used: true };
       return {
         ...state,
         [action.id]: isPositive,

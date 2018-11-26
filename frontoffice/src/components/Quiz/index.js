@@ -4,6 +4,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 /**
  * Local import
@@ -115,6 +116,34 @@ class Quiz extends React.Component {
     }
   };
 
+  handleSkipJoker = () => {
+    const {
+      step,
+      questionNumber,
+      nextQuestion,
+      nextStep,
+      openScore,
+      updateSkipCount,
+    } = this.props;
+
+    if (questionNumber === 4 && step !== 3) {
+      setTimeout(() => {
+        nextStep();
+        updateSkipCount();
+      }, 150);
+    } else if (questionNumber === 4 && step === 3) {
+      setTimeout(() => {
+        updateSkipCount();
+        openScore();
+      }, 150);
+    } else {
+      setTimeout(() => {
+        nextQuestion();
+        updateSkipCount();
+      }, 150);
+    }
+  };
+
   render() {
     const {
       data,
@@ -123,16 +152,24 @@ class Quiz extends React.Component {
       isScoreOpen,
       answerValue,
       fakeAuth,
-      updateSkipCount,
       updateReviveCount,
       updateTimerCount,
       updateFiftyFityCount,
+      skip,
+      revive,
+      timer,
+      fiftyFifty,
     } = this.props;
     const question = data.questionsList[`step${step}`][questionNumber].title;
     const answers = data.questionsList[`step${step}`][questionNumber].response;
     const totalQuestions = data.questionsList[`step${step}`].length;
 
     const score = isScoreOpen ? <Score /> : null;
+
+    const jokersClassNames = jokerUseValue =>
+      classNames('primary round', {
+        isDisabled: jokerUseValue.used || jokerUseValue.count === 0,
+      });
 
     return (
       <Layout layoutClass="quiz">
@@ -172,18 +209,27 @@ class Quiz extends React.Component {
           </form>
         </section>
         <footer className="quiz__footer">
-          <Button btnClass="primary round" onClick={updateSkipCount}>
+          <Button
+            btnClass={jokersClassNames(skip)}
+            onClick={this.handleSkipJoker}
+          >
             <Skip />
           </Button>
-          <Button btnClass="primary round" onClick={updateReviveCount}>
+          <Button
+            btnClass={jokersClassNames(revive)}
+            onClick={updateReviveCount}
+          >
             <Revive />
           </Button>
           <Button btnClass="stop" btnText="STOP" />
-          <Button btnClass="primary round" onClick={updateTimerCount}>
-            <Timer />
-          </Button>
-          <Button btnClass="primary round" onClick={updateFiftyFityCount}>
+          <Button
+            btnClass={jokersClassNames(fiftyFifty)}
+            onClick={updateFiftyFityCount}
+          >
             <FiftyFifty />
+          </Button>
+          <Button btnClass={jokersClassNames(timer)} onClick={updateTimerCount}>
+            <Timer />
           </Button>
         </footer>
         {score}
