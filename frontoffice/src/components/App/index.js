@@ -21,6 +21,7 @@ import Quiz from '../../containers/Quiz';
 import HomeVisitor from '../../containers/HomeVisitor';
 import HomeMembre from '../../containers/HomeMembre';
 import Cgu from '../Cgu';
+import error from '../Error';
 
 // Styles
 import './app.scss';
