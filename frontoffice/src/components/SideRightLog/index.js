@@ -2,11 +2,11 @@
  * NPM import
  */
 import React from 'react';
-
 /**
  * Local import
  */
 // Components
+import Countdown from '../../containers/Countdown';
 import Credits from 'src/components/Icons/sidebar/credits';
 import FiftyFifty from 'src/components/Icons/sidebar/fiftyFifty';
 import Revive from 'src/components/Icons/sidebar/revive';
@@ -30,7 +30,6 @@ const SideRightLog = ({
   timer,
   fiftyFifty,
 }) => {
-  console.log(skip);
   return (
     <aside className="sideRightLog">
       <div className="sideRightLog__wrapper">
@@ -67,6 +66,7 @@ const SideRightLog = ({
             </li>
           </ul>
         </div>
+        <Countdown />
         <Button btnClass="primary" btnText="New Game" />
       </div>
     </aside>

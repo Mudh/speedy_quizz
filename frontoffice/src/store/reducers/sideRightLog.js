@@ -5,6 +5,8 @@ export const UPDATE_POINTS = 'UPDATE_POINTS';
 export const UPDATE_JOKER_COUNT = 'UPDATE_JOKER_COUNT';
 export const RESET_OWNED_POINTS = 'RESET_OWNED_POINTS';
 export const SET_JOKER_REVIVE = 'SET_JOKER_REVIVE';
+export const SET_JOKER_FIFTY = 'SET_JOKER_FIFTY';
+export const SET_CURRENT_TIMER = 'SET_CURRENT_TIMER';
 
 // initial state
 const initialState = {
@@ -15,6 +17,8 @@ const initialState = {
   revive: { count: 3, used: false },
   fiftyFifty: { count: 3, used: false },
   timer: { count: 4, used: false },
+  filteredQuestion: undefined,
+  currentTimer: 0,
 };
 
 export default (state = initialState, action = {}) => {
@@ -36,6 +40,19 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         totalPoints: state.totalPoints - state.ownedPoints,
+        filteredQuestion: undefined,
+      };
+
+    case SET_JOKER_FIFTY:
+      return {
+        ...state,
+        filteredQuestion: action.question,
+      };
+
+    case SET_CURRENT_TIMER:
+      return {
+        ...state,
+        currentTimer: state.currentTimer + action.currentTimer,
       };
 
     case UPDATE_JOKER_COUNT: {
@@ -65,10 +82,20 @@ export const updateJokerCount = id => ({
   id,
 });
 
-export const resetOwnedPoints = id => ({
+export const resetOwnedPoints = () => ({
   type: RESET_OWNED_POINTS,
 });
 
-export const setJokerRevive = id => ({
+export const setJokerRevive = () => ({
   type: SET_JOKER_REVIVE,
+});
+
+export const setJokerFifty = question => ({
+  type: SET_JOKER_FIFTY,
+  question,
+});
+
+export const setCurrentTimer = count => ({
+  type: SET_CURRENT_TIMER,
+  count,
 });

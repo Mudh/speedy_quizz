@@ -9,6 +9,9 @@ import classNames from 'classnames';
 /**
  * Local import
  */
+// Utils
+import { shuffle } from '../../utils';
+
 // Components
 import Button from '../Button';
 import QuizHeader from './QuizHeader';
@@ -153,6 +156,21 @@ class Quiz extends React.Component {
     resetOwnedPoints();
   };
 
+  handleFiftyFiftyjoker = () => {
+    const { setJokerFiftyFifty, questionNumber } = this.props;
+    setJokerFiftyFifty(questionNumber);
+    console.log(questionNumber);
+  };
+
+  componentDidUpdate(nextProps) {
+    const { fiftyFifty, questionNumber } = this.props;
+    return (
+      fiftyFifty.used !== nextProps.fiftyFifty.used ||
+      (fiftyFifty.used &&
+        questionNumber !== (nextProps.questionNumber === questionNumber + 1))
+    );
+  }
+
   render() {
     const {
       data,
@@ -161,27 +179,51 @@ class Quiz extends React.Component {
       isScoreOpen,
       answerValue,
       fakeAuth,
-      updateReviveCount,
       updateTimerCount,
-      updateFiftyFityCount,
       skip,
       revive,
       timer,
       fiftyFifty,
-      ownedPoints,
+      filteredQuestion,
     } = this.props;
     const question = data.questionsList[`step${step}`][questionNumber].title;
-    const answers = data.questionsList[`step${step}`][questionNumber].response;
+
+    const filteredGoodAnswer = data.questionsList.step2[
+      questionNumber
+    ].response.filter(item => item.is_correct === true);
+
+    const filteredBadAnswer = shuffle(
+      data.questionsList.step2[questionNumber].response.filter(
+        item => item.is_correct === false,
+      ),
+    );
+
+    const jokerFilteredArray = shuffle([
+      ...filteredGoodAnswer,
+      filteredBadAnswer[0],
+    ]);
+
+    const toggleStep2responses =
+      fiftyFifty.used && filteredQuestion === questionNumber
+        ? jokerFilteredArray
+        : data.questionsList[`step${step}`][questionNumber].response;
+
     const totalQuestions = data.questionsList[`step${step}`].length;
+    const answers =
+      step !== 2
+        ? data.questionsList[`step${step}`][questionNumber].response
+        : toggleStep2responses;
 
     const score = isScoreOpen ? <Score /> : null;
 
-    const jokersClassNames = jokerUseValue =>
+    const jokersClassNames = jokerObj =>
       classNames('primary round', {
-        isDisabled: jokerUseValue.used || jokerUseValue.count === 0,
+        isDisabled: jokerObj.used || jokerObj.count === 0,
       });
 
-    console.log('points gagnés', ownedPoints, data);
+    const fiftyClassNames = classNames('primary round', {
+      isDisabled: fiftyFifty.used || fiftyFifty.count === 0 || step !== 2,
+    });
 
     return (
       <Layout layoutClass="quiz">
@@ -235,8 +277,8 @@ class Quiz extends React.Component {
           </Button>
           <Button btnClass="stop" btnText="STOP" />
           <Button
-            btnClass={jokersClassNames(fiftyFifty)}
-            onClick={updateFiftyFityCount}
+            btnClass={fiftyClassNames}
+            onClick={this.handleFiftyFiftyjoker}
           >
             <FiftyFifty />
           </Button>

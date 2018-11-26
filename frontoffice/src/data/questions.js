@@ -163,17 +163,17 @@ export default {
           {
             id: 995,
             response: 'Saturne',
-            is_correct: true,
+            is_correct: false,
           },
           {
             id: 1001,
             response: 'Mars',
-            is_correct: true,
+            is_correct: false,
           },
           {
             id: 1003,
             response: 'Jupiter',
-            is_correct: true,
+            is_correct: false,
           },
         ],
         step: {
@@ -207,7 +207,7 @@ export default {
           {
             id: 1006,
             response: 'Galaxie du Moulinet',
-            is_correct: false,
+            is_correct: true,
           },
           {
             id: 1010,
@@ -235,12 +235,12 @@ export default {
           {
             id: 1004,
             response: 'Venus',
-            is_correct: true,
+            is_correct: false,
           },
           {
             id: 1012,
             response: 'Neptune',
-            is_correct: true,
+            is_correct: false,
           },
           {
             id: 1013,
@@ -250,7 +250,7 @@ export default {
           {
             id: 1016,
             response: 'Uranus',
-            is_correct: false,
+            is_correct: true,
           },
         ],
         step: {
@@ -273,17 +273,17 @@ export default {
           {
             id: 985,
             response: '3',
-            is_correct: false,
+            is_correct: true,
           },
           {
             id: 992,
             response: '280',
-            is_correct: true,
+            is_correct: false,
           },
           {
             id: 1000,
             response: '62',
-            is_correct: true,
+            is_correct: false,
           },
           {
             id: 1007,
@@ -326,7 +326,7 @@ export default {
           {
             id: 1011,
             response: '299 792 458 m/s',
-            is_correct: true,
+            is_correct: false,
           },
         ],
         step: {

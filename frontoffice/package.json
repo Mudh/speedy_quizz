@@ -49,6 +49,7 @@
     "classnames": "*",
     "prop-types": "*",
     "react": "*",
+    "react-countdown-now": "^1.3.0",
     "react-dom": "*",
     "react-redux": "*",
     "react-router-dom": "^4.3.1",

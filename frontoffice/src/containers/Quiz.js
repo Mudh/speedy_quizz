@@ -16,6 +16,7 @@ import {
   updateJokerCount,
   resetOwnedPoints,
   setJokerRevive,
+  setJokerFifty,
 } from '../store/reducers/sideRightLog';
 import { openModal } from '../store/reducers/modal';
 
@@ -32,6 +33,7 @@ const mapStateToProps = state => ({
   timer: state.sideRightLog.timer,
   fiftyFifty: state.sideRightLog.fiftyFifty,
   ownedPoints: state.sideRightLog.ownedPoints,
+  filteredQuestion: state.sideRightLog.filteredQuestion,
 });
 
 // === Dispatch (actions) ===
@@ -60,8 +62,9 @@ const mapDispatchToProps = dispatch => ({
   updateTimerCount: () => {
     dispatch(updateJokerCount('timer'));
   },
-  updateFiftyFityCount: () => {
+  setJokerFiftyFifty: question => {
     dispatch(updateJokerCount('fiftyFifty'));
+    dispatch(setJokerFifty(question));
   },
   resetOwnedPoints: () => {
     dispatch(resetOwnedPoints());
