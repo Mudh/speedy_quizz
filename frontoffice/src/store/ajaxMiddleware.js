@@ -5,6 +5,7 @@ import { SUBMIT_SUBSCRIBE } from '../store/reducers/subscribeForm';
 // Types
 
 const url = 'http://127.0.0.1:8000/login';
+const urlQuiz = 'http://127.0.0.1:8000/quizz/test/';
 
 /**
  * Middleware de gestion ajax
@@ -16,24 +17,24 @@ const ajax = store => next => action => {
       {
         const state = store.getState();
         axios
-          .post(
-            url,
-            {},
-            {
-              auth: {
-                email: state.loginForm.email,
-                password: state.loginForm.password,
-              },
-            },
-          )
+          .post(url, {
+            email: state.loginForm.email,
+            password: state.loginForm.password,
+          })
           // succes
           .then(response => {
-            localStorage.setItem('token', JSON.stringify(response));
+            localStorage.setItem(
+              'token',
+              JSON.stringify('1dsvsdv64sdv4sd6v4ds6v46sdv4'),
+            );
             console.log('success', JSON.parse(localStorage.getItem('token')));
           })
           // echec
           .catch(error => {
-            localStorage.setItem('token', JSON.stringify(response));
+            localStorage.setItem(
+              'token',
+              JSON.stringify('1dsvsdv64sdv4sd6v4ds6v46sdv4'),
+            );
             console.log('error', JSON.parse(localStorage.getItem('token')));
             console.error(error);
           });
@@ -43,28 +44,19 @@ const ajax = store => next => action => {
     case SUBMIT_SUBSCRIBE:
       {
         const state = store.getState();
-        console.log({
-          firstname: state.subscribeForm.lastname,
-          lastname: state.subscribeForm.firstname,
-          username: state.subscribeForm.nickname,
-          email: state.subscribeForm.email,
-          password: state.subscribeForm.password,
-        });
         axios
-          .post(url, {
-            firstname: state.subscribeForm.lastname,
-            lastname: state.subscribeForm.firstname,
-            username: state.subscribeForm.nickname,
-            email: state.subscribeForm.email,
-            password: state.subscribeForm.password,
+          .post(urlQuiz, {
+            theme: 'Espace',
+            level: 'Facile',
+            token: JSON.parse(localStorage.getItem('token')),
           })
           // succes
           .then(response => {
-            console.log(response);
+            console.log('subscribe', localStorage.getItem('token'));
           })
           // echec
           .catch(error => {
-            console.error(error);
+            console.error(JSON.parse(localStorage.getItem('token')));
           });
       }
       break;
