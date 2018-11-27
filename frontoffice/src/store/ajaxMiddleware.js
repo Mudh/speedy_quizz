@@ -5,7 +5,7 @@ import { SUBMIT_SUBSCRIBE } from '../store/reducers/subscribeForm';
 // Types
 
 const url = 'http://127.0.0.1:8000/login';
-const urlQuiz = 'http://127.0.0.1:8000/quizz/test/';
+const urlQuiz = 'http://127.0.0.1:8000/quizz/test';
 
 /**
  * Middleware de gestion ajax
@@ -16,6 +16,9 @@ const ajax = store => next => action => {
     case SUBMIT_LOGIN:
       {
         const state = store.getState();
+        const basicAuth = `${state.loginForm.email}:${
+          state.loginForm.password
+        }`;
         axios
           .post(url, {
             email: state.loginForm.email,

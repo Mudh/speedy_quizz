@@ -10,6 +10,7 @@ use App\Repository\QuestionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class QuizzController extends AbstractController
@@ -25,16 +26,33 @@ class QuizzController extends AbstractController
     }
 
     /**
-     * @Route("/quizz/test/", name="quizz_test_list")
+     * @Route("/quizz/test", name="quizz_test_list")
      */
-    public function getQuestions(QuestionRepository $questionRepo, CoeffRepository $coeffRepo, AccentEncoder $accent, Request $request)
+    public function getQuestions(QuestionRepository $questionRepo, CoeffRepository $coeffRepo, AccentEncoder $accent, Request $request, Session $session)
     {
+        $verifyToken = $session->get('token');
+
         $content = $request->getContent();
+        
+        echo "<script>alert('<?php echo $verifyToken; ?>')</script> <br />";
 
         $quizzData = json_decode($content, true);
-
+        
         $level = $quizzData['level'];
         $theme = $quizzData['theme'];
+        $token = $quizzData['token'];
+
+        echo "<script>alert('<?php echo $token; ?>')</script>";
+
+        //dd($verifyToken);
+
+        if (isset($verifyToken) && $token == $verifyToken) {
+            return new Response('token stocké : '. $verifyToken . ' et token reçu : '. $token);
+        }
+
+        else {
+            return new Response('false');
+        }
 
         $coeff = $coeffRepo->findByLevelName($level); // We search the good points coeff
         

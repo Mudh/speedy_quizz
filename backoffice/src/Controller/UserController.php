@@ -8,10 +8,12 @@ use App\Repository\RoleRepository;
 use App\Repository\UserRepository;
 use JMS\Serializer\SerializerBuilder;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -41,16 +43,22 @@ class UserController extends AbstractController
     public function login(UserRepository $userRepo, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $content = $request->getContent();
+        
+        $session = new Session();
 
         $loginData = json_decode($content, true);
         
-        $password = $loginData['auth']['password'];
-        $email = $loginData['auth']['email'];
+        $password = $loginData['password'];
+        $email = $loginData['email'];
+
+        //$email = 'jeanne.lefebvre@dbmail.com';
+        //$password = '123';
 
         $user = $userRepo->findOneByEmail($email);
 
+
         if(!$user) {
-            return new Response ('false');
+            return new Response ('mauvais identifiants');
         }
 
         $userPassword = $user->getPassword();
@@ -60,9 +68,14 @@ class UserController extends AbstractController
             return new Response ('false');
         }
 
-        //$token = base64_encode(random_bytes(64));
-    
-        return new Response ('true');
+        $token = bin2hex(openssl_random_pseudo_bytes(15));
+
+        $session->set('user', $user);
+        $session->set('token', $token);
+
+        $theSession = $session->get('token', $token);
+
+        return new Response ($token);
     }
 
     /**
