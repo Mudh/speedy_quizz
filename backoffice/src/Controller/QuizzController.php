@@ -10,6 +10,7 @@ use App\Repository\QuestionRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class QuizzController extends AbstractController
@@ -29,6 +30,7 @@ class QuizzController extends AbstractController
      */
     public function getQuestions(QuestionRepository $questionRepo, CoeffRepository $coeffRepo, AccentEncoder $accent, Request $request)
     {
+    
         $content = $request->getContent();
 
         $quizzData = json_decode($content, true);
