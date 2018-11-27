@@ -22,7 +22,7 @@ const initialState = {
   fiftyFifty: { count: 3, used: false },
   timer: { count: 4, used: false },
   filteredQuestion: undefined,
-  levelTimer: 5000,
+  levelTimer: 120000,
   startTimer: 0,
   endTimer: 0,
   extraTimer: 0,
