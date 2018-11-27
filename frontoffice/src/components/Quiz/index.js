@@ -52,6 +52,7 @@ class Quiz extends React.Component {
       updateScore,
       openScore,
       onChangeAnswer,
+      setQuizStop,
     } = this.props;
 
     // Récupération des valeurs (coeff + points de base) pour attribuer les points
@@ -72,6 +73,10 @@ class Quiz extends React.Component {
         updateScore(boolScore);
         openScore();
       }, 150);
+    } else if (!isCorrectAnswer) {
+      setTimeout(() => {
+        setQuizStop();
+      }, 150);
     } else {
       setTimeout(() => {
         onChangeAnswer('');
@@ -91,6 +96,7 @@ class Quiz extends React.Component {
       nextStep,
       updateScore,
       resetOwnedPoints,
+      setQuizStop,
     } = this.props;
 
     // Récupération des valeurs (coeff + points de base) pour attribuer les points
@@ -112,6 +118,10 @@ class Quiz extends React.Component {
         nextStep();
         updateScore(boolScore);
         resetOwnedPoints();
+      }, 150);
+    } else if (!isCorrectAnswer) {
+      setTimeout(() => {
+        setQuizStop();
       }, 150);
     } else {
       setTimeout(() => {
@@ -189,8 +199,8 @@ class Quiz extends React.Component {
       timer,
       fiftyFifty,
       filteredQuestion,
-      startTimer,
-      endTimer,
+      isQuizStart,
+      setQuizStop,
     } = this.props;
     const question = data.questionsList[`step${step}`][questionNumber].title;
 
@@ -281,7 +291,7 @@ class Quiz extends React.Component {
           >
             <Revive />
           </Button>
-          <Button btnClass="stop" btnText="STOP" />
+          <Button btnClass="stop" btnText="STOP" onClick={setQuizStop} />
           <Button
             btnClass={fiftyClassNames}
             onClick={this.handleFiftyFiftyjoker}
@@ -296,7 +306,7 @@ class Quiz extends React.Component {
           </Button>
         </footer>
         {score}
-        {!fakeAuth && <Redirect to="/" />}
+        {!isQuizStart && <Redirect to="/" />}
       </Layout>
     );
   }

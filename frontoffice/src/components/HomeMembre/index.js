@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import { Redirect, NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 /**
  * Local import
  */
@@ -18,7 +19,7 @@ import '../Home/home.scss';
  * Code
  */
 
-const HomeMembre = ({ sendRequest, fakeAuth, setStartTimer }) => {
+const HomeMembre = withRouter(({ startQuiz, fakeAuth, history }) => {
   const themes = [
     'Le système solaire',
     'La grammaire anglaise',
@@ -32,6 +33,11 @@ const HomeMembre = ({ sendRequest, fakeAuth, setStartTimer }) => {
   ];
   const levels = ['Facile', 'Moyen', 'Difficile'];
 
+  const handleQuizStart = () => {
+    history.push('/quiz');
+    startQuiz();
+  };
+
   return (
     <Layout layoutClass="homeMember">
       <h1 className="homeMember__title">Choisis ton thème et ta difficulté</h1>
@@ -41,23 +47,13 @@ const HomeMembre = ({ sendRequest, fakeAuth, setStartTimer }) => {
             <h2 className="theme__title">{theme}</h2>
             <div className="theme__levels">
               {levels.map(level => (
-                <NavLink
-                  key={level}
-                  to="/quiz"
-                  className="primaryDemo"
-                  onClick={setStartTimer}
-                >
-                  {level}
-                </NavLink>
-              ))}
-              {/* {levels.map(level => (
                 <Button
                   key={level}
                   btnClass="primary"
                   btnText={level}
-                  onClick={sendRequest}
+                  onClick={handleQuizStart}
                 />
-              ))} */}
+              ))}
             </div>
           </div>
         ))}
@@ -65,7 +61,7 @@ const HomeMembre = ({ sendRequest, fakeAuth, setStartTimer }) => {
       {!fakeAuth && <Redirect to="/" />}
     </Layout>
   );
-};
+});
 
 /**
  * Export

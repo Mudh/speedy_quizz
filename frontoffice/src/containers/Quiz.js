@@ -10,6 +10,7 @@ import {
   nextStep,
   answerValue,
   resetQuestion,
+  setQuizStop,
 } from '../store/reducers/quiz';
 import {
   updatePoints,
@@ -24,6 +25,7 @@ import { openModal } from '../store/reducers/modal';
 
 // === State (données) ===
 const mapStateToProps = state => ({
+  isQuizStart: state.quiz.isQuizStart,
   data: state.quiz.data,
   step: state.quiz.step,
   questionNumber: state.quiz.questionNumber,
@@ -78,6 +80,9 @@ const mapDispatchToProps = dispatch => ({
   setJokerTimer: question => {
     dispatch(updateJokerCount('timer'));
     dispatch(setJokerTimer(question));
+  },
+  setQuizStop: () => {
+    dispatch(setQuizStop());
   },
 });
 
