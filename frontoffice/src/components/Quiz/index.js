@@ -53,6 +53,7 @@ class Quiz extends React.Component {
       openScore,
       onChangeAnswer,
       setQuizStop,
+      looseAllPoints,
     } = this.props;
 
     // Récupération des valeurs (coeff + points de base) pour attribuer les points
@@ -75,6 +76,8 @@ class Quiz extends React.Component {
       }, 150);
     } else if (!isCorrectAnswer) {
       setTimeout(() => {
+        updateScore(boolScore);
+        looseAllPoints();
         setQuizStop();
       }, 150);
     } else {
@@ -97,6 +100,7 @@ class Quiz extends React.Component {
       updateScore,
       resetOwnedPoints,
       setQuizStop,
+      looseAllPoints,
     } = this.props;
 
     // Récupération des valeurs (coeff + points de base) pour attribuer les points
@@ -121,6 +125,7 @@ class Quiz extends React.Component {
       }, 150);
     } else if (!isCorrectAnswer) {
       setTimeout(() => {
+        looseAllPoints();
         setQuizStop();
       }, 150);
     } else {

@@ -33,6 +33,8 @@ export default (state = initialState, action = {}) => {
     case SET_QUIZ_STOP:
       return {
         ...state,
+        step: 1,
+        questionNumber: 0,
         isQuizStart: false,
       };
 

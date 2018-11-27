@@ -20,6 +20,7 @@ import {
   setJokerFifty,
   setEndTimer,
   setJokerTimer,
+  looseAllPoints,
 } from '../store/reducers/sideRightLog';
 import { openModal } from '../store/reducers/modal';
 
@@ -83,6 +84,9 @@ const mapDispatchToProps = dispatch => ({
   },
   setQuizStop: () => {
     dispatch(setQuizStop());
+  },
+  looseAllPoints: () => {
+    dispatch(looseAllPoints());
   },
 });
 
