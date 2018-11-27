@@ -1,8 +1,11 @@
 // import
 import axios from 'axios';
-import { SUBMIT_LOGIN } from '../store/reducers/loginForm';
+import setAuthorizationToken from '../utils/setAuthorizationToken';
+import jwt from 'jsonwebtoken';
+
+// local imports
+import { SUBMIT_LOGIN, setCurrentUser } from '../store/reducers/loginForm';
 import { SUBMIT_SUBSCRIBE } from '../store/reducers/subscribeForm';
-// Types
 
 const url = 'http://127.0.0.1:8000/login';
 const urlQuiz = 'http://127.0.0.1:8000/quizz/test';
@@ -16,9 +19,7 @@ const ajax = store => next => action => {
     case SUBMIT_LOGIN:
       {
         const state = store.getState();
-        const basicAuth = `${state.loginForm.email}:${
-          state.loginForm.password
-        }`;
+
         axios
           .post(url, {
             email: state.loginForm.email,
@@ -26,19 +27,14 @@ const ajax = store => next => action => {
           })
           // succes
           .then(response => {
-            localStorage.setItem(
-              'token',
-              JSON.stringify('1dsvsdv64sdv4sd6v4ds6v46sdv4'),
-            );
-            console.log('success', JSON.parse(localStorage.getItem('token')));
+            const token = response.data;
+            localStorage.setItem('jwtToken', token);
+            setAuthorizationToken(token);
+            store.dispatch(setCurrentUser(jwt.decode(token)));
+            console.log(jwt.decode(token));
           })
           // echec
           .catch(error => {
-            localStorage.setItem(
-              'token',
-              JSON.stringify('1dsvsdv64sdv4sd6v4ds6v46sdv4'),
-            );
-            console.log('error', JSON.parse(localStorage.getItem('token')));
             console.error(error);
           });
       }
