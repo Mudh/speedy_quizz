@@ -15,25 +15,28 @@ const ajax = store => next => action => {
     case SUBMIT_LOGIN:
       {
         const state = store.getState();
-        // axios
-        //   .post(
-        //     url,
-        //     {},
-        //     {
-        //       auth: {
-        //         email: state.loginForm.email,
-        //         password: state.loginForm.password,
-        //       },
-        //     },
-        //   )
-        //   // succes
-        //   .then(response => {
-        //     console.log(response);
-        //   })
-        //   // echec
-        //   .catch(error => {
-        //     console.error(error);
-        //   });
+        axios
+          .post(
+            url,
+            {},
+            {
+              auth: {
+                email: state.loginForm.email,
+                password: state.loginForm.password,
+              },
+            },
+          )
+          // succes
+          .then(response => {
+            localStorage.setItem('token', JSON.stringify(response));
+            console.log('success', JSON.parse(localStorage.getItem('token')));
+          })
+          // echec
+          .catch(error => {
+            localStorage.setItem('token', JSON.stringify(response));
+            console.log('error', JSON.parse(localStorage.getItem('token')));
+            console.error(error);
+          });
       }
       break;
 
