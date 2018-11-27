@@ -2,17 +2,26 @@
  * NPM import
  */
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 /**
  * Local import
  */
+// Utils
+import { shuffle } from '../../utils';
+
 // Components
-import Layout from '../Layout';
 import Button from '../Button';
 import QuizHeader from './QuizHeader';
 import AnswerRadio from './answerRadio';
+import Layout from '../../containers/Layout';
 import Score from '../../containers/Modal/Score';
+import FiftyFifty from 'src/components/Icons/sidebar/fiftyFifty';
+import Revive from 'src/components/Icons/sidebar/revive';
+import Skip from 'src/components/Icons/sidebar/skip';
+import Timer from 'src/components/Icons/sidebar/timer';
 
 // Styles
 import './quiz.scss';
@@ -81,6 +90,7 @@ class Quiz extends React.Component {
       nextQuestion,
       nextStep,
       updateScore,
+      resetOwnedPoints,
     } = this.props;
 
     // Récupération des valeurs (coeff + points de base) pour attribuer les points
@@ -101,6 +111,7 @@ class Quiz extends React.Component {
       setTimeout(() => {
         nextStep();
         updateScore(boolScore);
+        resetOwnedPoints();
       }, 150);
     } else {
       setTimeout(() => {
@@ -110,15 +121,115 @@ class Quiz extends React.Component {
     }
   };
 
+  handleSkipJoker = () => {
+    const {
+      step,
+      questionNumber,
+      nextQuestion,
+      nextStep,
+      openScore,
+      updateSkipCount,
+    } = this.props;
+
+    if (questionNumber === 4 && step !== 3) {
+      setTimeout(() => {
+        nextStep();
+        updateSkipCount();
+      }, 150);
+    } else if (questionNumber === 4 && step === 3) {
+      setTimeout(() => {
+        updateSkipCount();
+        openScore();
+      }, 150);
+    } else {
+      setTimeout(() => {
+        nextQuestion();
+        updateSkipCount();
+      }, 150);
+    }
+  };
+
+  handleRevivejoker = () => {
+    const { setJokerRevive, resetOwnedPoints } = this.props;
+    setJokerRevive();
+    resetOwnedPoints();
+  };
+
+  handleFiftyFiftyjoker = () => {
+    const { setJokerFiftyFifty, questionNumber } = this.props;
+    setJokerFiftyFifty(questionNumber);
+    console.log(questionNumber);
+  };
+
+  handleTimerJoker = () => {
+    const { setEndTimer, setJokerTimer } = this.props;
+    setEndTimer();
+    setJokerTimer();
+  };
+
+  componentDidUpdate(nextProps) {
+    const { fiftyFifty, questionNumber } = this.props;
+    return (
+      fiftyFifty.used !== nextProps.fiftyFifty.used ||
+      (fiftyFifty.used &&
+        questionNumber !== (nextProps.questionNumber === questionNumber + 1))
+    );
+  }
+
   render() {
-    const { data, step, questionNumber, isScoreOpen, answerValue } = this.props;
+    const {
+      data,
+      step,
+      questionNumber,
+      isScoreOpen,
+      answerValue,
+      fakeAuth,
+      skip,
+      revive,
+      timer,
+      fiftyFifty,
+      filteredQuestion,
+      startTimer,
+      endTimer,
+    } = this.props;
     const question = data.questionsList[`step${step}`][questionNumber].title;
-    const answers = data.questionsList[`step${step}`][questionNumber].response;
+
+    const filteredGoodAnswer = data.questionsList.step2[
+      questionNumber
+    ].response.filter(item => item.is_correct === true);
+
+    const filteredBadAnswer = shuffle(
+      data.questionsList.step2[questionNumber].response.filter(
+        item => item.is_correct === false,
+      ),
+    );
+
+    const jokerFilteredArray = shuffle([
+      ...filteredGoodAnswer,
+      filteredBadAnswer[0],
+    ]);
+
+    const toggleStep2responses =
+      fiftyFifty.used && filteredQuestion === questionNumber
+        ? jokerFilteredArray
+        : data.questionsList[`step${step}`][questionNumber].response;
+
     const totalQuestions = data.questionsList[`step${step}`].length;
+    const answers =
+      step !== 2
+        ? data.questionsList[`step${step}`][questionNumber].response
+        : toggleStep2responses;
 
     const score = isScoreOpen ? <Score /> : null;
 
-    console.log('data', data);
+    const jokersClassNames = jokerObj =>
+      classNames('primary round', {
+        isDisabled: jokerObj.used || jokerObj.count === 0,
+      });
+
+    const fiftyClassNames = classNames('primary round', {
+      isDisabled: fiftyFifty.used || fiftyFifty.count === 0 || step !== 2,
+    });
 
     return (
       <Layout layoutClass="quiz">
@@ -158,9 +269,34 @@ class Quiz extends React.Component {
           </form>
         </section>
         <footer className="quiz__footer">
+          <Button
+            btnClass={jokersClassNames(skip)}
+            onClick={this.handleSkipJoker}
+          >
+            <Skip />
+          </Button>
+          <Button
+            btnClass={jokersClassNames(revive)}
+            onClick={this.handleRevivejoker}
+          >
+            <Revive />
+          </Button>
           <Button btnClass="stop" btnText="STOP" />
+          <Button
+            btnClass={fiftyClassNames}
+            onClick={this.handleFiftyFiftyjoker}
+          >
+            <FiftyFifty />
+          </Button>
+          <Button
+            btnClass={jokersClassNames(timer)}
+            onClick={this.handleTimerJoker}
+          >
+            <Timer />
+          </Button>
         </footer>
         {score}
+        {!fakeAuth && <Redirect to="/" />}
       </Layout>
     );
   }

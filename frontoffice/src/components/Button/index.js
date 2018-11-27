@@ -15,16 +15,22 @@ import './button.scss';
 /**
  * Code
  */
-const Button = ({ btnText, btnClass, onClick }) => (
+const Button = ({ btnText = '', btnClass, onClick, children }) => (
   <button className={btnClass} onClick={onClick}>
     {btnText}
+    {children}
   </button>
 );
 
 Button.propTypes = {
-  btnText: PropTypes.string.isRequired,
+  btnText: PropTypes.string,
   onClick: PropTypes.func,
   btnClass: PropTypes.string,
+};
+
+Button.defaultProps = {
+  btnText: '',
+  btnClass: '',
 };
 /**
  * Export

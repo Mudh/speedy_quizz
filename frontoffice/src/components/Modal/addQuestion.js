@@ -16,17 +16,22 @@ import './modal.scss';
 /**
  * Code
  */
-const AddQuestion = ({ closeAddQuestion }) => (
+const AddQuestion = ({ closeAddQuestion, onSubmitAddQuestion }) => (
   <ModalLayout modalClass="add-question" onClick={closeAddQuestion}>
     <Button btnClass="close" btnText="+" onClick={closeAddQuestion} />
     <AddQuestionForm />
-    <Button btnClass="primary" btnText="valider" />
+    <Button
+      btnClass="primary"
+      btnText="valider"
+      onClick={onSubmitAddQuestion}
+    />
   </ModalLayout>
 );
 
-// AddQuestion.propTypes = {
-//   closeAddQuestion: PropTypes.func.isRequired,
-// };
+AddQuestion.propTypes = {
+  closeAddQuestion: PropTypes.func.isRequired,
+  onSubmitAddQuestion: PropTypes.func.isRequired,
+};
 /**
  * Export
  */

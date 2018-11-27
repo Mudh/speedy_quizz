@@ -2,11 +2,11 @@
  * NPM import
  */
 import React from 'react';
-
 /**
  * Local import
  */
 // Components
+import Countdown from '../../containers/Countdown';
 import Credits from 'src/components/Icons/sidebar/credits';
 import FiftyFifty from 'src/components/Icons/sidebar/fiftyFifty';
 import Revive from 'src/components/Icons/sidebar/revive';
@@ -22,43 +22,55 @@ import './SideRightLog.scss';
 /**
  * Code
  */
-const SideRightLog = ({ points }) => (
-  <aside className="sideRightLog">
-    <div className="sideRightLog__wrapper">
-      <div className="sideRightLog__Top">
-        <h2>Bonjour Marco</h2>
-        <ul className="sideRightLog__party">
-          <li className="sideRightLog__items">
-            <Credits />
-            <span className="logo__commentary">x2 Parties</span>
-          </li>
-          <li className="sideRightLog__items">
-            <Score />
-            <span className="logo__commentary">{points} Points </span>
-          </li>
-        </ul>
-        <ul className="sideRightLog__jokers">
-          <li className="sideRightLog__items">
-            <Skip />
-            <span className="logo__commentary">x2 Skip</span>
-          </li>
-          <li className="sideRightLog__items">
-            <Revive />
-            <span className="logo__commentary">x3 Revive</span>
-          </li>
-          <li className="sideRightLog__items">
-            <Timer />
-            <span className="logo__commentary">x4 Timer</span>
-          </li>
-          <li className="sideRightLog__items">
-            <FiftyFifty />
-            <span className="logo__commentary">x2 50/50</span>
-          </li>
-        </ul>
+const SideRightLog = ({
+  parties,
+  totalPoints,
+  skip,
+  revive,
+  timer,
+  fiftyFifty,
+}) => {
+  return (
+    <aside className="sideRightLog">
+      <div className="sideRightLog__wrapper">
+        <div className="sideRightLog__Top">
+          <h2>Bonjour Marco</h2>
+          <ul className="sideRightLog__party">
+            <li className="sideRightLog__items">
+              <Credits />
+              <span className="logo__commentary">x{parties} Parties</span>
+            </li>
+            <li className="sideRightLog__items">
+              <Score />
+              <span className="logo__commentary">{totalPoints} Points</span>
+            </li>
+          </ul>
+          <ul className="sideRightLog__jokers">
+            <li className="sideRightLog__items">
+              <Skip />
+              <span className="logo__commentary">x{skip.count} Skip</span>
+            </li>
+            <li className="sideRightLog__items">
+              <Revive />
+              <span className="logo__commentary">x{revive.count} Revive</span>
+            </li>
+            <li className="sideRightLog__items">
+              <FiftyFifty />
+              <span className="logo__commentary">
+                x{fiftyFifty.count} 50/50
+              </span>
+            </li>
+            <li className="sideRightLog__items">
+              <Timer />
+              <span className="logo__commentary">x{timer.count} Timer</span>
+            </li>
+          </ul>
+        </div>
+        <Countdown />
+        <Button btnClass="primary" btnText="New Game" />
       </div>
-      <Button btnClass="primary" btnText="New Game" />
-    </div>
-  </aside>
-);
+    </aside>
+  );
+};
 
 export default SideRightLog;

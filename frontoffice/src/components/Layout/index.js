@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import SideRightLog from '../../containers/SideRightLog';
 /**
  * Local import
  */
@@ -14,8 +15,11 @@ import './layout.scss';
 /**
  * Code
  */
-const Layout = ({ layoutClass, children }) => (
-  <main className={`layout ${layoutClass}`}>{children}</main>
+const Layout = ({ layoutClass, children, fakeAuth }) => (
+  <main className={`layout ${layoutClass}`}>
+    <div className={`${layoutClass}__main`}>{children}</div>
+    {layoutClass !== 'home' && fakeAuth && <SideRightLog />}
+  </main>
 );
 
 Layout.propTypes = {

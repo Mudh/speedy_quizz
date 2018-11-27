@@ -3,11 +3,14 @@
  */
 export const CHANGE_INPUT = 'CHANGE_INPUT';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
+export const DISCONNECT = 'DISCONNECT';
+export const FAKE_AUTH = 'FAKE_AUTH';
 
 // initial state
 const initialState = {
   email: '',
   password: '',
+  fakeAuth: false,
 };
 
 export default (state = initialState, action = {}) => {
@@ -15,7 +18,6 @@ export default (state = initialState, action = {}) => {
     case SUBMIT_LOGIN:
       return {
         ...state,
-        [action.name]: action.value,
       };
 
     case CHANGE_INPUT:
@@ -24,6 +26,17 @@ export default (state = initialState, action = {}) => {
         [action.name]: action.value,
       };
 
+    case DISCONNECT:
+      return {
+        ...state,
+        fakeAuth: false,
+      };
+
+    case FAKE_AUTH:
+      return {
+        ...state,
+        fakeAuth: true,
+      };
     default:
       return state;
   }
@@ -35,6 +48,15 @@ export const onChangeInput = (name, value) => ({
   name,
   value,
 });
-export const onSubmitLogin = (name, value) => ({
+
+export const onSubmitLogin = () => ({
   type: SUBMIT_LOGIN,
+});
+
+export const disconnect = () => ({
+  type: DISCONNECT,
+});
+
+export const fakeAuth = () => ({
+  type: FAKE_AUTH,
 });

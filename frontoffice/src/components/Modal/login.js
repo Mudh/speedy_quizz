@@ -16,16 +16,18 @@ import './modal.scss';
 /**
  * Code
  */
-const Login = ({ closeLogin, switchToSubscribe, onSubmitLogin }) => (
-  <ModalLayout modalClass="login" onClick={closeLogin}>
-    <Button btnClass="close" btnText="+" onClick={closeLogin} />
-    <LoginForm />
-    <span>
-      Pas encore inscrit ? <span onClick={switchToSubscribe}>Cliquez ici</span>
-    </span>
-    <Button btnClass="primary" btnText="valider" onClick={onSubmitLogin} />
-  </ModalLayout>
-);
+const Login = ({ closeLogin, switchToSubscribe, onSubmitLogin }) => {
+  return (
+    <ModalLayout modalClass="login" onClick={closeLogin}>
+      <Button btnClass="close" btnText="+" onClick={closeLogin} />
+      <LoginForm />
+      <span>
+        Pas encore inscrit ?<span onClick={switchToSubscribe}>Cliquez ici</span>
+      </span>
+      <Button btnClass="primary" btnText="valider" onClick={onSubmitLogin} />
+    </ModalLayout>
+  );
+};
 
 Login.propTypes = {
   closeLogin: PropTypes.func.isRequired,

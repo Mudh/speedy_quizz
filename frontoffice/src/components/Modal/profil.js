@@ -16,17 +16,18 @@ import './modal.scss';
 /**
  * Code
  */
-const Profil = ({ closeProfil }) => (
-  <ModalLayout modalClass="profil" onClickCloseModal={closeProfil}>
+const Profil = ({ closeProfil, onSubmitProfil }) => (
+  <ModalLayout modalClass="profil" onClick={closeProfil}>
     <Button btnClass="close" btnText="+" onClick={closeProfil} />
     <ProfilForm />
-    <Button btnClass="primary" btnText="valider" />
+    <Button btnClass="primary" btnText="valider" onClick={onSubmitProfil} />
   </ModalLayout>
 );
 
-// Profil.propTypes = {
-//   closeProfil: PropTypes.func.isRequired,
-// };
+Profil.propTypes = {
+  closeProfil: PropTypes.func.isRequired,
+  onSubmitProfil: PropTypes.func.isRequired,
+};
 /**
  * Export
  */

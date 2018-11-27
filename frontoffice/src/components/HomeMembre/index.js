@@ -2,12 +2,12 @@
  * NPM import
  */
 import React from 'react';
-
+import { Redirect, NavLink } from 'react-router-dom';
 /**
  * Local import
  */
 // Components
-import Layout from '../Layout';
+import Layout from '../../containers/Layout';
 import Button from '../Button';
 
 // Styles
@@ -18,7 +18,7 @@ import '../Home/home.scss';
  * Code
  */
 
-const HomeMembre = ({ sendRequest }) => {
+const HomeMembre = ({ sendRequest, fakeAuth, setStartTimer }) => {
   const themes = [
     'Le système solaire',
     'La grammaire anglaise',
@@ -41,17 +41,28 @@ const HomeMembre = ({ sendRequest }) => {
             <h2 className="theme__title">{theme}</h2>
             <div className="theme__levels">
               {levels.map(level => (
+                <NavLink
+                  key={level}
+                  to="/quiz"
+                  className="primaryDemo"
+                  onClick={setStartTimer}
+                >
+                  {level}
+                </NavLink>
+              ))}
+              {/* {levels.map(level => (
                 <Button
                   key={level}
                   btnClass="primary"
                   btnText={level}
                   onClick={sendRequest}
                 />
-              ))}
+              ))} */}
             </div>
           </div>
         ))}
       </section>
+      {!fakeAuth && <Redirect to="/" />}
     </Layout>
   );
 };

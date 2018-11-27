@@ -1,4 +1,13 @@
+/**
+ * NPM import
+ */
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
+/**
+ * Local import
+ */
+// Components
 import Disconnect from 'src/components/Icons/nav/disconnect';
 import Faq from 'src/components/Icons/nav/faq';
 import Home from 'src/components/Icons/nav/home';
@@ -6,41 +15,44 @@ import Infos from 'src/components/Icons/nav/infos';
 import Podium from 'src/components/Icons/nav/podium';
 import Socials from 'src/components/Icons/nav/socials';
 import Profil from 'src/components/Icons/nav/profil';
-import 'src/components/SideDrawer/DrawerToggleButton.scss';
-import './nav.scss';
-import 'src/components/Icons/icons.scss';
 
-const Nav = () => {
+import './nav.scss';
+
+const Nav = ({ fakeAuth, onClickDisconnect }) => {
   const active = false;
   return (
     <aside className="toolbar">
       <nav className="toolbar__navigation">
         <ul className="toolbar__navigation-top">
           <li>
-            <a href="#">
+            <NavLink exact to="/" activeClassName="selected">
               <Home active={active} />
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="#">
+            <NavLink to="/classement" activeClassName="selected">
               <Podium active={active} />
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="#">
+            <NavLink to="/faq" activeClassName="selected">
               <Faq active={active} />
-            </a>
+            </NavLink>
           </li>
-          <li>
-            <a href="#">
-              <Profil active={active} />
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <Disconnect />
-            </a>
-          </li>
+          {fakeAuth && (
+            <li>
+              <NavLink to="/profil" activeClassName="selected">
+                <Profil active={active} />
+              </NavLink>
+            </li>
+          )}
+          {fakeAuth && (
+            <li onClick={onClickDisconnect}>
+              <span>
+                <Disconnect />
+              </span>
+            </li>
+          )}
         </ul>
         <ul className="toolbar__navigation-bottom">
           <li>
@@ -49,6 +61,9 @@ const Nav = () => {
             </a>
           </li>
           <li>
+            {/* <NavLink to="/profil" activeClassName="selected">
+              <Infos />
+            </NavLink> */}
             <a href="#">
               <Infos />
             </a>

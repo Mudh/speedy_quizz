@@ -3,10 +3,15 @@
 
 .home {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  height: 100%;
   flex: 1;
+
+  &__main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    flex: 1;
+  }
 
   &__header {
     display: flex;
@@ -32,7 +37,7 @@
   }
 
   &__title {
-    margin-top: rem(105);
+    margin-top: rem(40);
     font-size: rem(70);
     color: $yellowText;
   }

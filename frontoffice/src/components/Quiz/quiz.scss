@@ -3,12 +3,17 @@
 
 .quiz {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-direction: column;
-  height: 100%;
   flex: 1;
-  padding: 0 rem(28) 0 rem(20);
+
+  &__main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+    padding: 0 rem(28) 0 rem(20);
+    flex: 1;
+  }
 
   &__section,
   &__footer {
@@ -19,6 +24,35 @@
     display: flex;
     margin-bottom: rem(40);
     justify-content: center;
+    align-items: center;
+
+    .stop {
+      margin: 0 rem(20);
+    }
+
+    .primary.round {
+      margin: 0 rem(20);
+      padding: rem(20);
+      width: rem(80);
+      height: rem(80);
+      border-radius: 100%;
+
+      &:first-child {
+        padding: rem(24);
+      }
+      &:nth-child(2) {
+        padding: rem(22) rem(20);
+      }
+
+      svg {
+        width: rem(40);
+        height: rem(40);
+      }
+      &.isDisabled {
+        opacity: 0.4;
+        pointer-events: none;
+      }
+    }
   }
 
   &__title {
