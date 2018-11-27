@@ -7,6 +7,7 @@ import Home from 'src/components/HomeMembre';
 // action creators
 import { sendRequest } from '../store/reducers/homeMembre';
 import { setStartTimer } from '../store/reducers/sideRightLog';
+import { onSubmitSubscribe } from '../store/reducers/subscribeForm';
 
 // === State (données) ===
 const mapStateToProps = state => ({
@@ -20,6 +21,7 @@ const mapDispatchToProps = dispatch => ({
   },
   setStartTimer: () => {
     dispatch(setStartTimer());
+    dispatch(onSubmitSubscribe());
   },
 });
 

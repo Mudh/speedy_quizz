@@ -5,6 +5,7 @@ import { SUBMIT_SUBSCRIBE } from '../store/reducers/subscribeForm';
 // Types
 
 const url = 'http://127.0.0.1:8000/login';
+const urlQuiz = 'http://127.0.0.1:8000/quizz/test';
 
 /**
  * Middleware de gestion ajax
@@ -15,20 +16,17 @@ const ajax = store => next => action => {
     case SUBMIT_LOGIN:
       {
         const state = store.getState();
+        const basicAuth = `${state.loginForm.email}:${
+          state.loginForm.password
+        }`;
         axios
-          .post(
-            url,
-            {},
-            {
-              auth: {
-                email: state.loginForm.email,
-                password: state.loginForm.password,
-              },
-            },
-          )
+          .post(url, {
+            email: state.loginForm.email,
+            password: state.loginForm.password,
+          })
           // succes
           .then(response => {
-            localStorage.setItem('token', JSON.stringify(response));
+            localStorage.setItem('token', JSON.stringify(response.data));
             console.log('success', JSON.parse(localStorage.getItem('token')));
           })
           // echec
@@ -51,21 +49,20 @@ const ajax = store => next => action => {
           password: state.subscribeForm.password,
         });
         axios
-          .post(url, {
-            firstname: state.subscribeForm.lastname,
-            lastname: state.subscribeForm.firstname,
-            username: state.subscribeForm.nickname,
-            email: state.subscribeForm.email,
-            password: state.subscribeForm.password,
-          })
-          // succes
-          .then(response => {
-            console.log(response);
-          })
-          // echec
-          .catch(error => {
-            console.error(error);
-          });
+        .post(urlQuiz, {
+          theme: 'Espace',
+          level: 'Facile',
+          token: JSON.parse(localStorage.getItem('token')),
+        })
+        // succes
+        .then(response => {
+          console.log(response);
+          console.log('success', JSON.parse(localStorage.getItem('token')));
+        })
+        // echec
+        .catch(error => {
+          console.error(error);
+        });
       }
       break;
 
