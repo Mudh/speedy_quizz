@@ -26,12 +26,18 @@ const ajax = store => next => action => {
           })
           // succes
           .then(response => {
-            localStorage.setItem('token', JSON.stringify(response.data));
+            localStorage.setItem(
+              'token',
+              JSON.stringify('1dsvsdv64sdv4sd6v4ds6v46sdv4'),
+            );
             console.log('success', JSON.parse(localStorage.getItem('token')));
           })
           // echec
           .catch(error => {
-            localStorage.setItem('token', JSON.stringify(response));
+            localStorage.setItem(
+              'token',
+              JSON.stringify('1dsvsdv64sdv4sd6v4ds6v46sdv4'),
+            );
             console.log('error', JSON.parse(localStorage.getItem('token')));
             console.error(error);
           });
@@ -41,28 +47,20 @@ const ajax = store => next => action => {
     case SUBMIT_SUBSCRIBE:
       {
         const state = store.getState();
-        console.log({
-          firstname: state.subscribeForm.lastname,
-          lastname: state.subscribeForm.firstname,
-          username: state.subscribeForm.nickname,
-          email: state.subscribeForm.email,
-          password: state.subscribeForm.password,
-        });
         axios
-        .post(urlQuiz, {
-          theme: 'Espace',
-          level: 'Facile',
-          token: JSON.parse(localStorage.getItem('token')),
-        })
-        // succes
-        .then(response => {
-          console.log(response);
-          console.log('success', JSON.parse(localStorage.getItem('token')));
-        })
-        // echec
-        .catch(error => {
-          console.error(error);
-        });
+          .post(urlQuiz, {
+            theme: 'Espace',
+            level: 'Facile',
+            token: JSON.parse(localStorage.getItem('token')),
+          })
+          // succes
+          .then(response => {
+            console.log('subscribe', localStorage.getItem('token'));
+          })
+          // echec
+          .catch(error => {
+            console.error(JSON.parse(localStorage.getItem('token')));
+          });
       }
       break;
 
