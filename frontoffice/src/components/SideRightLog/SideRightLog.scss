@@ -12,7 +12,8 @@
     justify-content: space-between;
     background: url('../../assets/img/sidebar_bg_pattern.png') repeat center
       center/7px;
-    width: rem(220);
+    width: rem(240);
+    min-width: 240;
     height: 100%;
     padding: 0 rem(33) rem(20);
   }
