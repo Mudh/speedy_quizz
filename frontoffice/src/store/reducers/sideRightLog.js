@@ -2,6 +2,7 @@
  * Types
  */
 export const UPDATE_POINTS = 'UPDATE_POINTS';
+export const LOOSE_ALL_POINTS = 'LOOSE_ALL_POINTS';
 export const UPDATE_JOKER_COUNT = 'UPDATE_JOKER_COUNT';
 export const RESET_OWNED_POINTS = 'RESET_OWNED_POINTS';
 export const SET_JOKER_REVIVE = 'SET_JOKER_REVIVE';
@@ -15,6 +16,7 @@ const initialState = {
   parties: 2,
   totalPoints: 100,
   ownedPoints: 0,
+  totalOwnedPoints: 0,
   skip: { count: 2, used: false },
   revive: { count: 3, used: false },
   fiftyFifty: { count: 3, used: false },
@@ -33,6 +35,15 @@ export default (state = initialState, action = {}) => {
         ...state,
         totalPoints: state.totalPoints + action.newPoints,
         ownedPoints: state.ownedPoints + action.newPoints,
+        totalOwnedPoints: state.ownedPoints + action.newPoints,
+      };
+
+    case LOOSE_ALL_POINTS:
+      return {
+        ...state,
+        totalPoints: state.totalPoints - state.totalOwnedPoints,
+        ownedPoints: 0,
+        totalOwnedPoints: 0,
       };
 
     case RESET_OWNED_POINTS:
@@ -95,6 +106,10 @@ export default (state = initialState, action = {}) => {
 export const updatePoints = newPoints => ({
   type: UPDATE_POINTS,
   newPoints,
+});
+
+export const looseAllPoints = () => ({
+  type: LOOSE_ALL_POINTS,
 });
 
 export const updateJokerCount = id => ({

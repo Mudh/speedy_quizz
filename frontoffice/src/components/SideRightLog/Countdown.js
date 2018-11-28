@@ -22,7 +22,13 @@ class CountdownPure extends React.PureComponent {
   }
 
   render() {
-    const { timer, levelTimer, extraTimer } = this.props;
+    const {
+      timer,
+      levelTimer,
+      extraTimer,
+      isQuizStart,
+      setQuizStop,
+    } = this.props;
     const timerUpdate = timer.used ? extraTimer : levelTimer;
 
     const countDownDisplay = ({ minutes, seconds, completed }) => {
@@ -38,11 +44,13 @@ class CountdownPure extends React.PureComponent {
     };
     return (
       <div className="sideRightLog__countdown">
-        <Countdown
-          onComplete={() => console.log('fin du decompte')}
-          date={Date.now() + timerUpdate}
-          renderer={countDownDisplay}
-        />
+        {isQuizStart && (
+          <Countdown
+            onComplete={setQuizStop}
+            date={Date.now() + timerUpdate}
+            renderer={countDownDisplay}
+          />
+        )}
       </div>
     );
   }

@@ -8,6 +8,7 @@ use App\Repository\RoleRepository;
 use App\Repository\UserRepository;
 use JMS\Serializer\SerializerBuilder;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,28 +45,30 @@ class UserController extends AbstractController
     public function login(UserRepository $userRepo, Request $request, UserPasswordEncoderInterface $passwordEncoder, JWTTokenManagerInterface $JWTManager)
     {
         $content = $request->getContent();
+        
         $session = new Session();
 
         $loginData = json_decode($content, true);
         
-       // $password = $loginData['auth']['password'];
-        //$email = $loginData['auth']['email'];
+        $password = $loginData['password'];
+        $email = $loginData['email'];
 
-        $email = 'jeanne.lefebvre@dbmail.com';
-        $password = '123';
+        //$email = 'jeanne.lefebvre@dbmail.com';
+        //$password = '123';
 
 
         $user = $userRepo->findOneByEmail($email);
 
+
         if(!$user) {
-            return new Response ('Identifiants incorrects');
+            return new Response ('mauvais identifiants');
         }
 
         $userPassword = $user->getPassword();
         $encryptedPass = $passwordEncoder->isPasswordValid($user, $password);
 
         if ($encryptedPass == false) {
-            return new Response ('Identifiants incorrects');
+            return new Response ('false');
         }
         $token = $JWTManager->create($user);
         
@@ -73,7 +76,14 @@ class UserController extends AbstractController
         
        // $token = bin2hex(openssl_random_pseudo_bytes(15));
 
-        return new JsonResponse($token);
+        $token = bin2hex(openssl_random_pseudo_bytes(15));
+
+        $session->set('user', $user);
+        $session->set('token', $token);
+
+        $theSession = $session->get('token', $token);
+
+        return new Response ($token);
     }
 
     /**

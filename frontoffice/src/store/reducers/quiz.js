@@ -6,6 +6,8 @@ import data from '../../data/questions';
 /**
  * Types
  */
+export const SET_QUIZ_START = 'SET_QUIZ_START';
+export const SET_QUIZ_STOP = 'SET_QUIZ_STOP';
 export const NEXT_STEP = 'NEXT_STEP';
 export const NEXT_QUESTION = 'NEXT_QUESTION';
 export const ANSWER_VALUE = 'ANSWER_VALUE';
@@ -17,10 +19,25 @@ const initialState = {
   step: 1,
   questionNumber: 0,
   answerValue: '',
+  isQuizStart: false,
 };
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case SET_QUIZ_START:
+      return {
+        ...state,
+        isQuizStart: true,
+      };
+
+    case SET_QUIZ_STOP:
+      return {
+        ...state,
+        step: 1,
+        questionNumber: 0,
+        isQuizStart: false,
+      };
+
     case NEXT_STEP:
       return {
         ...state,
@@ -52,6 +69,14 @@ export default (state = initialState, action = {}) => {
 };
 
 // action creator
+export const setQuizStart = () => ({
+  type: SET_QUIZ_START,
+});
+
+export const setQuizStop = () => ({
+  type: SET_QUIZ_STOP,
+});
+
 export const nextStep = () => ({
   type: NEXT_STEP,
 });

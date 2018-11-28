@@ -13,6 +13,10 @@ security:
     firewalls:
 
         login:
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+                    
             pattern:  ^/api/login
             stateless: true
             anonymous: true
@@ -47,3 +51,4 @@ security:
     access_control:
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+        

@@ -47,6 +47,8 @@
     "@babel/polyfill": "*",
     "axios": "*",
     "classnames": "*",
+    "jsonwebtoken": "^8.4.0",
+    "lodash": "^4.17.11",
     "prop-types": "*",
     "react": "*",
     "react-countdown-now": "^1.3.0",

@@ -2,9 +2,13 @@
  * npm import
  */
 import { createStore, applyMiddleware, compose } from 'redux';
+import setAuthorizationToken from '../utils/setAuthorizationToken';
+import jwt from 'jsonwebtoken';
+
 /**
  * local import
  */
+import { setCurrentUser } from './reducers/loginForm';
 import reducers from './reducers';
 
 import ajax from './ajaxMiddleware';
@@ -26,6 +30,11 @@ const enhancers = compose(
 
 // Store
 const store = createStore(reducers, enhancers);
+
+if (localStorage.jwtToken) {
+  setAuthorizationToken(localStorage.jwtToken);
+  store.dispatch(setCurrentUser(jwt.decode(localStorage.token)));
+}
 
 /**
  * Export
