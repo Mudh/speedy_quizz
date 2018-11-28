@@ -30,8 +30,11 @@ class QuizzController extends AbstractController
     /**
      * @Route("/quizz/test", name="quizz_test_list")
      */
-    public function getQuestions(QuestionRepository $questionRepo, CoeffRepository $coeffRepo, AccentEncoder $accent, Request $request, JWTDecodedEvent $event)
+    public function getQuestions(QuestionRepository $questionRepo, CoeffRepository $coeffRepo, AccentEncoder $accent, Request $request, JWTTokenManagerInterface $JWTManager)
     {
+        $JWTManager->getPayload();
+        $event = new JWTDecodedEvent($JWTManager);
+
         $verifyToken = $session->get('token');
 
         $content = $request->getContent();
