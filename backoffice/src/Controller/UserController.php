@@ -16,10 +16,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTDecodedEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token;
 
 class UserController extends AbstractController
 {
@@ -46,15 +48,13 @@ class UserController extends AbstractController
     {
         $content = $request->getContent();
         
-        $session = new Session();
-
         $loginData = json_decode($content, true);
         
-        $password = $loginData['password'];
-        $email = $loginData['email'];
+       // $password = $loginData['password'];
+        //$email = $loginData['email'];
 
-        //$email = 'jeanne.lefebvre@dbmail.com';
-        //$password = '123';
+        $email = 'jeanne.lefebvre@dbmail.com';
+        $password = '123';
 
 
         $user = $userRepo->findOneByEmail($email);
@@ -70,20 +70,16 @@ class UserController extends AbstractController
         if ($encryptedPass == false) {
             return new Response ('false');
         }
+        //$userToken = new JWTUserToken();
         $token = $JWTManager->create($user);
-        
-        dd($token);
+    
+        //$test = $userToken->getCredentials($token);
+        //dump($test);
+ 
         
        // $token = bin2hex(openssl_random_pseudo_bytes(15));
 
-        $token = bin2hex(openssl_random_pseudo_bytes(15));
-
-        $session->set('user', $user);
-        $session->set('token', $token);
-
-        $theSession = $session->get('token', $token);
-
-        return new Response ($token);
+        return new JsonResponse($token);
     }
 
     /**
