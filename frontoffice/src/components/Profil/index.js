@@ -20,7 +20,7 @@ import './profil.scss';
  */
 
 const Profil = ({
-  fakeAuth,
+  isAuthenticated,
   openProfil,
   openAddQuestion,
   isProfilOpen,
@@ -77,7 +77,7 @@ const Profil = ({
       </div>
       {profil}
       {addQuestion}
-      {!fakeAuth && <Redirect to="/" />}
+      {!isAuthenticated && <Redirect to="/" />}
     </Layout>
   );
 };
@@ -87,7 +87,7 @@ Profil.propTypes = {
   openAddQuestion: PropTypes.func.isRequired,
   isProfilOpen: PropTypes.bool.isRequired,
   isAddQuestionOpen: PropTypes.bool.isRequired,
-  fakeAuth: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 /**
  * Export

@@ -17,7 +17,6 @@ const initialState = {
   password: '',
   isAuthenticated: false,
   user: {},
-  fakeAuth: false,
 };
 
 export default (state = initialState, action = {}) => {
@@ -30,7 +29,7 @@ export default (state = initialState, action = {}) => {
     case SET_CURRENT_USER:
       return {
         ...state,
-        isAuthenticated: isEmpty(action.user),
+        isAuthenticated: !isEmpty(action.user),
         user: action.user,
       };
 
@@ -43,14 +42,9 @@ export default (state = initialState, action = {}) => {
     case DISCONNECT:
       return {
         ...state,
-        fakeAuth: false,
+        isAuthenticated: false,
       };
 
-    case FAKE_AUTH:
-      return {
-        ...state,
-        fakeAuth: true,
-      };
     default:
       return state;
   }
@@ -74,8 +68,4 @@ export const setCurrentUser = user => ({
 
 export const disconnect = () => ({
   type: DISCONNECT,
-});
-
-export const fakeAuth = () => ({
-  type: FAKE_AUTH,
 });

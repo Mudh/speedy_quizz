@@ -11,7 +11,7 @@ import { onSubmitSubscribe } from '../store/reducers/subscribeForm';
 
 // === State (données) ===
 const mapStateToProps = state => ({
-  fakeAuth: state.loginForm.fakeAuth,
+  isAuthenticated: state.loginForm.isAuthenticated,
 });
 
 // === Dispatch (actions) ===

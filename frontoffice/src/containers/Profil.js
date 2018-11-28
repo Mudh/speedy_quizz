@@ -10,7 +10,7 @@ import { openModal } from '../store/reducers/modal';
 
 // === State (données) ===
 const mapStateToProps = state => ({
-  fakeAuth: state.loginForm.fakeAuth,
+  isAuthenticated: state.loginForm.isAuthenticated,
   isProfilOpen: state.modal.profil,
   isAddQuestionOpen: state.modal.addQuestion,
 });

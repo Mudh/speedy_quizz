@@ -18,7 +18,7 @@ import Profil from 'src/components/Icons/nav/profil';
 
 import './nav.scss';
 
-const Nav = ({ fakeAuth, onClickDisconnect }) => {
+const Nav = ({ isAuthenticated, onClickDisconnect }) => {
   const active = false;
   return (
     <aside className="toolbar">
@@ -39,14 +39,14 @@ const Nav = ({ fakeAuth, onClickDisconnect }) => {
               <Faq active={active} />
             </NavLink>
           </li>
-          {fakeAuth && (
+          {isAuthenticated && (
             <li>
               <NavLink to="/profil" activeClassName="selected">
                 <Profil active={active} />
               </NavLink>
             </li>
           )}
-          {fakeAuth && (
+          {isAuthenticated && (
             <li onClick={onClickDisconnect}>
               <span>
                 <Disconnect />

@@ -6,7 +6,7 @@ import PrivateRoute from 'src/components/PrivateRoute';
 
 // === State (données) ===
 const mapStateToProps = state => ({
-  fakeAuth: state.loginForm.fakeAuth,
+  isAuthenticated: state.loginForm.isAuthenticated,
 });
 
 // === Dispatch (actions) ===

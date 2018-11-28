@@ -32,7 +32,7 @@ const mapStateToProps = state => ({
   questionNumber: state.quiz.questionNumber,
   answerValue: state.quiz.answerValue,
   isScoreOpen: state.modal.score,
-  fakeAuth: state.loginForm.fakeAuth,
+  isAuthenticated: state.loginForm.isAuthenticated,
   skip: state.sideRightLog.skip,
   revive: state.sideRightLog.revive,
   timer: state.sideRightLog.timer,

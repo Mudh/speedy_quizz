@@ -6,11 +6,11 @@ import Login from '../../components/Modal/login';
 
 // action creators
 import { closeModal, switchModal } from '../../store/reducers/modal';
-import { onSubmitLogin, fakeAuth } from '../../store/reducers/loginForm';
+import { onSubmitLogin } from '../../store/reducers/loginForm';
 
 // === State (données) ===
 const mapStateToProps = state => ({
-  fakeAuth: state.loginForm.fakeAuth,
+  isAuthenticated: state.loginForm.isAuthenticated,
 });
 
 // === Dispatch (actions) ===
@@ -24,7 +24,6 @@ const mapDispatchToProps = dispatch => ({
   onSubmitLogin: () => {
     dispatch(onSubmitLogin());
     dispatch(closeModal('login'));
-    dispatch(fakeAuth());
   },
 });
 

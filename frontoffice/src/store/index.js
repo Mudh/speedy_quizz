@@ -31,9 +31,9 @@ const enhancers = compose(
 // Store
 const store = createStore(reducers, enhancers);
 
-if (localStorage.jwtToken) {
+if (localStorage.getItem('jwtToken')) {
   setAuthorizationToken(localStorage.jwtToken);
-  store.dispatch(setCurrentUser(jwt.decode(localStorage.token)));
+  store.dispatch(setCurrentUser(jwt.decode(localStorage.getItem('jwtToken'))));
 }
 
 /**

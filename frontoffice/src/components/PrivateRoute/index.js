@@ -4,13 +4,13 @@ import { Route } from 'react-router-dom';
 const PrivateRoute = ({
   public: Public,
   private: Private,
-  fakeAuth,
+  isAuthenticated,
   ...rest
 }) => (
   <Route
     {...rest}
     render={props =>
-      fakeAuth ? <Private {...props} /> : <Public {...props} />
+      isAuthenticated ? <Private {...props} /> : <Public {...props} />
     }
   />
 );

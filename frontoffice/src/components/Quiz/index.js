@@ -198,7 +198,6 @@ class Quiz extends React.Component {
       questionNumber,
       isScoreOpen,
       answerValue,
-      fakeAuth,
       skip,
       revive,
       timer,

@@ -50,11 +50,11 @@ class UserController extends AbstractController
         
         $loginData = json_decode($content, true);
         
-       // $password = $loginData['password'];
-        //$email = $loginData['email'];
+       $password = $loginData['password'];
+        $email = $loginData['email'];
 
-        $email = 'jeanne.lefebvre@dbmail.com';
-        $password = '123';
+        // $email = 'jeanne.lefebvre@dbmail.com';
+        // $password = '123';
 
 
         $user = $userRepo->findOneByEmail($email);
@@ -72,6 +72,11 @@ class UserController extends AbstractController
         }
         //$userToken = new JWTUserToken();
         $token = $JWTManager->create($user);
+
+        $data = [
+            'token' => $token,
+            'user' => $user,
+        ];
     
         //$test = $userToken->getCredentials($token);
         //dump($test);
@@ -79,7 +84,7 @@ class UserController extends AbstractController
         
        // $token = bin2hex(openssl_random_pseudo_bytes(15));
 
-        return new JsonResponse($token);
+        return new JsonResponse($data);
     }
 
     /**

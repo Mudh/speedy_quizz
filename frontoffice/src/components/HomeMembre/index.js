@@ -19,7 +19,7 @@ import '../Home/home.scss';
  * Code
  */
 
-const HomeMembre = withRouter(({ startQuiz, fakeAuth, history }) => {
+const HomeMembre = withRouter(({ startQuiz, isAuthenticated, history }) => {
   const themes = [
     'Le système solaire',
     'La grammaire anglaise',
@@ -58,7 +58,7 @@ const HomeMembre = withRouter(({ startQuiz, fakeAuth, history }) => {
           </div>
         ))}
       </section>
-      {!fakeAuth && <Redirect to="/" />}
+      {!isAuthenticated && <Redirect to="/" />}
     </Layout>
   );
 });

@@ -5,11 +5,7 @@ import { connect } from 'react-redux';
 import LoginForm from '../components/Form/LoginForm';
 
 // action creators
-import {
-  onChangeInput,
-  onSubmitLogin,
-  fakeAuth,
-} from '../store/reducers/loginForm';
+import { onChangeInput, onSubmitLogin } from '../store/reducers/loginForm';
 import { closeModal } from '../store/reducers/modal';
 
 // === State (données) ===
@@ -23,7 +19,6 @@ const mapDispatchToProps = dispatch => ({
   onSubmitLogin: () => {
     dispatch(closeModal('login'));
     dispatch(onSubmitLogin());
-    dispatch(fakeAuth());
   },
   onChangeInput: (name, value) => {
     dispatch(onChangeInput(name, value));

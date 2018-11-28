@@ -6,7 +6,7 @@ import Layout from 'src/components/Layout';
 
 // === State (données) ===
 const mapStateToProps = state => ({
-  fakeAuth: state.loginForm.fakeAuth,
+  isAuthenticated: state.loginForm.isAuthenticated,
 });
 
 // === Dispatch (actions) ===

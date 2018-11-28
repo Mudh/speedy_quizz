@@ -1,14 +1,6 @@
 lexik_jwt_authentication:
-<<<<<<< HEAD
   secret_key: '%kernel.project_dir%/config/jwt/private.pem' # required for token creation
   public_key: '%kernel.project_dir%/config/jwt/public.pem' # required for token verification
-  pass_phrase: 'Polo123' # required for token creation, usage of an environment variable is recommended
-  token_ttl: 3600
+  pass_phrase: 'Bravo123' # required for token creation, usage of an environment variable is recommendedgit stat
+  token_ttl: 60
   user_identity_field: email
-=======
-    secret_key:       '%kernel.project_dir%/config/jwt/private.pem' # required for token creation
-    public_key:       '%kernel.project_dir%/config/jwt/public.pem'  # required for token verification
-    pass_phrase:      'bravo123' # required for token creation, usage of an environment variable is recommended
-    token_ttl:        3600
-    user_identity_field: email
->>>>>>> b430ba29c632d90e7ac5e6e4b8baafc382e783c8
