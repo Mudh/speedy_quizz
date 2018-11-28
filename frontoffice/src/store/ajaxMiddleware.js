@@ -27,7 +27,7 @@ const ajax = store => next => action => {
           })
           // succes
           .then(response => {
-            const token = response.data;
+            const token = response.data.token;
             localStorage.setItem('jwtToken', token);
             setAuthorizationToken(token);
             store.dispatch(setCurrentUser(jwt.decode(token)));
