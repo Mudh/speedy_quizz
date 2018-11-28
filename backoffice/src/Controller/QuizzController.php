@@ -36,29 +36,26 @@ class QuizzController extends AbstractController
     public function getQuestions(EntityManagerInterface $em, QuestionRepository $questionRepo, CoeffRepository $coeffRepo, AccentEncoder $accent, Request $request, TokenDecoder $tokenDecoder, UserRepository $userRepo)
     {
     
-        $token = $request->headers->get('Authorization'); 
-        $content = $request->getContent();
+        $token = $request->headers->get('Authorization'); // We get the token from the header
+        $content = $request->getContent(); // We get post data
         
-        $quizzData = json_decode($content, true);
-        
+        $quizzData = json_decode($content, true); 
         $level = $quizzData['level'];
         $theme = $quizzData['theme'];
 
-        $userEmail = $tokenDecoder->getEmail($token);
-
-        $user = $userRepo->findOneByEmail($userEmail); 
+        $userEmail = $tokenDecoder->getEmail($token); // We use our custom service to get the user email (extracted from the token)
+        $user = $userRepo->findOneByEmail($userEmail);  //  We fetch datas from the current User
         $nbGames = $user->getNbGames();
 
-        if($nbGames <= 0) {
+        if($nbGames <= 0) { // We check if the user has enought credits to play
             return new Response('Plus de partie');
         }
 
-        $nbGames--;
+        $nbGames--; // We update number of games
         $user->setNbGames($nbGames);
         $em->flush();
 
-        $coeff = $coeffRepo->findByLevelName($level); // We search the good points coeff
-        
+        $coeff = $coeffRepo->findByLevelName($level); // We search the good points coeff    
         $questionsStepOne = $questionRepo->findFiveQuestionsStepOne($theme); // 5 questions for step 1
         $questionsStepTwo = $questionRepo->findFiveQuestionsStepTwo($theme); // 5 questions for step 2
         $questionsStepThree = $questionRepo->findFiveQuestionsStepThree($theme); // 5 questions for step 3
@@ -66,7 +63,6 @@ class QuizzController extends AbstractController
         $accent->getQuestionsAccents($questionsStepOne, $questionsStepTwo, $questionsStepThree); // We use our service to encode correctly specials characters 
         
         $serializer = SerializerBuilder::create()->build();
-
         $data = [
             'questionsList' => [
                 'step1' => $questionsStepOne,
