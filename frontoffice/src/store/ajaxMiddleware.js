@@ -5,10 +5,10 @@ import jwt from 'jsonwebtoken';
 
 // local imports
 import { SUBMIT_LOGIN, setCurrentUser } from '../store/reducers/loginForm';
-import { SUBMIT_SUBSCRIBE } from '../store/reducers/subscribeForm';
+import { SEND_REQUEST } from '../store/reducers/homeMembre';
 
 const url = 'http://127.0.0.1:8000/login';
-const urlQuiz = 'http://127.0.0.1:8000/quizz/test';
+const urlQuiz = 'http://127.0.0.1:8000/quizz';
 
 /**
  * Middleware de gestion ajax
@@ -40,14 +40,13 @@ const ajax = store => next => action => {
       }
       break;
 
-    case SUBMIT_SUBSCRIBE:
+    case SEND_REQUEST:
       {
         const state = store.getState();
         axios
           .post(urlQuiz, {
             theme: 'Espace',
             level: 'Facile',
-            token: JSON.parse(localStorage.getItem('token')),
           })
           // succes
           .then(response => {
