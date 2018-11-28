@@ -11,7 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTDecodedEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
 class QuizzController extends AbstractController
 {
@@ -28,7 +30,7 @@ class QuizzController extends AbstractController
     /**
      * @Route("/quizz/test/", name="quizz_test_list")
      */
-    public function getQuestions(QuestionRepository $questionRepo, CoeffRepository $coeffRepo, AccentEncoder $accent, Request $request)
+    public function getQuestions(QuestionRepository $questionRepo, CoeffRepository $coeffRepo, AccentEncoder $accent, Request $request, JWTDecodedEvent $event)
     {
     
         $content = $request->getContent();
@@ -37,6 +39,9 @@ class QuizzController extends AbstractController
 
         $level = $quizzData['level'];
         $theme = $quizzData['theme'];
+        $token = $quizzData['token'];
+
+        dd($JWTManager->getPayload());
 
         $coeff = $coeffRepo->findByLevelName($level); // We search the good points coeff
         

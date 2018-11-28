@@ -13,10 +13,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
 class UserController extends AbstractController
 {
@@ -39,7 +41,7 @@ class UserController extends AbstractController
     /**
      * @Route("/login", name="login")
      */
-    public function login(UserRepository $userRepo, Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function login(UserRepository $userRepo, Request $request, UserPasswordEncoderInterface $passwordEncoder, JWTTokenManagerInterface $JWTManager)
     {
         $content = $request->getContent();
         $session = new Session();
@@ -51,6 +53,7 @@ class UserController extends AbstractController
 
         $email = 'jeanne.lefebvre@dbmail.com';
         $password = '123';
+
 
         $user = $userRepo->findOneByEmail($email);
 
@@ -64,13 +67,13 @@ class UserController extends AbstractController
         if ($encryptedPass == false) {
             return new Response ('Identifiants incorrects');
         }
+        $token = $JWTManager->create($user);
+        
+        dd($token);
+        
+       // $token = bin2hex(openssl_random_pseudo_bytes(15));
 
-        $token = bin2hex(openssl_random_pseudo_bytes(15));
-
-        $session->set('user', $user);
-        $session->set('token', $token);
-
-        return new Response ($token);
+        return new JsonResponse($token);
     }
 
     /**
