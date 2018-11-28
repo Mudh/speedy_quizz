@@ -27,7 +27,7 @@ use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\JWTUserTo
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user/{id}/profil", name="user")
+     * @Route("/user/profil", name="user")
      */
     public function showProfil($id, UserRepository $userRepo, AccentEncoder $accent)
     {
@@ -45,41 +45,43 @@ class UserController extends AbstractController
     /**
      * @Route("/login", name="login")
      */
-    public function login(UserRepository $userRepo, Request $request, UserPasswordEncoderInterface $passwordEncoder, JWTTokenManagerInterface $JWTManager)
+    public function login(UserRepository $userRepo, Request $request, UserPasswordEncoderInterface $passwordEncoder, JWTTokenManagerInterface $JWTManager, AccentEncoder $accent)
     {
         $content = $request->getContent();
         
         $loginData = json_decode($content, true);
         
-       $password = $loginData['password'];
-       $email = $loginData['email'];
+        $password = $loginData['password'];
+        $email = $loginData['email'];
 
-        // $email = 'jeanne.lefebvre@dbmail.com';
-        // $password = '123';
+        //$email = 'jeanne.lefebvre@dbmail.com';
+        //$password = '123';
 
-        $user = $userRepo->findOneByEmail($email);
+        $user = $userRepo->findOneByEmail($email);  
 
-        if(!$user) {
+        if(!$user) { //if email doesn't exist
             return new Response ('false');
         }
 
         $userPassword = $user->getPassword();
         $encryptedPass = $passwordEncoder->isPasswordValid($user, $password);
 
-        if ($encryptedPass == false) {
+        if ($encryptedPass == false) { //if password isn't valid
             return new Response ('false');
         }
-        $userToken = new JWTUserToken();
+
         $token = $JWTManager->create($user);
+        $accent->getUserAccents($user);
 
         $data = [
-            'token' => $token,
             'user' => $user,
+            'token' => $token,
         ];
-        
-       // $token = bin2hex(openssl_random_pseudo_bytes(15));
 
-        return new JsonResponse($data);
+        $serializer = SerializerBuilder::create()->build();
+        $jsonContent = $serializer->serialize($data, 'json');
+
+        return new Response($jsonContent);
     }
 
     /**
