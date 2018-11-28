@@ -71,7 +71,6 @@ class UserController extends AbstractController
         }
 
         $token = $JWTManager->create($user);
-
         $accent->getUserAccents($user);
 
         $data = [
