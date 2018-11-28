@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import Layout from '../../containers/Layout';
 import Pencil from 'src/components/Icons/global/pencil';
 import ProfilModal from '../../containers/Modal/Profil';
-import AddQuestion from '../../containers/Modal/addQuestion';
+import AddQuestion from '../../containers/Modal/AddQuestion';
 // Styles
 import './profil.scss';
 
