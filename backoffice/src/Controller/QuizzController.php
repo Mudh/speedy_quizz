@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 
+use App\Utils\TokenDecoder;
 use App\Utils\AccentEncoder;
+use App\Repository\UserRepository;
 use App\Repository\CoeffRepository;
 use App\Repository\ThemeRepository;
 use JMS\Serializer\SerializerBuilder;
 use App\Repository\QuestionRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,26 +31,31 @@ class QuizzController extends AbstractController
     }
 
     /**
-     * @Route("/quizz/test", name="quizz_test_list")
+     * @Route("/quizz", name="quizz")
      */
-    public function getQuestions(QuestionRepository $questionRepo, CoeffRepository $coeffRepo, AccentEncoder $accent, Request $request, JWTTokenManagerInterface $JWTManager)
+    public function getQuestions(EntityManagerInterface $em, QuestionRepository $questionRepo, CoeffRepository $coeffRepo, AccentEncoder $accent, Request $request, TokenDecoder $tokenDecoder, UserRepository $userRepo)
     {
-        $JWTManager->getPayload();
-        $event = new JWTDecodedEvent($JWTManager);
-
-        $verifyToken = $session->get('token');
-
+    
+        $token = $request->headers->get('Authorization'); 
         $content = $request->getContent();
         
-        echo "<script>alert('<?php echo $verifyToken; ?>')</script> <br />";
-
         $quizzData = json_decode($content, true);
         
         $level = $quizzData['level'];
         $theme = $quizzData['theme'];
-        $token = $quizzData['token'];
 
-        dd($JWTManager->getPayload());
+        $userEmail = $tokenDecoder->getEmail($token);
+
+        $user = $userRepo->findOneByEmail($userEmail); 
+        $nbGames = $user->getNbGames();
+
+        if($nbGames <= 0) {
+            return new Response('Plus de partie');
+        }
+
+        $nbGames--;
+        $user->setNbGames($nbGames);
+        $em->flush();
 
         $coeff = $coeffRepo->findByLevelName($level); // We search the good points coeff
         

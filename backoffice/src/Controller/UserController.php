@@ -18,10 +18,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTDecodedEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
-use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token;
+use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token\JWTUserToken;
 
 class UserController extends AbstractController
 {
@@ -51,17 +52,15 @@ class UserController extends AbstractController
         $loginData = json_decode($content, true);
         
        $password = $loginData['password'];
-        $email = $loginData['email'];
+       $email = $loginData['email'];
 
         // $email = 'jeanne.lefebvre@dbmail.com';
         // $password = '123';
 
-
         $user = $userRepo->findOneByEmail($email);
 
-
         if(!$user) {
-            return new Response ('mauvais identifiants');
+            return new Response ('false');
         }
 
         $userPassword = $user->getPassword();
@@ -70,17 +69,13 @@ class UserController extends AbstractController
         if ($encryptedPass == false) {
             return new Response ('false');
         }
-        //$userToken = new JWTUserToken();
+        $userToken = new JWTUserToken();
         $token = $JWTManager->create($user);
 
         $data = [
             'token' => $token,
             'user' => $user,
         ];
-    
-        //$test = $userToken->getCredentials($token);
-        //dump($test);
- 
         
        // $token = bin2hex(openssl_random_pseudo_bytes(15));
 
