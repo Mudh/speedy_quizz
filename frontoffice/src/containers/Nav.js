@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onClickDisconnect: () => {
     dispatch(disconnect());
+    localStorage.removeItem('jwtToken');
   },
 });
 
