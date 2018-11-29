@@ -71,7 +71,8 @@
       align-items: flex-end;
     }
   }
-  &__score {
+  &__score,
+  &__expired {
     p {
       text-align: center;
       margin-top: rem(35);

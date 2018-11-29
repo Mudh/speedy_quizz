@@ -12,6 +12,7 @@ const initialState = {
   profil: false,
   addQuestion: false,
   score: false,
+  expired: false,
 };
 
 export default (state = initialState, action = {}) => {
