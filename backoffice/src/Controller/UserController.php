@@ -164,18 +164,15 @@ class UserController extends AbstractController
     /**
      * @Route("/user/show", name="get_user")
      */
-    public function getUserInfo(TokenDecoder $tokenDecoder, UserRepository $userRepo, AccentEncoder $accent) {
+    public function getUserInfo(TokenDecoder $tokenDecoder, UserRepository $userRepo, AccentEncoder $accent, Request $request) {
 
         $token = $request->headers->get('Authorization');
 
         $userEmail = $tokenDecoder->getEmail($token);
-
         $user = $userRepo->findOneByEmail($userEmail);
 
         $serializer = SerializerBuilder::create()->build();
-
         $accent->getUserAccents($user);
-
         $jsonContent = $serializer->serialize($user, 'json');
 
         return new Response($jsonContent);    
