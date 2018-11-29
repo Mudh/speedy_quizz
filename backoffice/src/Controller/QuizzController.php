@@ -76,4 +76,11 @@ class QuizzController extends AbstractController
        
         return new Response($jsonContent);
     }
+
+    /**
+     * @Route("/quizz/joker/update", name="quizz_joker_update")
+     */
+    public function jokerUpdate() {
+        
+    }
 }

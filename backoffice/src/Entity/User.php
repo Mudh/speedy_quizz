@@ -115,6 +115,26 @@ class User implements UserInterface
     private $nb_points;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $joker_skip;
+
+     /**
+     * @ORM\Column(type="integer")
+     */
+    private $joker_5050;
+
+     /**
+     * @ORM\Column(type="integer")
+     */
+    private $joker_revive;
+
+     /**
+     * @ORM\Column(type="integer")
+     */
+    private $joker_timer;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private $is_active;
@@ -139,10 +159,6 @@ class User implements UserInterface
      */
     private $question;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Joker", inversedBy="users")
-     */
-    private $joker;
 
     public function __construct()
     {
@@ -383,27 +399,81 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Joker[]
-     */
-    public function getJoker(): Collection
+     * Get the value of joker_skip
+     */ 
+    public function getJokerSkip()
     {
-        return $this->joker;
+        return $this->joker_skip;
     }
 
-    public function addJoker(Joker $joker): self
+    /**
+     * Set the value of joker_skip
+     *
+     * @return  self
+     */ 
+    public function setJokerSkip($joker_skip)
     {
-        if (!$this->joker->contains($joker)) {
-            $this->joker[] = $joker;
-        }
+        $this->joker_skip = $joker_skip;
 
         return $this;
     }
 
-    public function removeJoker(Joker $joker): self
+    /**
+     * Get the value of joker_5050
+     */ 
+    public function getJoker5050()
     {
-        if ($this->joker->contains($joker)) {
-            $this->joker->removeElement($joker);
-        }
+        return $this->joker_5050;
+    }
+
+    /**
+     * Set the value of joker_5050
+     *
+     * @return  self
+     */ 
+    public function setJoker5050($joker_5050)
+    {
+        $this->joker_5050 = $joker_5050;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of joker_revive
+     */ 
+    public function getJokerRevive()
+    {
+        return $this->joker_revive;
+    }
+
+    /**
+     * Set the value of joker_revive
+     *
+     * @return  self
+     */ 
+    public function setJokerRevive($joker_revive)
+    {
+        $this->joker_revive = $joker_revive;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of joker_timer
+     */ 
+    public function getJokerTimer()
+    {
+        return $this->joker_timer;
+    }
+
+    /**
+     * Set the value of joker_timer
+     *
+     * @return  self
+     */ 
+    public function setJokerTimer($joker_timer)
+    {
+        $this->joker_timer = $joker_timer;
 
         return $this;
     }

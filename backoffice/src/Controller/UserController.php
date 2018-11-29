@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Utils\TokenDecoder;
 use App\Utils\AccentEncoder;
 use App\Repository\RoleRepository;
 use App\Repository\UserRepository;
@@ -51,11 +52,11 @@ class UserController extends AbstractController
         
         $loginData = json_decode($content, true);
         
-        $password = $loginData['password'];
-        $email = $loginData['email'];
+        //$password = $loginData['password'];
+        //$email = $loginData['email'];
 
-        //$email = 'jeanne.lefebvre@dbmail.com';
-        //$password = '123';
+        $email = 'jeanne.lefebvre@dbmail.com';
+        $password = '123';
 
         $user = $userRepo->findOneByEmail($email);  
 
@@ -69,7 +70,7 @@ class UserController extends AbstractController
         if ($encryptedPass == false) { //if password isn't valid
             return new Response ('false');
         }
-
+     
         $token = $JWTManager->create($user);
         $accent->getUserAccents($user);
 
@@ -161,9 +162,19 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/registertest", name="register_test")
+     * @Route("/user/show", name="get_user")
      */
-    public function registerTest() {
-        return $this->render('home/index.html.twig');
+    public function getUserInfo(TokenDecoder $tokenDecoder, UserRepository $userRepo, AccentEncoder $accent, Request $request) {
+
+        $token = $request->headers->get('Authorization');
+
+        $userEmail = $tokenDecoder->getEmail($token);
+        $user = $userRepo->findOneByEmail($userEmail);
+
+        $serializer = SerializerBuilder::create()->build();
+        $accent->getUserAccents($user);
+        $jsonContent = $serializer->serialize($user, 'json');
+
+        return new Response($jsonContent);    
     }
 }
