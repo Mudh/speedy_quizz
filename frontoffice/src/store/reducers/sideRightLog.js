@@ -2,6 +2,7 @@
  * Types
  */
 export const SET_PLAYER_INFOS = 'SET_PLAYER_INFOS';
+export const RELOAD_PLAYER_INFOS = 'RELOAD_PLAYER_INFOS';
 export const UPDATE_POINTS = 'UPDATE_POINTS';
 export const LOOSE_ALL_POINTS = 'LOOSE_ALL_POINTS';
 export const UPDATE_JOKER_COUNT = 'UPDATE_JOKER_COUNT';
@@ -38,6 +39,15 @@ export default (state = initialState, action = {}) => {
         playerName: action.playerInfos.firstname,
         parties: action.playerInfos.nb_games,
         totalPoints: action.playerInfos.nb_points,
+        skip: { count: action.playerInfos.joker_skip, used: false },
+        revive: { count: action.playerInfos.joker_revive, used: false },
+        fiftyFifty: { count: action.playerInfos.joker_5050, used: false },
+        timer: { count: action.playerInfos.joker_timer, used: false },
+      };
+
+    case RELOAD_PLAYER_INFOS:
+      return {
+        ...state,
       };
 
     case UPDATE_POINTS:
@@ -116,6 +126,10 @@ export default (state = initialState, action = {}) => {
 export const setPlayerInfos = playerInfos => ({
   type: SET_PLAYER_INFOS,
   playerInfos,
+});
+
+export const reloadPlayerInfos = () => ({
+  type: RELOAD_PLAYER_INFOS,
 });
 
 export const updatePoints = newPoints => ({

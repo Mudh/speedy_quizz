@@ -6,6 +6,7 @@ import Layout from 'src/components/Layout';
 import { disconnect } from '../store/reducers/loginForm';
 import { openModal } from '../store/reducers/modal';
 import { loadQuizTheme } from '../store/reducers/homeMembre';
+import { reloadPlayerInfos } from '../store/reducers/sideRightLog';
 
 // === State (données) ===
 const mapStateToProps = state => ({
@@ -16,6 +17,9 @@ const mapStateToProps = state => ({
 
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({
+  reloadPlayerInfos: () => {
+    dispatch(reloadPlayerInfos());
+  },
   loadQuizTheme: () => {
     dispatch(loadQuizTheme());
   },
@@ -26,8 +30,6 @@ const mapDispatchToProps = dispatch => ({
       dispatch(openModal('expired'));
       dispatch(disconnect());
       localStorage.removeItem('jwtToken');
-    } else {
-      console.log('Restons loggué');
     }
   },
 });

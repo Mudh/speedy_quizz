@@ -4,7 +4,10 @@ import setAuthorizationToken from '../utils/setAuthorizationToken';
 import jwt from 'jsonwebtoken';
 
 // local imports
-import { setPlayerInfos } from '../store/reducers/sideRightLog';
+import {
+  RELOAD_PLAYER_INFOS,
+  setPlayerInfos,
+} from '../store/reducers/sideRightLog';
 import { SUBMIT_LOGIN, setCurrentUser } from '../store/reducers/loginForm';
 import {
   CHOOSE_THEME_LEVEL,
@@ -13,6 +16,7 @@ import {
 } from '../store/reducers/homeMembre';
 
 const url = 'http://127.0.0.1:8000/home';
+const urlUserInfos = 'http://127.0.0.1:8000/user/show';
 const urlLogin = 'http://127.0.0.1:8000/login';
 const urlQuiz = 'http://127.0.0.1:8000/quizz';
 
@@ -41,8 +45,22 @@ const ajax = store => next => action => {
 
             store.dispatch(setCurrentUser(jwt.decode(token)));
             store.dispatch(setPlayerInfos(userInfos));
+          })
+          // echec
+          .catch(error => {
+            console.error(error);
+          });
+      }
+      break;
 
-            console.log(response.data.user);
+    case RELOAD_PLAYER_INFOS:
+      {
+        axios
+          .get(urlUserInfos)
+          // succes
+          .then(response => {
+            const userInfos = response.data;
+            store.dispatch(setPlayerInfos(userInfos));
           })
           // echec
           .catch(error => {
@@ -53,7 +71,6 @@ const ajax = store => next => action => {
 
     case LOAD_QUIZ_THEME:
       {
-        const state = store.getState();
         axios
           .get(url)
           // succes
