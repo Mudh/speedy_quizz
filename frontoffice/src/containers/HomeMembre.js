@@ -7,12 +7,13 @@ import Home from 'src/components/HomeMembre';
 import { setQuizStart } from '../store/reducers/quiz';
 import { chooseThemeLevel } from '../store/reducers/homeMembre';
 import { setStartTimer } from '../store/reducers/sideRightLog';
-import { onSubmitSubscribe } from '../store/reducers/subscribeForm';
+import { openModal } from '../store/reducers/modal';
 
 // === State (données) ===
 const mapStateToProps = state => ({
   isAuthenticated: state.loginForm.isAuthenticated,
   themes: state.homeMembre.themes,
+  islaunchOpen: state.modal.launch,
 });
 
 // === Dispatch (actions) ===
@@ -21,10 +22,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setQuizStart());
     dispatch(chooseThemeLevel(theme, level));
     dispatch(setStartTimer());
-  },
-  setStartTimer: () => {
-    dispatch(setStartTimer());
-    dispatch(onSubmitSubscribe());
+    dispatch(openModal('launch'));
   },
 });
 

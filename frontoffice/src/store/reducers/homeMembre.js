@@ -2,6 +2,7 @@
  * Types
  */
 export const CHOOSE_THEME_LEVEL = 'CHOOSE_THEME_LEVEL';
+export const SET_THEME_LEVEL = 'SET_THEME_LEVEL';
 export const LOAD_QUIZ_THEME = 'LOAD_QUIZ_THEME';
 export const SET_QUIZ_THEME = 'SET_QUIZ_THEME';
 
@@ -32,6 +33,11 @@ export default (state = initialState, action = {}) => {
         level: action.level,
       };
 
+    case SET_THEME_LEVEL:
+      return {
+        ...state,
+      };
+
     default:
       return state;
   }
@@ -51,4 +57,7 @@ export const chooseThemeLevel = (theme, level) => ({
   type: CHOOSE_THEME_LEVEL,
   theme,
   level,
+});
+export const setThemeLevel = () => ({
+  type: SET_THEME_LEVEL,
 });

@@ -8,9 +8,11 @@ import {
   RELOAD_PLAYER_INFOS,
   setPlayerInfos,
 } from '../store/reducers/sideRightLog';
+import { setQuizDatas } from '../store/reducers/quiz';
 import { SUBMIT_LOGIN, setCurrentUser } from '../store/reducers/loginForm';
 import {
   CHOOSE_THEME_LEVEL,
+  SET_THEME_LEVEL,
   LOAD_QUIZ_THEME,
   setQuizTheme,
 } from '../store/reducers/homeMembre';
@@ -84,7 +86,7 @@ const ajax = store => next => action => {
       }
       break;
 
-    case CHOOSE_THEME_LEVEL:
+    case SET_THEME_LEVEL:
       {
         const state = store.getState();
         axios
@@ -94,6 +96,7 @@ const ajax = store => next => action => {
           })
           // succes
           .then(response => {
+            store.dispatch(setQuizDatas(response.data));
             console.log(
               'level',
               state.homeMembre.theme,
