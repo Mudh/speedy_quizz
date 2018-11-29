@@ -18,50 +18,43 @@ import '../Home/home.scss';
 /**
  * Code
  */
+const HomeMembre = withRouter(
+  ({ startQuiz, isAuthenticated, themes, history }) => {
+    const levels = ['Facile', 'Moyen', 'Difficile'];
 
-const HomeMembre = withRouter(({ startQuiz, isAuthenticated, history }) => {
-  const themes = [
-    'Le système solaire',
-    'La grammaire anglaise',
-    'La vie des lamentins',
-    'Le système solaire',
-    'La grammaire anglaise',
-    'La vie des lamentins',
-    'Le système solaire',
-    'La grammaire anglaise',
-    'La vie des lamentins',
-  ];
-  const levels = ['Facile', 'Moyen', 'Difficile'];
+    const handleQuizStart = (theme, level) => {
+      history.push('/quiz');
+      startQuiz(theme, level);
+      console.log(theme, level);
+    };
 
-  const handleQuizStart = () => {
-    history.push('/quiz');
-    startQuiz();
-  };
-
-  return (
-    <Layout layoutClass="homeMember">
-      <h1 className="homeMember__title">Choisis ton thème et ta difficulté</h1>
-      <section className="homeMember__themes">
-        {themes.map((theme, index) => (
-          <div key={`${theme}${index}`} className="theme">
-            <h2 className="theme__title">{theme}</h2>
-            <div className="theme__levels">
-              {levels.map(level => (
-                <Button
-                  key={level}
-                  btnClass="primary"
-                  btnText={level}
-                  onClick={handleQuizStart}
-                />
-              ))}
+    return (
+      <Layout layoutClass="homeMember">
+        <h1 className="homeMember__title">
+          Choisis ton thème et ta difficulté
+        </h1>
+        <section className="homeMember__themes">
+          {themes.map(theme => (
+            <div key={theme.id} className="theme">
+              <h2 className="theme__title">{theme.title}</h2>
+              <div className="theme__levels">
+                {levels.map(level => (
+                  <Button
+                    key={level}
+                    btnClass="primary"
+                    btnText={level}
+                    onClick={() => handleQuizStart(theme.title, level)}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
-      </section>
-      {!isAuthenticated && <Redirect to="/" />}
-    </Layout>
-  );
-});
+          ))}
+        </section>
+        {!isAuthenticated && <Redirect to="/" />}
+      </Layout>
+    );
+  },
+);
 
 /**
  * Export

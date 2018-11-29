@@ -5,20 +5,21 @@ import Home from 'src/components/HomeMembre';
 
 // action creators
 import { setQuizStart } from '../store/reducers/quiz';
-import { sendRequest } from '../store/reducers/homeMembre';
+import { chooseThemeLevel } from '../store/reducers/homeMembre';
 import { setStartTimer } from '../store/reducers/sideRightLog';
 import { onSubmitSubscribe } from '../store/reducers/subscribeForm';
 
 // === State (données) ===
 const mapStateToProps = state => ({
   isAuthenticated: state.loginForm.isAuthenticated,
+  themes: state.homeMembre.themes,
 });
 
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({
-  startQuiz: () => {
+  startQuiz: (theme, level) => {
     dispatch(setQuizStart());
-    dispatch(sendRequest());
+    dispatch(chooseThemeLevel(theme, level));
     dispatch(setStartTimer());
   },
   setStartTimer: () => {

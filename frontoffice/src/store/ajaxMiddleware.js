@@ -6,9 +6,14 @@ import jwt from 'jsonwebtoken';
 // local imports
 import { setPlayerInfos } from '../store/reducers/sideRightLog';
 import { SUBMIT_LOGIN, setCurrentUser } from '../store/reducers/loginForm';
-import { SEND_REQUEST } from '../store/reducers/homeMembre';
+import {
+  CHOOSE_THEME_LEVEL,
+  LOAD_QUIZ_THEME,
+  setQuizTheme,
+} from '../store/reducers/homeMembre';
 
-const url = 'http://127.0.0.1:8000/login';
+const url = 'http://127.0.0.1:8000/home';
+const urlLogin = 'http://127.0.0.1:8000/login';
 const urlQuiz = 'http://127.0.0.1:8000/quizz';
 
 /**
@@ -22,7 +27,7 @@ const ajax = store => next => action => {
         const state = store.getState();
 
         axios
-          .post(url, {
+          .post(urlLogin, {
             email: state.loginForm.email,
             password: state.loginForm.password,
           })
@@ -46,17 +51,38 @@ const ajax = store => next => action => {
       }
       break;
 
-    case SEND_REQUEST:
+    case LOAD_QUIZ_THEME:
+      {
+        const state = store.getState();
+        axios
+          .get(url)
+          // succes
+          .then(response => {
+            store.dispatch(setQuizTheme(response.data));
+          })
+          // echec
+          .catch(error => {
+            console.error(error);
+          });
+      }
+      break;
+
+    case CHOOSE_THEME_LEVEL:
       {
         const state = store.getState();
         axios
           .post(urlQuiz, {
-            theme: 'Espace',
-            level: 'Facile',
+            theme: state.homeMembre.theme,
+            level: state.homeMembre.level,
           })
           // succes
           .then(response => {
-            console.log('subscribe', localStorage.getItem('token'));
+            console.log(
+              'level',
+              state.homeMembre.theme,
+              state.homeMembre.level,
+              response,
+            );
           })
           // echec
           .catch(error => {

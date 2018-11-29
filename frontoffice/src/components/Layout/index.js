@@ -19,9 +19,10 @@ import './layout.scss';
  */
 class Layout extends React.Component {
   componentDidMount() {
-    const { checkAuth } = this.props;
+    const { checkAuth, loadQuizTheme } = this.props;
     if (localStorage.getItem('jwtToken')) {
       checkAuth();
+      loadQuizTheme();
     }
   }
 
