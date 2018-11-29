@@ -14,7 +14,7 @@ import { shuffle } from '../../utils';
 
 // Components
 import Button from '../Button';
-import QuizHeader from './QuizHeader';
+import QuizHeader from './quizHeader';
 import AnswerRadio from './answerRadio';
 import Layout from '../../containers/Layout';
 import Score from '../../containers/Modal/Score';

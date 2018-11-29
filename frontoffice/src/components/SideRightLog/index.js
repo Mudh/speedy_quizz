@@ -23,6 +23,7 @@ import './SideRightLog.scss';
  * Code
  */
 const SideRightLog = ({
+  playerName,
   parties,
   totalPoints,
   skip,
@@ -34,7 +35,7 @@ const SideRightLog = ({
     <aside className="sideRightLog">
       <div className="sideRightLog__wrapper">
         <div className="sideRightLog__Top">
-          <h2>Bonjour Marco</h2>
+          <h2>Bonjour {playerName}</h2>
           <ul className="sideRightLog__party">
             <li className="sideRightLog__items">
               <Credits />

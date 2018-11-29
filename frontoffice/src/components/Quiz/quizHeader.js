@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
  * Local import
  */
 // Components
-import Question from './Question';
+import Question from './question';
 // Styles
 import './quiz.scss';
 

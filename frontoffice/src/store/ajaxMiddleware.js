@@ -4,6 +4,7 @@ import setAuthorizationToken from '../utils/setAuthorizationToken';
 import jwt from 'jsonwebtoken';
 
 // local imports
+import { setPlayerInfos } from '../store/reducers/sideRightLog';
 import { SUBMIT_LOGIN, setCurrentUser } from '../store/reducers/loginForm';
 import { SEND_REQUEST } from '../store/reducers/homeMembre';
 
@@ -28,10 +29,15 @@ const ajax = store => next => action => {
           // succes
           .then(response => {
             const token = response.data.token;
+            const userInfos = response.data.user;
+
             localStorage.setItem('jwtToken', token);
             setAuthorizationToken(token);
+
             store.dispatch(setCurrentUser(jwt.decode(token)));
-            console.log(jwt.decode(token));
+            store.dispatch(setPlayerInfos(userInfos));
+
+            console.log(response.data.user);
           })
           // echec
           .catch(error => {

@@ -1,6 +1,7 @@
 /**
  * Types
  */
+export const SET_PLAYER_INFOS = 'SET_PLAYER_INFOS';
 export const UPDATE_POINTS = 'UPDATE_POINTS';
 export const LOOSE_ALL_POINTS = 'LOOSE_ALL_POINTS';
 export const UPDATE_JOKER_COUNT = 'UPDATE_JOKER_COUNT';
@@ -13,8 +14,9 @@ export const SET_JOKER_TIMER = 'SET_JOKER_TIMER';
 
 // initial state
 const initialState = {
-  parties: 2,
-  totalPoints: 100,
+  playerName: '',
+  parties: 0,
+  totalPoints: 0,
   ownedPoints: 0,
   totalOwnedPoints: 0,
   skip: { count: 2, used: false },
@@ -30,6 +32,14 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
+    case SET_PLAYER_INFOS:
+      return {
+        ...state,
+        playerName: action.playerInfos.firstname,
+        parties: action.playerInfos.nb_games,
+        totalPoints: action.playerInfos.nb_points,
+      };
+
     case UPDATE_POINTS:
       return {
         ...state,
@@ -103,6 +113,11 @@ export default (state = initialState, action = {}) => {
 };
 
 // action creator
+export const setPlayerInfos = playerInfos => ({
+  type: SET_PLAYER_INFOS,
+  playerInfos,
+});
+
 export const updatePoints = newPoints => ({
   type: UPDATE_POINTS,
   newPoints,
