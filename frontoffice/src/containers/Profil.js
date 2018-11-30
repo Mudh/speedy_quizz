@@ -13,6 +13,11 @@ const mapStateToProps = state => ({
   isAuthenticated: state.loginForm.isAuthenticated,
   isProfilOpen: state.modal.profil,
   isAddQuestionOpen: state.modal.addQuestion,
+  firstname: state.sideRightLog.firstname,
+  lastname: state.sideRightLog.lastname,
+  username: state.sideRightLog.username,
+  email: state.sideRightLog.email,
+  description: state.sideRightLog.description,
 });
 
 // === Dispatch (actions) ===

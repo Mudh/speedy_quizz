@@ -16,7 +16,11 @@ export const SET_JOKER_TIMER = 'SET_JOKER_TIMER';
 
 // initial state
 const initialState = {
-  playerName: '',
+  firstname: '',
+  lastname: '',
+  username: '',
+  email: '',
+  description: '',
   parties: 0,
   totalPoints: 0,
   ownedPoints: 0,
@@ -38,7 +42,11 @@ export default (state = initialState, action = {}) => {
     case SET_PLAYER_INFOS:
       return {
         ...state,
-        playerName: action.playerInfos.firstname,
+        firstname: action.playerInfos.firstname,
+        lastname: action.playerInfos.lastname,
+        username: action.playerInfos.username,
+        email: action.playerInfos.email,
+        description: action.playerInfos.description,
         parties: action.playerInfos.nb_games,
         totalPoints: action.playerInfos.nb_points,
         skip: { count: action.playerInfos.joker_skip, used: false },

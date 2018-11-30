@@ -6,6 +6,7 @@ import homeMembre from './homeMembre';
 import loginForm from './loginForm';
 import subscribeForm from './subscribeForm';
 import homeVisitor from './homeVisitor';
+import profilForm from './profilForm';
 
 export default combineReducers({
   modal,
@@ -15,4 +16,5 @@ export default combineReducers({
   homeVisitor,
   loginForm,
   subscribeForm,
+  profilForm,
 });

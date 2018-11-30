@@ -17,76 +17,96 @@ import '../form.scss';
 
 class ProfilForm extends React.Component {
   static propTypes = {
-    // inputValue: PropTypes.string.isRequired,
-    // onChangeInput: PropTypes.func.isRequired,
-    // name: PropTypes.string.isRequired,
-    // onSubmitValue: PropTypes.func.isRequired,
+    inputValue: PropTypes.string,
+    firstname: PropTypes.string.isRequired,
+    lastname: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    onChangeProfil: PropTypes.func.isRequired,
+    onSubmitLogin: PropTypes.func.isRequired,
   };
 
   /*
    * Handlers
    */
-  // handleSubmit = evt => {
-  //   evt.preventDefault();
-  //   const { onSubmitValue, name, inputValue } = this.props;
-  //   onSubmitValue(name, inputValue);
-  // };
+  handleSubmit = evt => {
+    const { onSubmitLogin } = this.props;
+    if (evt.key === 'Enter') {
+      onSubmitLogin();
+    }
+  };
 
-  // handleChange = evt => {
-  //   const valueInput = evt.target.value;
-  //   const { onChangeInput } = this.props;
-  //   onChangeInput(valueInput);
-  // };
+  handleChange = evt => {
+    const { name, value } = evt.target;
+    const { onChangeProfil } = this.props;
+    onChangeProfil(name, value);
+  };
 
   render() {
-    const { inputValue } = this.props;
+    const { firstname, lastname, username, email, description } = this.props;
 
     return (
-      <form className="form form--profil" onSubmit={this.handleSubmit}>
+      <form className="form form--profil" onKeyUp={this.handleSubmit}>
         <fieldset>
           <label>Nom :</label>
           <input
             className="form-input"
+            name="lastname"
             type="text"
             placeholder="Votre nom"
             autoComplete="off"
-            value="Doubal"
+            value={lastname}
             onChange={this.handleChange}
           />
           <label>Prénom :</label>
           <input
             className="form-input"
+            name="firstname"
             type="text"
             placeholder="Votre prénom"
             autoComplete="off"
-            value="Jean Pierre"
+            value={firstname}
+            onChange={this.handleChange}
+          />
+          <label>Pseudo :</label>
+          <input
+            className="form-input"
+            name="username"
+            type="text"
+            placeholder="Votre prénom"
+            autoComplete="off"
+            value={username}
             onChange={this.handleChange}
           />
           <label>Email :</label>
           <input
             className="form-input"
+            name="email"
             type="email"
             placeholder="Votre email"
             autoComplete="off"
-            value="doubalpierre@gmail.com"
+            value={email}
             onChange={this.handleChange}
           />
           <label>Ancien mot de passe :</label>
           <input
             className="form-input"
+            name="password"
             type="password"
             placeholder="Ancien mot de passe"
             autoComplete="off"
-            value={inputValue}
+            value=""
             onChange={this.handleChange}
           />
           <label>Nouveau mot de passe :</label>
           <input
             className="form-input"
+            name="password"
             type="password"
             placeholder="Nouveau mot de passe"
             autoComplete="off"
-            value={inputValue}
+            value=""
             onChange={this.handleChange}
           />
         </fieldset>
@@ -94,12 +114,13 @@ class ProfilForm extends React.Component {
           <label>Description :</label>
           <textarea
             className="form-textarea"
+            name="description"
             type="textarea"
             placeholder="Description"
             autoComplete="off"
-            value={inputValue}
+            value={description}
             onChange={this.handleChange}
-            rows="12"
+            rows="15"
           />
         </fieldset>
       </form>

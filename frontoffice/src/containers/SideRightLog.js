@@ -9,7 +9,7 @@ import { updateJokerCount } from '../store/reducers/sideRightLog';
 
 // === State (données) ===
 const mapStateToProps = state => ({
-  playerName: state.sideRightLog.playerName,
+  firstname: state.sideRightLog.firstname,
   parties: state.sideRightLog.parties,
   totalPoints: state.sideRightLog.totalPoints,
   skip: state.sideRightLog.skip,

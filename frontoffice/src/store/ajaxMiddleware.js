@@ -4,6 +4,10 @@ import setAuthorizationToken from '../utils/setAuthorizationToken';
 import jwt from 'jsonwebtoken';
 
 // local imports
+import { setProfilInfos } from '../store/reducers/profilForm';
+import { setQuizDatas } from '../store/reducers/quiz';
+import { SUBMIT_LOGIN, setCurrentUser } from '../store/reducers/loginForm';
+
 import {
   RELOAD_PLAYER_INFOS,
   USER_UPDATE_ENDGAME,
@@ -16,8 +20,6 @@ import {
   setQuizTheme,
 } from '../store/reducers/homeMembre';
 
-import { setQuizDatas } from '../store/reducers/quiz';
-import { SUBMIT_LOGIN, setCurrentUser } from '../store/reducers/loginForm';
 import {
   SUBMIT_SUBSCRIBE,
   toggleSubscribeSuccess,
@@ -117,6 +119,8 @@ const ajax = store => next => action => {
           .then(response => {
             const userInfos = response.data;
             store.dispatch(setPlayerInfos(userInfos));
+            store.dispatch(setProfilInfos(userInfos));
+            console.log('infos', response);
           })
           // echec
           .catch(error => {

@@ -27,6 +27,13 @@
     padding-top: rem(20);
   }
 
+  &-input {
+    padding: rem(5) 0 rem(10);
+  }
+  &-textarea {
+    padding: rem(5) 0 rem(2);
+  }
+
   &-input,
   &-textarea {
     background: transparent;
@@ -34,7 +41,6 @@
     border-bottom: 1px solid $purpleText;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
-    padding: rem(5) 0 rem(10);
     width: rem(250);
     font-size: rem(22);
     font-family: 'Schoolbell', cursive;

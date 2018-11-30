@@ -25,6 +25,11 @@ const Profil = ({
   openAddQuestion,
   isProfilOpen,
   isAddQuestionOpen,
+  firstname,
+  lastname,
+  username,
+  email,
+  description,
 }) => {
   const profil = isProfilOpen ? <ProfilModal /> : null;
   const addQuestion = isAddQuestionOpen ? <AddQuestion /> : null;
@@ -37,22 +42,23 @@ const Profil = ({
           <ul>
             <li className="profil__item">
               <span className="profil__label">Nom :</span>
-              <span className="profil__text">Mon Nom</span>
+              <span className="profil__text">{lastname}</span>
             </li>
             <li className="profil__item">
               <span className="profil__label">Prénom :</span>
-              <span className="profil__text">Mon Prénom</span>
+              <span className="profil__text">{firstname}</span>
+            </li>
+            <li className="profil__item">
+              <span className="profil__label">Pseudo :</span>
+              <span className="profil__text">{username}</span>
             </li>
             <li className="profil__item">
               <span className="profil__label">Email :</span>
-              <span className="profil__text">Mon Email</span>
+              <span className="profil__text">{email}</span>
             </li>
             <li className="profil__item">
               <span className="profil__label">Résumé :</span>
-              <p className="profil__description">
-                Summum maximeque sinistra sub insertas nimia sudant sinistra ut
-                tenuitate expandentes ipsis quas species ponderibus.
-              </p>
+              <p className="profil__description">{description}</p>
             </li>
           </ul>
           <span className="profil__modify" onClick={openProfil}>

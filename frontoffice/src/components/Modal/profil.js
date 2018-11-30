@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
  */
 // Components
 import ModalLayout from './modalLayout';
-import ProfilForm from '../Form/ProfilForm';
+import ProfilForm from '../../containers/ProfilForm';
 import Button from '../Button';
 // Styles
 import './modal.scss';
