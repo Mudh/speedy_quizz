@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTDecodedEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -70,11 +69,11 @@ class UserController extends AbstractController
         if ($encryptedPass == false) { //if password isn't valid
             return new Response ('false');
         }
-     
+
         $token = $JWTManager->create($user);
         $accent->getUserAccents($user);
 
-        $data = [
+        $data = [ // We send all the datas in json 
             'user' => $user,
             'token' => $token,
         ];
@@ -111,9 +110,6 @@ class UserController extends AbstractController
             ->setFirstname($firstname)
             ->setLastname($lastname)
             ->setEmail($email)
-            ->setNbGames(2)
-            ->setNbPoints(0)
-            ->setIsActive(1)
             ->setRole($roleUserByDefaut)
             ->setCreatedAt(new \Datetime())
             ->setUpdatedTime(new \Datetime());
@@ -124,6 +120,9 @@ class UserController extends AbstractController
         $lastnameError = $validator->validateProperty($user, 'lastname');
         $emailError = $validator->validateProperty($user, 'email');
 
+        $mailExist = $userRepo->findOneByEmail($email);
+        $usernameExist = $userRepo->findOneByUsername($username);
+
         $formErrors = []; 
 
         if(count($usernameError) > 0) { // We stock errors in an array
@@ -133,7 +132,7 @@ class UserController extends AbstractController
             $formErrors['passwordError'] = htmlentities($passwordError[0]->getMessage());
         }
         if(count($firstnameError) > 0) {
-            $formErrors['passwordError'] = htmlentities($firstnameError[0]->getMessage());
+            $formErrors['firtnameError'] = htmlentities($firstnameError[0]->getMessage());
         }       
         if(count($lastnameError) > 0) {
             $formErrors['lastnameError'] = htmlentities($lastnameError[0]->getMessage());
@@ -141,12 +140,19 @@ class UserController extends AbstractController
         if(count($emailError) > 0) {
             $formErrors['emailError'] = htmlentities($emailError[0]->getMessage());
         }
+        if ($mailExist) {
+            $formErrors['emailExist'] = htmlentities('Cette adresse mail est déjà utilisée');
+        }
+        if ($usernameExist) {
+            $formErrors['usernameExist'] = htmlentities('Ce pseudo est déjà utilisé');
+        }
+
 
         if($formErrors) { // If errors, we send its in a json file
 
             $serializer = SerializerBuilder::create()->build();
 
-            $jsonContent = $serializer->serialize($formErrors, 'json');
+            $jsonContent = $serializer->serialize($formErrors, 'json'); 
         
             return new Response($jsonContent);
         }
@@ -159,6 +165,52 @@ class UserController extends AbstractController
         return new JsonResponse([
             'success_message' => 'Thank you for registering'
         ]);
+    }
+
+    /**
+     * @Route("/user/update/endgame", name="user_update_endgame")
+     */
+
+    public function userUpdateEndGame(EntityManagerInterface $em, Request $request, UserRepository $userRepo) {
+
+        $token = $request->headers->get('Authorization');
+        $content = $request->getContent();
+
+        $userData = json_decode($content, true); 
+        $userPoints = $userData['points'];
+        $userEmail = $tokenDecoder->getEmail($token);
+
+      //$userPoints = 15;
+      //$userEmail = 'jeanne.lefebvre@dbmail.com';
+
+        $user = $userRepo->findOneByEmail($userEmail);
+        $userCurrentPoints = $user->getNbPoints();
+        $user->setNbPoints($userCurrentPoints + $userPoints);
+
+        $em->flush();
+
+        return new Response('true');
+    }
+
+     /**
+     * @Route("/user/update/profil", name="user_update_profil")
+     */
+
+    public function userUpdateProfil(EntityManagerInterface $em, Request $request, UserRepository $userRepo, TokenDecoder $tokenDecoder) {
+
+        $token = $request->headers->get('Authorization');
+        $content = $request->getContent();
+
+        $userData = json_decode($content, true); 
+       
+        //$userEmail = $tokenDecoder->getEmail($token);
+        $userEmail = 'jeanne.lefebvre@dbmail.com';
+        $user = $userRepo->findOneByEmail($userEmail);
+        $userId = $user->getId();
+
+        $em->flush();
+
+        return new Response('true');
     }
 
     /**

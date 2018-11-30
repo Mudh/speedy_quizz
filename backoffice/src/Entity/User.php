@@ -114,22 +114,22 @@ class User implements UserInterface
      */
     private $nb_points;
 
-    /**
+     /**
      * @ORM\Column(type="integer")
      */
     private $joker_skip;
 
-     /**
-     * @ORM\Column(type="integer")
-     */
-    private $joker_5050;
-
-     /**
+    /**
      * @ORM\Column(type="integer")
      */
     private $joker_revive;
 
-     /**
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $joker_5050;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $joker_timer;
@@ -163,7 +163,13 @@ class User implements UserInterface
     public function __construct()
     {
         $this->question = new ArrayCollection();
-        $this->joker = new ArrayCollection();
+        $this->joker_skip = 2;
+        $this->joker_5050 = 2;
+        $this->joker_revive = 2;
+        $this->joker_timer = 2;
+        $this->nb_games = 2;
+        $this->nb_points = 0;
+        $this->is_active = 1;
     }
 
     public function getId(): ?int
@@ -419,26 +425,6 @@ class User implements UserInterface
     }
 
     /**
-     * Get the value of joker_5050
-     */ 
-    public function getJoker5050()
-    {
-        return $this->joker_5050;
-    }
-
-    /**
-     * Set the value of joker_5050
-     *
-     * @return  self
-     */ 
-    public function setJoker5050($joker_5050)
-    {
-        $this->joker_5050 = $joker_5050;
-
-        return $this;
-    }
-
-    /**
      * Get the value of joker_revive
      */ 
     public function getJokerRevive()
@@ -454,6 +440,26 @@ class User implements UserInterface
     public function setJokerRevive($joker_revive)
     {
         $this->joker_revive = $joker_revive;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of joker_5050
+     */ 
+    public function getJoker5050()
+    {
+        return $this->joker_5050;
+    }
+
+    /**
+     * Set the value of joker_5050
+     *
+     * @return  self
+     */ 
+    public function setJoker5050($joker_5050)
+    {
+        $this->joker_5050 = $joker_5050;
 
         return $this;
     }
