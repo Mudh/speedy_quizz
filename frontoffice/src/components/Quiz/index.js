@@ -173,7 +173,6 @@ class Quiz extends React.Component {
   handleFiftyFiftyjoker = () => {
     const { setJokerFiftyFifty, questionNumber } = this.props;
     setJokerFiftyFifty(questionNumber);
-    console.log(questionNumber);
   };
 
   handleTimerJoker = () => {
@@ -246,8 +245,6 @@ class Quiz extends React.Component {
     const fiftyClassNames = classNames('primary round', {
       isDisabled: fiftyFifty.used || fiftyFifty.count === 0 || step !== 2,
     });
-
-    console.log('quiz data', data);
 
     return (
       <Layout layoutClass="quiz">

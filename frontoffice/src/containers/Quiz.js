@@ -1,6 +1,9 @@
 // npm import
 import { connect } from 'react-redux';
 
+// utils
+import updateJoker from '../utils/updateJoker';
+
 // composant
 import Quiz from 'src/components/Quiz';
 
@@ -62,14 +65,17 @@ const mapDispatchToProps = dispatch => ({
   },
   updateSkipCount: () => {
     dispatch(updateJokerCount('skip'));
+    updateJoker('joker_skip');
   },
   setJokerRevive: () => {
     dispatch(updateJokerCount('revive'));
+    updateJoker('joker_revive');
     dispatch(setJokerRevive());
     dispatch(resetQuestion());
   },
   setJokerFiftyFifty: question => {
     dispatch(updateJokerCount('fiftyFifty'));
+    updateJoker('joker_5050');
     dispatch(setJokerFifty(question));
   },
   resetOwnedPoints: () => {
@@ -79,6 +85,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(setEndTimer(endValue));
   },
   setJokerTimer: question => {
+    updateJoker('joker_timer');
     dispatch(updateJokerCount('timer'));
     dispatch(setJokerTimer(question));
   },

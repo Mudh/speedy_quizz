@@ -24,6 +24,7 @@ const initialState = {
   revive: { count: 3, used: false },
   fiftyFifty: { count: 3, used: false },
   timer: { count: 4, used: false },
+  jokerName: '',
   filteredQuestion: undefined,
   levelTimer: 120000,
   startTimer: 0,

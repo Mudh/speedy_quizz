@@ -99,7 +99,6 @@ const ajax = store => next => action => {
             if (response.data.success_message === 'Thank you for registering') {
               store.dispatch(toggleSubscribeSuccess());
             }
-            console.log(response);
           })
           // echec
           .catch(error => {
@@ -131,7 +130,6 @@ const ajax = store => next => action => {
           // succes
           .then(response => {
             store.dispatch(setQuizTheme(response.data));
-            console.log(response);
           })
           // echec
           .catch(error => {
@@ -151,12 +149,6 @@ const ajax = store => next => action => {
           // succes
           .then(response => {
             store.dispatch(setQuizDatas(response.data));
-            console.log(
-              'level',
-              state.homeMembre.theme,
-              state.homeMembre.level,
-              response,
-            );
           })
           // echec
           .catch(error => {
