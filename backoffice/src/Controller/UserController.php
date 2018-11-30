@@ -164,16 +164,25 @@ class UserController extends AbstractController
      * @Route("/user/update/endgame", name="user_update_endgame")
      */
 
-    public function userUpdateEndGame(EntityManagerInterface $em, Request $request) {
+    public function userUpdateEndGame(EntityManagerInterface $em, Request $request, UserRepository $userRepo) {
 
         $token = $request->headers->get('Authorization');
         $content = $request->getContent();
 
-        $jokerData = json_decode($content, true); 
-       // $jokerName = $jokerData['jokerName'];
-        $jokerName = 'joker_skip';
-        $userEmail = 'jeanne.lefebvre@dbmail.com';
-      //  $userEmail = $tokenDecoder->getEmail($token);
+        $userData = json_decode($content, true); 
+        $userPoints = $userData['points'];
+        $userEmail = $tokenDecoder->getEmail($token);
+
+      //$userPoints = 15;
+      //$userEmail = 'jeanne.lefebvre@dbmail.com';
+
+        $user = $userRepo->findOneByEmail($userEmail);
+        $userCurrentPoints = $user->getNbPoints();
+        $user->setNbPoints($userCurrentPoints + $userPoints);
+
+        $em->flush();
+
+        return new Response('true');
     }
 
     /**
