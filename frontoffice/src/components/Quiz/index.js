@@ -245,6 +245,8 @@ class Quiz extends React.Component {
       isDisabled: fiftyFifty.used || fiftyFifty.count === 0 || step !== 2,
     });
 
+    console.log('quiz data', data);
+
     return (
       <Layout layoutClass="quiz">
         <section className="quiz__section">

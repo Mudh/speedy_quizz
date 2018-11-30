@@ -51,11 +51,11 @@ class UserController extends AbstractController
         
         $loginData = json_decode($content, true);
         
-      //  $password = $loginData['password'];
-       // $email = $loginData['email'];
+        $password = $loginData['password'];
+        $email = $loginData['email'];
 
-        $email = 'jeanne.lefebvre@dbmail.com';
-        $password = '123';
+        // $email = 'jeanne.lefebvre@dbmail.com';
+        // $password = '123';
 
         $user = $userRepo->findOneByEmail($email);  
 

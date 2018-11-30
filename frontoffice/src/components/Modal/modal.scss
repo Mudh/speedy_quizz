@@ -71,11 +71,42 @@
       align-items: flex-end;
     }
   }
-  &__score {
+  &__score,
+  &__expired {
     p {
       text-align: center;
       margin-top: rem(35);
       font-size: rem(25);
+    }
+  }
+
+  &__launch {
+    &.modal__wrapper {
+      border-radius: 0;
+      background: rgba(darken($purpleText, 20), 0.85);
+      width: 100%;
+      height: 100%;
+    }
+    .modal__form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: none;
+      width: 100%;
+      height: 100%;
+    }
+    p {
+      margin: 0 0 rem(80);
+      color: #fcbd00;
+      text-align: center;
+      font-size: rem(90);
+    }
+  }
+  &__buttons {
+    display: flex;
+    .primary {
+      margin: 0 rem(35);
     }
   }
 }
