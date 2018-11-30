@@ -12,6 +12,7 @@ import { withRouter } from 'react-router-dom';
 import Layout from '../../containers/Layout';
 import Button from '../Button';
 import Launch from '../../containers/Modal/Launch';
+import Score from '../../containers/Modal/Score';
 
 // Styles
 import './homeMembre.scss';
@@ -19,10 +20,17 @@ import '../Home/home.scss';
 /**
  * Code
  */
-const HomeMembre = ({ startQuiz, isAuthenticated, themes, islaunchOpen }) => {
+const HomeMembre = ({
+  startQuiz,
+  isAuthenticated,
+  themes,
+  islaunchOpen,
+  isScoreOpen,
+}) => {
   const levels = ['Facile', 'Moyen', 'Difficile'];
 
   const launch = islaunchOpen ? <Launch /> : null;
+  const score = isScoreOpen ? <Score /> : null;
 
   return (
     <Layout layoutClass="homeMember">
@@ -45,6 +53,7 @@ const HomeMembre = ({ startQuiz, isAuthenticated, themes, islaunchOpen }) => {
         ))}
       </section>
       {launch}
+      {score}
       {!isAuthenticated && <Redirect to="/" />}
     </Layout>
   );

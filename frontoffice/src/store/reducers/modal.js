@@ -14,6 +14,7 @@ const initialState = {
   score: false,
   expired: false,
   launch: false,
+  gameover: false,
 };
 
 export default (state = initialState, action = {}) => {

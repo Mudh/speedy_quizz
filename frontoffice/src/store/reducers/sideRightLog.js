@@ -4,6 +4,7 @@
 export const SET_PLAYER_INFOS = 'SET_PLAYER_INFOS';
 export const RELOAD_PLAYER_INFOS = 'RELOAD_PLAYER_INFOS';
 export const UPDATE_POINTS = 'UPDATE_POINTS';
+export const USER_UPDATE_ENDGAME = 'USER_UPDATE_ENDGAME';
 export const LOOSE_ALL_POINTS = 'LOOSE_ALL_POINTS';
 export const UPDATE_JOKER_COUNT = 'UPDATE_JOKER_COUNT';
 export const RESET_OWNED_POINTS = 'RESET_OWNED_POINTS';
@@ -57,6 +58,11 @@ export default (state = initialState, action = {}) => {
         totalPoints: state.totalPoints + action.newPoints,
         ownedPoints: state.ownedPoints + action.newPoints,
         totalOwnedPoints: state.ownedPoints + action.newPoints,
+      };
+
+    case USER_UPDATE_ENDGAME:
+      return {
+        ...state,
       };
 
     case LOOSE_ALL_POINTS:
@@ -136,6 +142,10 @@ export const reloadPlayerInfos = () => ({
 export const updatePoints = newPoints => ({
   type: UPDATE_POINTS,
   newPoints,
+});
+
+export const userUpdateEndgame = () => ({
+  type: USER_UPDATE_ENDGAME,
 });
 
 export const looseAllPoints = () => ({

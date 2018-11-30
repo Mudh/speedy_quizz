@@ -11,6 +11,7 @@ import { openModal } from '../store/reducers/modal';
 
 // === State (données) ===
 const mapStateToProps = state => ({
+  isScoreOpen: state.modal.score,
   isAuthenticated: state.loginForm.isAuthenticated,
   themes: state.homeMembre.themes,
   islaunchOpen: state.modal.launch,

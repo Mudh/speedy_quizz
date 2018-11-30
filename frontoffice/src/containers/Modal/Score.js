@@ -8,7 +8,9 @@ import Score from '../../components/Modal/score';
 import { closeModal } from '../../store/reducers/modal';
 
 // === State (données) ===
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  totalOwnedPoints: state.sideRightLog.totalOwnedPoints,
+});
 
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({

@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 // local imports
 import {
   RELOAD_PLAYER_INFOS,
+  USER_UPDATE_ENDGAME,
   setPlayerInfos,
 } from '../store/reducers/sideRightLog';
 
@@ -152,7 +153,25 @@ const ajax = store => next => action => {
           })
           // echec
           .catch(error => {
-            console.error(JSON.parse(localStorage.getItem('token')));
+            console.error(error);
+          });
+      }
+      break;
+
+    case USER_UPDATE_ENDGAME:
+      {
+        const state = store.getState();
+        axios
+          .post(urlQuiz, {
+            points: state.sideRightLog.totalPoints,
+          })
+          // succes
+          .then(response => {
+            console.log('update points', response);
+          })
+          // echec
+          .catch(error => {
+            console.error(error);
           });
       }
       break;
