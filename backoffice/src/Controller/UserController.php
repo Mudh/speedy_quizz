@@ -110,9 +110,6 @@ class UserController extends AbstractController
             ->setFirstname($firstname)
             ->setLastname($lastname)
             ->setEmail($email)
-            ->setNbGames(2)
-            ->setNbPoints(0)
-            ->setIsActive(1)
             ->setRole($roleUserByDefaut)
             ->setCreatedAt(new \Datetime())
             ->setUpdatedTime(new \Datetime());
@@ -122,6 +119,9 @@ class UserController extends AbstractController
         $firstnameError = $validator->validateProperty($user, 'firstname');
         $lastnameError = $validator->validateProperty($user, 'lastname');
         $emailError = $validator->validateProperty($user, 'email');
+
+        $mailExist = $userRepo->findOneByEmail($email);
+        $usernameExist = $userRepo->findOneByUsername($username);
 
         $formErrors = []; 
 
@@ -140,12 +140,19 @@ class UserController extends AbstractController
         if(count($emailError) > 0) {
             $formErrors['emailError'] = htmlentities($emailError[0]->getMessage());
         }
+        if ($mailExist) {
+            $formErrors['emailExist'] = htmlentities('Cette adresse mail est déjà utilisée');
+        }
+        if ($usernameExist) {
+            $formErrors['usernameExist'] = htmlentities('Ce pseudo est déjà utilisé');
+        }
+
 
         if($formErrors) { // If errors, we send its in a json file
 
             $serializer = SerializerBuilder::create()->build();
 
-            $jsonContent = $serializer->serialize($formErrors, 'json');
+            $jsonContent = $serializer->serialize($formErrors, 'json'); 
         
             return new Response($jsonContent);
         }
@@ -179,6 +186,27 @@ class UserController extends AbstractController
         $user = $userRepo->findOneByEmail($userEmail);
         $userCurrentPoints = $user->getNbPoints();
         $user->setNbPoints($userCurrentPoints + $userPoints);
+
+        $em->flush();
+
+        return new Response('true');
+    }
+
+     /**
+     * @Route("/user/update/profil", name="user_update_profil")
+     */
+
+    public function userUpdateProfil(EntityManagerInterface $em, Request $request, UserRepository $userRepo, TokenDecoder $tokenDecoder) {
+
+        $token = $request->headers->get('Authorization');
+        $content = $request->getContent();
+
+        $userData = json_decode($content, true); 
+       
+        //$userEmail = $tokenDecoder->getEmail($token);
+        $userEmail = 'jeanne.lefebvre@dbmail.com';
+        $user = $userRepo->findOneByEmail($userEmail);
+        $userId = $user->getId();
 
         $em->flush();
 

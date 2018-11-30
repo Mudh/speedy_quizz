@@ -163,7 +163,13 @@ class User implements UserInterface
     public function __construct()
     {
         $this->question = new ArrayCollection();
-        $this->joker = new ArrayCollection();
+        $this->joker_skip = 2;
+        $this->joker_5050 = 2;
+        $this->joker_revive = 2;
+        $this->joker_timer = 2;
+        $this->nb_games = 2;
+        $this->nb_points = 0;
+        $this->is_active = 1;
     }
 
     public function getId(): ?int
