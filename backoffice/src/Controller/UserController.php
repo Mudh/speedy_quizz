@@ -203,8 +203,8 @@ class UserController extends AbstractController
 
         $userData = json_decode($content, true); 
        
-        //$userEmail = $tokenDecoder->getEmail($token);
-        $userEmail = 'jeanne.lefebvre@dbmail.com';
+        $userEmail = $tokenDecoder->getEmail($token);
+        // $userEmail = 'jeanne.lefebvre@dbmail.com';
         $user = $userRepo->findOneByEmail($userEmail);
         $userId = $user->getId();
 
