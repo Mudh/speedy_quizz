@@ -10,11 +10,12 @@ use App\Repository\ThemeRepository;
 use JMS\Serializer\SerializerBuilder;
 use App\Repository\QuestionRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\JokerQuantityRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTDecodedEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
@@ -80,7 +81,45 @@ class QuizzController extends AbstractController
     /**
      * @Route("/quizz/joker/update", name="quizz_joker_update")
      */
-    public function jokerUpdate() {
+    public function jokerUpdate(UserRepository $userRepo, EntityManagerInterface $em, Request $request, TokenDecoder $tokenDecoder) {
+
+        $token = $request->headers->get('Authorization');
+        $content = $request->getContent();
+        $columnNames = $em->getClassMetadata('App\Entity\User')->getColumnNames();
+
+
+        $jokerData = json_decode($content, true); 
+        $jokerName = $jokerData['jokerName'];
+        //$jokerName = 'joker_skip';
+        //$userEmail = 'jeanne.lefebvre@dbmail.com';
+        $userEmail = $tokenDecoder->getEmail($token);
+
+        foreach($columnNames as $column) {
+            if($column == $jokerName) {
+                $jokerToUpdate = $column;
+            }
+        }
+
+        $user = $userRepo->findOneByEmail($userEmail);
+        $column = $jokerToUpdate;
         
+        $jokerToUpdate = 'get'.str_replace('_', '', ucwords($jokerToUpdate, '_'));
+        $userJoker = call_user_func([$user, $jokerToUpdate]);
+        
+        if($userJoker <= 0) { // We check if the user has enought joker
+            return new Response('Ce joker n\'est pas disponible');
+        }
+
+        $userJoker--;
+
+        $jokerToUpdate = 'set'.str_replace('_', '', ucwords($column, '_'));
+        call_user_func_array([$user, $jokerToUpdate], [$userJoker]);
+
+
+        $em->flush();
+        
+        return new Response('true');
+
     }
+
 }

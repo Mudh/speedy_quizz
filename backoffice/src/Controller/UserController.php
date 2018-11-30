@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Lexik\Bundle\JWTAuthenticationBundle\Event\JWTDecodedEvent;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Lexik\Bundle\JWTAuthenticationBundle\Security\Authentication\Token;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -52,8 +51,8 @@ class UserController extends AbstractController
         
         $loginData = json_decode($content, true);
         
-        //$password = $loginData['password'];
-        //$email = $loginData['email'];
+      //  $password = $loginData['password'];
+       // $email = $loginData['email'];
 
         $email = 'jeanne.lefebvre@dbmail.com';
         $password = '123';
@@ -70,11 +69,11 @@ class UserController extends AbstractController
         if ($encryptedPass == false) { //if password isn't valid
             return new Response ('false');
         }
-     
+
         $token = $JWTManager->create($user);
         $accent->getUserAccents($user);
 
-        $data = [
+        $data = [ // We send all the datas in json 
             'user' => $user,
             'token' => $token,
         ];
@@ -133,7 +132,7 @@ class UserController extends AbstractController
             $formErrors['passwordError'] = htmlentities($passwordError[0]->getMessage());
         }
         if(count($firstnameError) > 0) {
-            $formErrors['passwordError'] = htmlentities($firstnameError[0]->getMessage());
+            $formErrors['firtnameError'] = htmlentities($firstnameError[0]->getMessage());
         }       
         if(count($lastnameError) > 0) {
             $formErrors['lastnameError'] = htmlentities($lastnameError[0]->getMessage());
@@ -159,6 +158,22 @@ class UserController extends AbstractController
         return new JsonResponse([
             'success_message' => 'Thank you for registering'
         ]);
+    }
+
+    /**
+     * @Route("/user/update/endgame", name="user_update_endgame")
+     */
+
+    public function userUpdateEndGame(EntityManagerInterface $em, Request $request) {
+
+        $token = $request->headers->get('Authorization');
+        $content = $request->getContent();
+
+        $jokerData = json_decode($content, true); 
+       // $jokerName = $jokerData['jokerName'];
+        $jokerName = 'joker_skip';
+        $userEmail = 'jeanne.lefebvre@dbmail.com';
+      //  $userEmail = $tokenDecoder->getEmail($token);
     }
 
     /**

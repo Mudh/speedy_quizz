@@ -11,3 +11,4 @@ easy_admin:
         - App\Entity\Level
         - App\Entity\Joker
         - App\Entity\Home
+        - App\Entity\JokerQuantity
