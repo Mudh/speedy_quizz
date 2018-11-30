@@ -6,6 +6,7 @@ import Profil from '../../components/Modal/profil';
 
 // action creators
 import { closeModal } from '../../store/reducers/modal';
+import { onSubmitProfil } from '../../store/reducers/profilForm';
 
 // === State (données) ===
 const mapStateToProps = state => ({
@@ -18,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(closeModal('profil'));
   },
   onSubmitProfil: () => {
-    // dispatch(onSubmitProfil());
+    dispatch(onSubmitProfil());
     dispatch(closeModal('profil'));
   },
 });

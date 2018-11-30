@@ -4,7 +4,7 @@ import setAuthorizationToken from '../utils/setAuthorizationToken';
 import jwt from 'jsonwebtoken';
 
 // local imports
-import { setProfilInfos } from '../store/reducers/profilForm';
+import { SUBMIT_PROFIL, setProfilInfos } from '../store/reducers/profilForm';
 import { setQuizDatas } from '../store/reducers/quiz';
 import { SUBMIT_LOGIN, setCurrentUser } from '../store/reducers/loginForm';
 
@@ -12,6 +12,7 @@ import {
   RELOAD_PLAYER_INFOS,
   USER_UPDATE_ENDGAME,
   setPlayerInfos,
+  reloadPlayerInfos,
 } from '../store/reducers/sideRightLog';
 
 import {
@@ -36,6 +37,7 @@ const urlLogin = 'http://127.0.0.1:8000/login';
 const urlRegister = 'http://127.0.0.1:8000/register';
 const urlQuiz = 'http://127.0.0.1:8000/quizz';
 const urlUpdatePoints = 'http://127.0.0.1:8000/user/update/endgame';
+const urlUpdateProfil = 'http://127.0.0.1:8000/user/update/profil';
 
 /**
  * Middleware de gestion ajax
@@ -103,6 +105,30 @@ const ajax = store => next => action => {
             if (response.data.success_message === 'Thank you for registering') {
               store.dispatch(toggleSubscribeSuccess());
             }
+          })
+          // echec
+          .catch(error => {
+            console.error(error);
+          });
+      }
+      break;
+
+    case SUBMIT_PROFIL:
+      {
+        const state = store.getState();
+
+        axios
+          .post(urlUpdateProfil, {
+            email: state.profilForm.email,
+            // password: state.profilForm.password,
+            lastname: state.profilForm.lastname,
+            firstname: state.profilForm.firstname,
+            username: state.profilForm.nickname,
+            description: state.profilForm.nickname,
+          })
+          // succes
+          .then(response => {
+            store.dispatch(reloadPlayerInfos());
           })
           // echec
           .catch(error => {

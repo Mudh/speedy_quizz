@@ -6,7 +6,7 @@ import ProfilForm from '../components/Form/ProfilForm';
 
 // action creators
 import { closeModal } from '../store/reducers/modal';
-import { onChangeProfil } from '../store/reducers/profilForm';
+import { onChangeProfil, onSubmitProfil } from '../store/reducers/profilForm';
 
 // === State (données) ===
 const mapStateToProps = state => ({
@@ -19,11 +19,9 @@ const mapStateToProps = state => ({
 
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({
-  onSubmitLogin: () => {
-    dispatch(onSubmitLogin());
-    dispatch(removeSuccess());
+  onSubmitProfil: () => {
+    dispatch(onSubmitProfil());
     dispatch(closeModal('login'));
-    dispatch(emptyLogin());
   },
   onChangeProfil: (name, value) => {
     dispatch(onChangeProfil(name, value));

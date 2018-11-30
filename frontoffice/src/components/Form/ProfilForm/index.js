@@ -24,16 +24,16 @@ class ProfilForm extends React.Component {
     email: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     onChangeProfil: PropTypes.func.isRequired,
-    onSubmitLogin: PropTypes.func.isRequired,
+    onSubmitProfil: PropTypes.func.isRequired,
   };
 
   /*
    * Handlers
    */
   handleSubmit = evt => {
-    const { onSubmitLogin } = this.props;
+    const { onSubmitProfil } = this.props;
     if (evt.key === 'Enter') {
-      onSubmitLogin();
+      onSubmitProfil();
     }
   };
 
