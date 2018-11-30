@@ -7,11 +7,13 @@ import { disconnect } from '../store/reducers/loginForm';
 import { openModal } from '../store/reducers/modal';
 import { loadQuizTheme } from '../store/reducers/homeMembre';
 import { reloadPlayerInfos } from '../store/reducers/sideRightLog';
+import { loadHomeVisitor } from '../store/reducers/homeVisitor';
 
 // === State (données) ===
 const mapStateToProps = state => ({
   isAuthenticated: state.loginForm.isAuthenticated,
   isExpiredOpen: state.modal.expired,
+  isQuizStart: state.quiz.isQuizStart,
   themes: state.homeMembre.themes,
 });
 

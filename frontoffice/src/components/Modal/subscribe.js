@@ -16,16 +16,49 @@ import './modal.scss';
 /**
  * Code
  */
-const Subscribe = ({ closeSubscribe, switchToLogin }) => (
-  <ModalLayout modalClass="subscribe" onClick={closeSubscribe}>
-    <Button btnClass="close" btnText="+" onClick={closeSubscribe} />
-    <SubscribeForm />
-    <span>
-      Déjà membre ? <span onClick={switchToLogin}>Cliquez ici</span>
-    </span>
-    <Button btnClass="primary" btnText="valider" />
-  </ModalLayout>
-);
+class Subscribe extends React.Component {
+  handleButtonFunctions = () => {
+    const {
+      switchToLogin,
+      isSubscribeSuccess,
+      onSubmitSubscribe,
+      emptyPassword,
+    } = this.props;
+    if (isSubscribeSuccess) {
+      emptyPassword();
+      switchToLogin();
+    }
+    return onSubmitSubscribe;
+  };
+
+  render() {
+    const { closeSubscribe, switchToLogin, isSubscribeSuccess } = this.props;
+
+    const switchButtonText = !isSubscribeSuccess
+      ? 'valider'
+      : 'connectez-vous !';
+
+    return (
+      <ModalLayout modalClass="subscribe" onClick={closeSubscribe}>
+        <Button btnClass="close" btnText="+" onClick={closeSubscribe} />
+        {!isSubscribeSuccess && <SubscribeForm />}
+        {!isSubscribeSuccess && (
+          <span>
+            Déjà membre ? <span onClick={switchToLogin}>Cliquez ici</span>
+          </span>
+        )}
+        {isSubscribeSuccess && (
+          <span className="modal__thanks">Merci de votre inscription !</span>
+        )}
+        <Button
+          btnClass="primary"
+          btnText={switchButtonText}
+          onClick={this.handleButtonFunctions}
+        />
+      </ModalLayout>
+    );
+  }
+}
 
 Subscribe.propTypes = {
   closeSubscribe: PropTypes.func.isRequired,

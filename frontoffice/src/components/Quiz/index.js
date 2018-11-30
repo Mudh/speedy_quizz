@@ -206,6 +206,8 @@ class Quiz extends React.Component {
       isQuizStart,
       setQuizStop,
     } = this.props;
+    if (data === undefined || !isQuizStart) return <Redirect to="/" />;
+
     const question = data.questionsList[`step${step}`][questionNumber].title;
 
     const filteredGoodAnswer = data.questionsList.step2[
@@ -312,7 +314,6 @@ class Quiz extends React.Component {
           </Button>
         </footer>
         {score}
-        {!isQuizStart && <Redirect to="/" />}
       </Layout>
     );
   }

@@ -6,6 +6,8 @@ import isEmpty from 'lodash/isEmpty';
  * Types
  */
 export const CHANGE_INPUT = 'CHANGE_INPUT';
+export const EMPTY_PASSWORD = 'EMPTY_PASSWORD';
+export const EMPTY_LOGIN = 'EMPTY_LOGIN';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const DISCONNECT = 'DISCONNECT';
@@ -39,6 +41,22 @@ export default (state = initialState, action = {}) => {
         [action.name]: action.value,
       };
 
+    case EMPTY_PASSWORD:
+      return {
+        ...state,
+        password: '',
+      };
+
+    case EMPTY_LOGIN:
+      return {
+        ...state,
+        email: '',
+        password: '',
+        lastname: '',
+        firstname: '',
+        nickname: '',
+      };
+
     case DISCONNECT:
       return {
         ...state,
@@ -68,4 +86,12 @@ export const setCurrentUser = user => ({
 
 export const disconnect = () => ({
   type: DISCONNECT,
+});
+
+export const emptyPassword = () => ({
+  type: EMPTY_PASSWORD,
+});
+
+export const emptyLogin = () => ({
+  type: EMPTY_LOGIN,
 });

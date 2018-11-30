@@ -22,7 +22,8 @@ const Login = ({ closeLogin, switchToSubscribe, onSubmitLogin }) => {
       <Button btnClass="close" btnText="+" onClick={closeLogin} />
       <LoginForm />
       <span>
-        Pas encore inscrit ?<span onClick={switchToSubscribe}>Cliquez ici</span>
+        Pas encore inscrit ?{' '}
+        <span onClick={switchToSubscribe}>Cliquez ici</span>
       </span>
       <Button btnClass="primary" btnText="valider" onClick={onSubmitLogin} />
     </ModalLayout>

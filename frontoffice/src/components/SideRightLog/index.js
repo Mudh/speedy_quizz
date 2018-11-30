@@ -13,7 +13,6 @@ import Revive from 'src/components/Icons/sidebar/revive';
 import Score from 'src/components/Icons/sidebar/score';
 import Skip from 'src/components/Icons/sidebar/skip';
 import Timer from 'src/components/Icons/sidebar/timer';
-import Button from '../Button';
 
 // Styles
 import 'src/components/Icons/icons.scss';
@@ -68,7 +67,6 @@ const SideRightLog = ({
           </ul>
         </div>
         <Countdown />
-        <Button btnClass="primary" btnText="New Game" />
       </div>
     </aside>
   );

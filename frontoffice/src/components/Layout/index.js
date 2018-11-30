@@ -2,13 +2,14 @@
  * NPM import
  */
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import SideRightLog from '../../containers/SideRightLog';
-import ExpiredSession from '../../containers/Modal/ExpiredSession';
 
 /**
  * Local import
  */
+import SideRightLog from '../../containers/SideRightLog';
+import ExpiredSession from '../../containers/Modal/ExpiredSession';
 // Components
 
 // Styles
@@ -25,6 +26,8 @@ class Layout extends React.Component {
       reloadPlayerInfos();
       loadQuizTheme();
     }
+    // if (location.pathname === '/' && !isAuthenticated) {
+    // }
   }
 
   render() {
@@ -52,4 +55,4 @@ Layout.propTypes = {
 /**
  * Export
  */
-export default Layout;
+export default withRouter(Layout);
