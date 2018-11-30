@@ -7,6 +7,7 @@ import Countdown from '../components/SideRightLog/Countdown';
 // action creators
 import { setQuizStop } from '../store/reducers/quiz';
 import { looseAllPoints } from '../store/reducers/sideRightLog';
+import { openModal } from '../store/reducers/modal';
 
 // === State (données) ===
 const mapStateToProps = state => ({
@@ -21,6 +22,7 @@ const mapDispatchToProps = dispatch => ({
   setQuizStop: () => {
     dispatch(setQuizStop());
     dispatch(looseAllPoints());
+    dispatch(openModal('score'));
   },
 });
 

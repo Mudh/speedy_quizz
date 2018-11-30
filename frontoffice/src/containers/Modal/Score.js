@@ -6,6 +6,7 @@ import Score from '../../components/Modal/score';
 
 // action creators
 import { closeModal } from '../../store/reducers/modal';
+import { userUpdateEndgame } from '../../store/reducers/sideRightLog';
 
 // === State (données) ===
 const mapStateToProps = state => ({
@@ -16,6 +17,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   closeScore: () => {
     dispatch(closeModal('score'));
+    dispatch(userUpdateEndgame());
   },
 });
 

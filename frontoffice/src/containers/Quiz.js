@@ -61,9 +61,6 @@ const mapDispatchToProps = dispatch => ({
   updateScore: scoreValue => {
     dispatch(updatePoints(scoreValue));
   },
-  openScore: () => {
-    dispatch(openModal('score'));
-  },
   updateSkipCount: () => {
     dispatch(updateJokerCount('skip'));
     updateJoker('joker_skip');

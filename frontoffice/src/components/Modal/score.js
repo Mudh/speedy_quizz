@@ -28,7 +28,6 @@ const Score = ({ closeScore, totalOwnedPoints }) => {
         <br />
         {finalMessage}
       </p>
-      <Button btnClass="primary" btnText="Rejouer" />
     </ModalLayout>
   );
 };

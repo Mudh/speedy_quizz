@@ -72,7 +72,7 @@ class Quiz extends React.Component {
       setTimeout(() => {
         onChangeAnswer('');
         updateScore(boolScore);
-        openScore();
+        setQuizStop();
       }, 150);
     } else if (!isCorrectAnswer) {
       setTimeout(() => {

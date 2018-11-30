@@ -33,6 +33,7 @@ const urlUserInfos = 'http://127.0.0.1:8000/user/show';
 const urlLogin = 'http://127.0.0.1:8000/login';
 const urlRegister = 'http://127.0.0.1:8000/register';
 const urlQuiz = 'http://127.0.0.1:8000/quizz';
+const urlUpdatePoints = 'http://127.0.0.1:8000/user/update/endgame';
 
 /**
  * Middleware de gestion ajax
@@ -162,7 +163,7 @@ const ajax = store => next => action => {
       {
         const state = store.getState();
         axios
-          .post(urlQuiz, {
+          .post(urlUpdatePoints, {
             points: state.sideRightLog.totalPoints,
           })
           // succes
