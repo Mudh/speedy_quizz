@@ -34,11 +34,6 @@ const Nav = ({ isAuthenticated, onClickDisconnect }) => {
               <Podium active={active} />
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/faq" activeClassName="selected">
-              <Faq active={active} />
-            </NavLink>
-          </li>
           {isAuthenticated && (
             <li>
               <NavLink to="/profil" activeClassName="selected">
@@ -46,6 +41,16 @@ const Nav = ({ isAuthenticated, onClickDisconnect }) => {
               </NavLink>
             </li>
           )}
+          <li>
+            <NavLink to="/faq" activeClassName="selected">
+              <Faq active={active} />
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/cgu" activeClassName="selected">
+              <Infos />
+            </NavLink>
+          </li>
           {isAuthenticated && (
             <li onClick={onClickDisconnect}>
               <span>
@@ -55,19 +60,11 @@ const Nav = ({ isAuthenticated, onClickDisconnect }) => {
           )}
         </ul>
         <ul className="toolbar__navigation-bottom">
-          <li>
+          {/* <li>
             <a href="#">
               <Socials />
             </a>
-          </li>
-          <li>
-            {/* <NavLink to="/profil" activeClassName="selected">
-              <Infos />
-            </NavLink> */}
-            <a href="#">
-              <Infos />
-            </a>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </aside>

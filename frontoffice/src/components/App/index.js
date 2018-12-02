@@ -15,8 +15,9 @@ import PrivateRoute from '../../containers/PrivateRoute';
 import Quiz from '../../containers/Quiz';
 import HomeVisitor from '../../containers/HomeVisitor';
 import HomeMembre from '../../containers/HomeMembre';
-// import Cgu from '../Cgu';
-// import Error from '../Error';
+import Faq from '../Faq';
+import Cgu from '../Cgu';
+import Error from '../Error';
 
 // Styles
 import './app.scss';
@@ -39,11 +40,8 @@ const App = () => {
               private={HomeMembre}
             />
             <Route exact path="/classement" component={Classement} />
-            <Route
-              exact
-              path="/faq"
-              render={() => <div className="construc">FAQ en construction</div>}
-            />
+            <Route exact path="/faq" component={Faq} />
+            <Route exact path="/cgu" component={Cgu} />
             <Route exact path="/profil" component={Profil} />
             <Route exact path="/quiz" component={Quiz} />
             <Route
