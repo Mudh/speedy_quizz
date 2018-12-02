@@ -13,7 +13,7 @@
     background: url('../../assets/img/sidebar_bg_pattern.png') repeat center
       center/7px;
     width: rem(240);
-    min-width: 240;
+    min-width: 240px;
     height: 100%;
     padding: 0 rem(33) rem(20);
   }
@@ -51,6 +51,13 @@
     width: 30px;
   }
 
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 174px);
+  }
   &__countdown {
     display: flex;
     justify-content: center;

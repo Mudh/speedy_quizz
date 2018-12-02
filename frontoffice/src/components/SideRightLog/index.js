@@ -33,7 +33,7 @@ const SideRightLog = ({
   return (
     <aside className="sideRightLog">
       <div className="sideRightLog__wrapper">
-        <div className="sideRightLog__Top">
+        <div className="sideRightLog__top">
           <h2>Bonjour {firstname}</h2>
           <ul className="sideRightLog__party">
             <li className="sideRightLog__items">
@@ -66,7 +66,9 @@ const SideRightLog = ({
             </li>
           </ul>
         </div>
-        <Countdown />
+        <div className="sideRightLog__bottom">
+          <Countdown />
+        </div>
       </div>
     </aside>
   );

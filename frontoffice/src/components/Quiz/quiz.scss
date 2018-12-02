@@ -14,7 +14,7 @@
     height: 100%;
     padding: 0 rem(28) 0 rem(20);
     flex: 1;
-    @media #{$xxlarge} {
+    @media #{$xlarge} {
       align-items: center;
     }
   }
@@ -25,7 +25,7 @@
   }
 
   &__section {
-    @media #{$xxlarge} {
+    @media #{$xlarge} {
       width: 75%;
     }
   }

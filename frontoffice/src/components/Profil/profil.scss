@@ -1,5 +1,6 @@
 @import '../../styles/colors';
 @import '../../styles/functions';
+@import '../../styles/mediaqueries';
 
 .profil {
   display: flex;
@@ -80,6 +81,16 @@
 
   &__description {
     line-height: 1.1;
+    max-height: 300px;
+    overflow-y: auto;
+
+    @media #{$height768} {
+      max-height: 205px;
+    }
+
+    @media #{$height650} {
+      max-height: 100px;
+    }
   }
 
   &__modify {
