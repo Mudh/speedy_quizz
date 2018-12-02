@@ -15,13 +15,19 @@ import './quiz.scss';
 /**
  * Code
  */
-const QuizHeader = ({ theme, question, questionNumber, totalQuestions }) => {
+const QuizHeader = ({
+  theme,
+  question,
+  questionNumber,
+  totalQuestions,
+  step,
+}) => {
   return (
     <header>
       <h1 className="quiz__title">{theme}</h1>
       <Question question={question} />
       <span className="quiz__breadcrumb">
-        question {questionNumber} sur {totalQuestions}
+        Etape {step} - Question {questionNumber} sur {totalQuestions}
       </span>
     </header>
   );
@@ -30,6 +36,7 @@ const QuizHeader = ({ theme, question, questionNumber, totalQuestions }) => {
 QuizHeader.propTypes = {
   theme: PropTypes.string.isRequired,
   question: PropTypes.string.isRequired,
+  step: PropTypes.number.isRequired,
   questionNumber: PropTypes.number.isRequired,
   totalQuestions: PropTypes.number.isRequired,
 };

@@ -251,6 +251,7 @@ class Quiz extends React.Component {
         <section className="quiz__section">
           <QuizHeader
             theme="Le système solaire"
+            step={step}
             question={question}
             questionNumber={questionNumber + 1}
             totalQuestions={totalQuestions}

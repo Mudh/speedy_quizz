@@ -1,5 +1,6 @@
 @import '../../styles/colors';
 @import '../../styles/functions';
+@import '../../styles/mediaqueries';
 
 .quiz {
   display: flex;
@@ -13,11 +14,20 @@
     height: 100%;
     padding: 0 rem(28) 0 rem(20);
     flex: 1;
+    @media #{$xxlarge} {
+      align-items: center;
+    }
   }
 
   &__section,
   &__footer {
     width: 100%;
+  }
+
+  &__section {
+    @media #{$xxlarge} {
+      width: 75%;
+    }
   }
 
   &__footer {
@@ -71,7 +81,7 @@
 
   &__breadcrumb {
     display: block;
-    margin-top: rem(10);
+    margin-top: rem(15);
     font-size: rem(20);
     color: $yellowText;
   }

@@ -1,5 +1,6 @@
 @import '../../styles/colors';
 @import '../../styles/functions';
+@import '../../styles/mediaqueries';
 
 .homeMember {
   display: flex;
@@ -25,6 +26,10 @@
     justify-content: center;
     flex-wrap: wrap;
     margin-top: rem(100);
+
+    @media #{$xxlarge} {
+      width: 75%;
+    }
   }
 
   .theme {
