@@ -20,14 +20,28 @@ import './layout.scss';
  */
 class Layout extends React.Component {
   componentDidMount() {
-    const { checkAuth, loadQuizTheme, reloadPlayerInfos } = this.props;
+    const {
+      checkAuth,
+      loadQuizTheme,
+      reloadPlayerInfos,
+      isQuizStart,
+      setQuizStop,
+      history,
+      location,
+    } = this.props;
     if (localStorage.getItem('jwtToken')) {
       checkAuth();
       reloadPlayerInfos();
       loadQuizTheme();
     }
-    // if (location.pathname === '/' && !isAuthenticated) {
-    // }
+    if (
+      location.pathname !== '/quiz' &&
+      isQuizStart &&
+      history.action === 'POP'
+    ) {
+      setQuizStop();
+    }
+    console.log(history, location);
   }
 
   render() {

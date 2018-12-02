@@ -7,7 +7,7 @@ import { disconnect } from '../store/reducers/loginForm';
 import { openModal } from '../store/reducers/modal';
 import { loadQuizTheme } from '../store/reducers/homeMembre';
 import { reloadPlayerInfos } from '../store/reducers/sideRightLog';
-import { loadHomeVisitor } from '../store/reducers/homeVisitor';
+import { setQuizStop } from '../store/reducers/quiz';
 
 // === State (données) ===
 const mapStateToProps = state => ({
@@ -19,6 +19,9 @@ const mapStateToProps = state => ({
 
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({
+  setQuizStop: () => {
+    dispatch(setQuizStop());
+  },
   reloadPlayerInfos: () => {
     dispatch(reloadPlayerInfos());
   },
