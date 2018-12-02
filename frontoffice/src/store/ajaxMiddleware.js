@@ -21,6 +21,8 @@ import {
   setQuizTheme,
 } from '../store/reducers/homeMembre';
 
+import { LOAD_RANKING } from '../store/reducers/classement';
+
 import {
   SUBMIT_SUBSCRIBE,
   toggleSubscribeSuccess,
@@ -33,6 +35,7 @@ import {
 const urlVisitor = 'http://127.0.0.1:8000/';
 const urlLoggued = 'http://127.0.0.1:8000/home';
 const urlUserInfos = 'http://127.0.0.1:8000/user/show';
+const urlRanking = 'http://127.0.0.1:8000/ranking';
 const urlLogin = 'http://127.0.0.1:8000/login';
 const urlRegister = 'http://127.0.0.1:8000/register';
 const urlQuiz = 'http://127.0.0.1:8000/quizz';
@@ -128,7 +131,7 @@ const ajax = store => next => action => {
           })
           // succes
           .then(response => {
-            store.dispatch(reloadPlayerInfos());
+            // store.dispatch(reloadPlayerInfos());
           })
           // echec
           .catch(error => {
@@ -162,6 +165,21 @@ const ajax = store => next => action => {
           // succes
           .then(response => {
             store.dispatch(setQuizTheme(response.data));
+          })
+          // echec
+          .catch(error => {
+            console.error(error);
+          });
+      }
+      break;
+
+    case LOAD_RANKING:
+      {
+        axios
+          .get(urlRanking)
+          // succes
+          .then(response => {
+            console.log(ranking);
           })
           // echec
           .catch(error => {

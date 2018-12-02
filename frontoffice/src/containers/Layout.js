@@ -8,6 +8,7 @@ import { openModal } from '../store/reducers/modal';
 import { loadQuizTheme } from '../store/reducers/homeMembre';
 import { reloadPlayerInfos } from '../store/reducers/sideRightLog';
 import { setQuizStop } from '../store/reducers/quiz';
+import { loadRanking } from '../store/reducers/classement';
 
 // === State (données) ===
 const mapStateToProps = state => ({
@@ -19,6 +20,9 @@ const mapStateToProps = state => ({
 
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({
+  loadRanking: () => {
+    dispatch(loadRanking());
+  },
   setQuizStop: () => {
     dispatch(setQuizStop());
   },

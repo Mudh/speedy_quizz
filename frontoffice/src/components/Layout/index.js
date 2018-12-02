@@ -26,6 +26,7 @@ class Layout extends React.Component {
       reloadPlayerInfos,
       isQuizStart,
       setQuizStop,
+      loadRanking,
       history,
       location,
     } = this.props;
@@ -41,6 +42,7 @@ class Layout extends React.Component {
     ) {
       setQuizStop();
     }
+    loadRanking();
     console.log(history, location);
   }
 

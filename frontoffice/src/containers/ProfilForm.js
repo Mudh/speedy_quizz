@@ -21,7 +21,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   onSubmitProfil: () => {
     dispatch(onSubmitProfil());
-    dispatch(closeModal('login'));
+    dispatch(closeModal('profil'));
   },
   onChangeProfil: (name, value) => {
     dispatch(onChangeProfil(name, value));
