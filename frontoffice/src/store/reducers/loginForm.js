@@ -54,7 +54,7 @@ export default (state = initialState, action = {}) => {
         password: '',
         lastname: '',
         firstname: '',
-        nickname: '',
+        usename: '',
       };
 
     case DISCONNECT:

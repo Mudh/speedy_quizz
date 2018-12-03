@@ -89,17 +89,17 @@ class ProfilForm extends React.Component {
             value={email}
             onChange={this.handleChange}
           />
-          <label>Ancien mot de passe :</label>
+          <label>Mot de passe :</label>
           <input
             className="form-input"
             name="password"
             type="password"
-            placeholder="Ancien mot de passe"
+            placeholder="Mot de passe"
             autoComplete="off"
             value=""
             onChange={this.handleChange}
           />
-          <label>Nouveau mot de passe :</label>
+          {/* <label>Nouveau mot de passe :</label>
           <input
             className="form-input"
             name="password"
@@ -108,7 +108,7 @@ class ProfilForm extends React.Component {
             autoComplete="off"
             value=""
             onChange={this.handleChange}
-          />
+          /> */}
         </fieldset>
         <fieldset>
           <label>Description :</label>

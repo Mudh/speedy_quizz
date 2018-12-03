@@ -7,12 +7,12 @@ class AccentEncoder {
     public function getHomeAccent($themes, $text='') {
 
         if (!empty($text)) {
-            $text->setPresentation(htmlentities($text->getPresentation()));
+            $text->setPresentation(htmlspecialchars($text->getPresentation()));
         }
 
         foreach ($themes as $theme) {
-            $theme->setTitle(htmlentities($theme->getTitle()));
-            $theme->setDescription(htmlentities($theme->getDescription()));
+            $theme->setTitle(htmlspecialchars($theme->getTitle()));
+            $theme->setDescription(htmlspecialchars($theme->getDescription()));
         }
 
         return true;
@@ -21,27 +21,27 @@ class AccentEncoder {
     public function getQuestionsAccents($questionsStepOne, $questionsStepTwo, $questionsStepThree) {
 
         foreach ($questionsStepOne as $question) {
-            $question->setTitle(htmlentities($question->getTitle()));
+            $question->setTitle(htmlspecialchars($question->getTitle()));
         
             foreach($question->getResponse() as $response) {
-                $response->setResponse(htmlentities($response->getResponse()));
+                $response->setResponse(htmlspecialchars($response->getResponse()));
             }
         }
 
         foreach ($questionsStepTwo as $question) {
-            $question->setTitle(htmlentities($question->getTitle()));
+            $question->setTitle(htmlspecialchars($question->getTitle()));
 
             foreach($question->getResponse() as $response) {
 
-                $response->setResponse(htmlentities($response->getResponse()));
+                $response->setResponse(htmlspecialchars($response->getResponse()));
             }
         }
 
         foreach ($questionsStepThree as $question) {
-            $question->setTitle(htmlentities($question->getTitle()));
+            $question->setTitle(htmlspecialchars($question->getTitle()));
 
             foreach($question->getResponse() as $response) {
-                $response->setResponse(htmlentities($response->getResponse()));
+                $response->setResponse(htmlspecialchars($response->getResponse()));
             }
         }
 
@@ -50,13 +50,13 @@ class AccentEncoder {
 
     public function getUserAccents($user) {
 
-        $user->setUsername(htmlentities($user->getUsername()));
-        $user->setFirstname(htmlentities($user->getFirstname()));
-        $user->setLastname(htmlentities($user->getLastname()));
-        $user->setDescription(htmlentities($user->getDescription()));
+        $user->setUsername(htmlspecialchars($user->getUsername()));
+        $user->setFirstname(htmlspecialchars($user->getFirstname()));
+        $user->setLastname(htmlspecialchars($user->getLastname()));
+        $user->setDescription(htmlspecialchars($user->getDescription()));
 
         foreach ($user->getQuestion() as $question) {
-            $question->setTitle(htmlentities($question->getTitle()));
+            $question->setTitle(htmlspecialchars($question->getTitle()));
         }
 
         return true;

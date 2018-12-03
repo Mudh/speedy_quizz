@@ -21,7 +21,7 @@ class SubscribeForm extends React.Component {
     password: PropTypes.string.isRequired,
     lastname: PropTypes.string.isRequired,
     firstname: PropTypes.string.isRequired,
-    nickname: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
     onChangeInput: PropTypes.func.isRequired,
     onSubmitSubscribe: PropTypes.func.isRequired,
   };
@@ -43,7 +43,7 @@ class SubscribeForm extends React.Component {
   };
 
   render() {
-    const { email, password, lastname, firstname, nickname } = this.props;
+    const { email, password, lastname, firstname, username } = this.props;
 
     return (
       <form className="form form--subscribe" onKeyUp={this.handleSubmit}>
@@ -70,11 +70,11 @@ class SubscribeForm extends React.Component {
         <label>Pseudo :</label>
         <input
           className="form-input"
-          name="nickname"
+          name="username"
           type="text"
           placeholder="Votre pseudo"
           autoComplete="off"
-          value={nickname}
+          value={username}
           onChange={this.handleChange}
         />
         <label>Email :</label>

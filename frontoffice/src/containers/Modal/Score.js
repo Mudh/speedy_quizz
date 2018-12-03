@@ -17,7 +17,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   closeScore: () => {
     dispatch(closeModal('score'));
-    dispatch(userUpdateEndgame());
+ //   dispatch(userUpdateEndgame());
   },
 });
 

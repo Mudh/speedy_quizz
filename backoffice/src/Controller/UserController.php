@@ -171,7 +171,7 @@ class UserController extends AbstractController
      * @Route("/user/update/endgame", name="user_update_endgame")
      */
 
-    public function userUpdateEndGame(EntityManagerInterface $em, Request $request, UserRepository $userRepo) {
+    public function userUpdateEndGame(EntityManagerInterface $em, Request $request, UserRepository $userRepo, TokenDecoder $tokenDecoder) {
 
         $token = $request->headers->get('Authorization');
         $content = $request->getContent();
@@ -185,7 +185,7 @@ class UserController extends AbstractController
 
         $user = $userRepo->findOneByEmail($userEmail);
         $userCurrentPoints = $user->getNbPoints();
-        $user->setNbPoints($userCurrentPoints + $userPoints);
+        $user->setNbPoints($userPoints);
 
         $em->flush();
 
@@ -196,21 +196,82 @@ class UserController extends AbstractController
      * @Route("/user/update/profil", name="user_update_profil")
      */
 
-    public function userUpdateProfil(EntityManagerInterface $em, Request $request, UserRepository $userRepo, TokenDecoder $tokenDecoder) {
+    public function userUpdateProfil(EntityManagerInterface $em, Request $request, UserRepository $userRepo, TokenDecoder $tokenDecoder, ValidatorInterface $validator) {
 
         $token = $request->headers->get('Authorization');
         $content = $request->getContent();
 
         $userData = json_decode($content, true); 
+
+        $username = $userData['username'];
+     //   $password = $userData['password'];
+        $firstname = $userData['firstname'];
+        $lastname = $userData['lastname'];
+        $email = $userData['email'];
+        $description = $userData['description'];
        
         $userEmail = $tokenDecoder->getEmail($token);
-        // $userEmail = 'jeanne.lefebvre@dbmail.com';
         $user = $userRepo->findOneByEmail($userEmail);
-        $userId = $user->getId();
+
+        $usernameError = $validator->validateProperty($user, 'username');
+     //   $passwordError = $validator->validateProperty($user, 'password');
+        $firstnameError = $validator->validateProperty($user, 'firstname');
+        $lastnameError = $validator->validateProperty($user, 'lastname');
+        $emailError = $validator->validateProperty($user, 'email');
+
+        $formErrors = []; 
+
+        if ($username != $user->getUsername()) {
+            $usernameExist = $userRepo->findOneByUsername($username);
+
+            if ($usernameExist) {
+                $formErrors['usernameExist'] = htmlentities('Ce pseudo est déjà utilisé');
+            }
+        }
+
+        if ($email != $user->getEmail()) {
+            $mailExist = $userRepo->findOneByEmail($email);
+
+            if ($mailExist) {
+                $formErrors['emailExist'] = htmlentities('Cette adresse mail est déjà utilisée');
+            }
+        }
+
+        $user->setUsername($username)
+          //   ->setPassword($password)
+             ->setFirstname($firstname)
+             ->setLastname($lastname)
+             ->setEmail($email)
+             ->setDescription($description);
+
+        if(count($usernameError) > 0) { // We stock errors in an array
+            $formErrors['usernameError'] = htmlentities($usernameError[0]->getMessage());
+        }
+        // if(count($passwordError) > 0) {
+        //     $formErrors['passwordError'] = htmlentities($passwordError[0]->getMessage());
+        // }
+        if(count($firstnameError) > 0) {
+            $formErrors['firtnameError'] = htmlentities($firstnameError[0]->getMessage());
+        }       
+        if(count($lastnameError) > 0) {
+            $formErrors['lastnameError'] = htmlentities($lastnameError[0]->getMessage());
+        }
+        if(count($emailError) > 0) {
+            $formErrors['emailError'] = htmlentities($emailError[0]->getMessage());
+        }
+
+        if($formErrors) { 
+
+            $serializer = SerializerBuilder::create()->build();
+
+            $jsonContent = $serializer->serialize($formErrors, 'json'); 
+        
+            return new Response($jsonContent);
+        }
 
         $em->flush();
 
-        return new Response('true');
+         return new Response('true');
     }
 
     /**
@@ -226,6 +287,20 @@ class UserController extends AbstractController
         $serializer = SerializerBuilder::create()->build();
         $accent->getUserAccents($user);
         $jsonContent = $serializer->serialize($user, 'json');
+
+        return new Response($jsonContent);    
+    }
+
+    /**
+     * @Route("/user/ranking", name="get_user_rank")
+     */
+    public function getUserRank(TokenDecoder $tokenDecoder, UserRepository $userRepo, AccentEncoder $accent, Request $request) {
+
+        $rank = $userRepo->getRank();
+
+        $serializer = SerializerBuilder::create()->build();
+      //  $accent->getUserAccents($rank->getUsername());
+        $jsonContent = $serializer->serialize($rank, 'json');
 
         return new Response($jsonContent);    
     }

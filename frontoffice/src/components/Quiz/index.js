@@ -205,7 +205,7 @@ class Quiz extends React.Component {
       isQuizStart,
       setQuizStop,
     } = this.props;
-    if (data === undefined || !isQuizStart) return <Redirect to="/" />;
+    if (data.questionsList === undefined || !isQuizStart) return <Redirect to="/" />;
 
     const question = data.questionsList[`step${step}`][questionNumber].title;
 

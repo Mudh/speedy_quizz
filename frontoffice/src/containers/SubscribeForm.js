@@ -15,7 +15,7 @@ import { closeModal } from '../store/reducers/modal';
 const mapStateToProps = state => ({
   lastname: state.subscribeForm.lastname,
   firstname: state.subscribeForm.firstname,
-  nickname: state.subscribeForm.nickname,
+  username: state.subscribeForm.username,
   email: state.subscribeForm.email,
   password: state.subscribeForm.password,
 });

@@ -35,7 +35,7 @@ import {
 const urlVisitor = 'http://127.0.0.1:8000/';
 const urlLoggued = 'http://127.0.0.1:8000/home';
 const urlUserInfos = 'http://127.0.0.1:8000/user/show';
-const urlRanking = 'http://127.0.0.1:8000/ranking';
+const urlRanking = 'http://127.0.0.1:8000/user/ranking';
 const urlLogin = 'http://127.0.0.1:8000/login';
 const urlRegister = 'http://127.0.0.1:8000/register';
 const urlQuiz = 'http://127.0.0.1:8000/quizz';
@@ -101,7 +101,7 @@ const ajax = store => next => action => {
             password: state.subscribeForm.password,
             lastname: state.subscribeForm.lastname,
             firstname: state.subscribeForm.firstname,
-            username: state.subscribeForm.nickname,
+            username: state.subscribeForm.username,
           })
           // succes
           .then(response => {
@@ -123,15 +123,15 @@ const ajax = store => next => action => {
         axios
           .post(urlUpdateProfil, {
             email: state.profilForm.email,
-            // password: state.profilForm.password,
+            //password: state.profilForm.password,
             lastname: state.profilForm.lastname,
             firstname: state.profilForm.firstname,
-            username: state.profilForm.nickname,
-            description: state.profilForm.nickname,
+            username: state.profilForm.username,
+            description: state.profilForm.description,
           })
           // succes
           .then(response => {
-            // store.dispatch(reloadPlayerInfos());
+             store.dispatch(reloadPlayerInfos());
           })
           // echec
           .catch(error => {
@@ -179,7 +179,7 @@ const ajax = store => next => action => {
           .get(urlRanking)
           // succes
           .then(response => {
-            console.log(ranking);
+            console.log(response);
           })
           // echec
           .catch(error => {

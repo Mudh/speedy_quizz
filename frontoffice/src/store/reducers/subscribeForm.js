@@ -12,7 +12,7 @@ export const REMOVE_SUCCESS = 'REMOVE_SUCCESS';
 const initialState = {
   lastname: '',
   firstname: '',
-  nickname: '',
+  username: '',
   email: '',
   password: '',
   success: false,
@@ -43,7 +43,7 @@ export default (state = initialState, action = {}) => {
         ...state,
         lastname: '',
         firstname: '',
-        nickname: '',
+        username: '',
         email: '',
         password: '',
       };

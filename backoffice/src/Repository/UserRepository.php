@@ -19,6 +19,15 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function getRank() {
+        $queryBuilder = $this->createQueryBuilder('user')
+            ->select('user.username', 'user.nb_points')
+            ->orderBy('user.nb_points','DESC')
+            ->getQuery();
+
+            return $queryBuilder->execute();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
