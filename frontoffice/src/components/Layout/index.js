@@ -37,7 +37,7 @@ class Layout extends React.Component {
     if (
       location.pathname !== '/quiz' &&
       isQuizStart &&
-      history.action === 'POP'
+      (history.action === 'POP' || history.action === 'PUSH')
     ) {
       setQuizStop();
     }
