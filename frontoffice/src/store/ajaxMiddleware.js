@@ -131,7 +131,7 @@ const ajax = store => next => action => {
           })
           // succes
           .then(response => {
-             store.dispatch(reloadPlayerInfos());
+            store.dispatch(reloadPlayerInfos());
           })
           // echec
           .catch(error => {

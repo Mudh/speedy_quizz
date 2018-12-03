@@ -205,7 +205,12 @@ class Quiz extends React.Component {
       isQuizStart,
       setQuizStop,
     } = this.props;
+<<<<<<< Updated upstream
     if (data.questionsList === undefined || !isQuizStart) return <Redirect to="/" />;
+=======
+    if (data.questionsList === undefined || !isQuizStart)
+      return <Redirect to="/" />;
+>>>>>>> Stashed changes
 
     const question = data.questionsList[`step${step}`][questionNumber].title;
 

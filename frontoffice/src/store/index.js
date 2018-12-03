@@ -17,13 +17,14 @@ import ajax from './ajaxMiddleware';
 const appliedMiddleware = applyMiddleware(ajax);
 
 // devTools
-const devTools =
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+const devTools = window.__REDUX_DEVTOOLS_EXTENSION__
+  ? [window.__REDUX_DEVTOOLS_EXTENSION__()]
+  : [];
 
 // compose : nécessaire avec les devTools
 const enhancers = compose(
   appliedMiddleware,
-  devTools,
+  ...devTools,
 );
 
 // Store

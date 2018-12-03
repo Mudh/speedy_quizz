@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Home from 'src/components/Home';
 
 // action creators
-import { openModal } from '../store/reducers/modal';
+import { openModal, animateModal } from '../store/reducers/modal';
 import { loadHomeVisitor } from '../store/reducers/homeVisitor';
 
 // === State (données) ===
@@ -23,9 +23,11 @@ const mapDispatchToProps = dispatch => ({
   },
   openLogin: () => {
     dispatch(openModal('login'));
+    dispatch(animateModal('bounce'));
   },
   openSubscribe: () => {
     dispatch(openModal('subscribe'));
+    dispatch(animateModal('bounce'));
   },
 });
 

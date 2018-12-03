@@ -4,6 +4,8 @@
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const SWITCH_MODAL = 'SWITCH_MODAL';
+export const ANIMATE_MODAL = 'ANIMATE_MODAL';
+export const RESET_ANIMATE_MODAL = 'RESET_ANIMATE_MODAL';
 
 // initial state
 const initialState = {
@@ -15,6 +17,8 @@ const initialState = {
   expired: false,
   launch: false,
   gameover: false,
+  opacity: false,
+  bounce: false,
 };
 
 export default (state = initialState, action = {}) => {
@@ -38,6 +42,19 @@ export default (state = initialState, action = {}) => {
         [action.modalToOpen]: true,
       };
 
+    case ANIMATE_MODAL:
+      return {
+        ...state,
+        [action.animation]: true,
+      };
+
+    case RESET_ANIMATE_MODAL:
+      return {
+        ...state,
+        opacity: false,
+        bounce: false,
+      };
+
     default:
       return state;
   }
@@ -58,4 +75,13 @@ export const switchModal = (modalToClose, modalToOpen) => ({
   type: SWITCH_MODAL,
   modalToClose,
   modalToOpen,
+});
+
+export const animateModal = animation => ({
+  type: ANIMATE_MODAL,
+  animation,
+});
+
+export const resetAnimateModal = () => ({
+  type: RESET_ANIMATE_MODAL,
 });

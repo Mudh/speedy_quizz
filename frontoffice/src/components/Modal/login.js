@@ -16,9 +16,20 @@ import './modal.scss';
 /**
  * Code
  */
-const Login = ({ closeLogin, switchToSubscribe, onSubmitLogin }) => {
+const Login = ({
+  closeLogin,
+  switchToSubscribe,
+  onSubmitLogin,
+  isOpacityAnimate,
+  isBounceAnimate,
+}) => {
   return (
-    <ModalLayout modalClass="login" onClick={closeLogin}>
+    <ModalLayout
+      opacity={isOpacityAnimate}
+      bounce={isBounceAnimate}
+      modalClass="login"
+      onClick={closeLogin}
+    >
       <Button btnClass="close" btnText="+" onClick={closeLogin} />
       <LoginForm />
       <span>

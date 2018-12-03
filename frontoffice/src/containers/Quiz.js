@@ -89,6 +89,7 @@ const mapDispatchToProps = dispatch => ({
   },
   setQuizStop: () => {
     dispatch(setQuizStop());
+    dispatch(userUpdateEndgame());
     dispatch(openModal('score'));
     dispatch(userUpdateEndgame());
     dispatch(resetOwnedPoints());

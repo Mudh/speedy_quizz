@@ -32,14 +32,25 @@ class Subscribe extends React.Component {
   };
 
   render() {
-    const { closeSubscribe, switchToLogin, isSubscribeSuccess } = this.props;
+    const {
+      closeSubscribe,
+      switchToLogin,
+      isSubscribeSuccess,
+      isOpacityAnimate,
+      isBounceAnimate,
+    } = this.props;
 
     const switchButtonText = !isSubscribeSuccess
       ? 'valider'
       : 'connectez-vous !';
 
     return (
-      <ModalLayout modalClass="subscribe" onClick={closeSubscribe}>
+      <ModalLayout
+        modalClass="subscribe"
+        opacity={isOpacityAnimate}
+        bounce={isBounceAnimate}
+        onClick={closeSubscribe}
+      >
         <Button btnClass="close" btnText="+" onClick={closeSubscribe} />
         {!isSubscribeSuccess && <SubscribeForm />}
         {!isSubscribeSuccess && (

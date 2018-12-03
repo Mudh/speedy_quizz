@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 /**
  * Local import
  */
@@ -14,18 +15,26 @@ import './modal.scss';
 /**
  * Code
  */
-const ModalLayout = ({ modalClass, onClick, children }) => (
-  <Modal>
-    <span className="modal__overlay" onClick={onClick} />
-    <div className={`modal__wrapper modal__${modalClass}`}>
-      <div className="modal__form">{children}</div>
-    </div>
-  </Modal>
-);
+const ModalLayout = ({ modalClass, onClick, opacity, bounce, children }) => {
+  const modalClassName = classNames(`modal__wrapper modal__${modalClass}`, {
+    isOpacityAnimate: opacity,
+    isBounceAnimate: bounce,
+  });
+  return (
+    <Modal>
+      <span className="modal__overlay" onClick={onClick} />
+      <div className={modalClassName}>
+        <div className="modal__form">{children}</div>
+      </div>
+    </Modal>
+  );
+};
 
 ModalLayout.propTypes = {
   modalClass: PropTypes.string.isRequired,
   onClick: PropTypes.func,
+  opacity: PropTypes.bool.isRequired,
+  bounce: PropTypes.bool.isRequired,
 };
 /**
  * Export

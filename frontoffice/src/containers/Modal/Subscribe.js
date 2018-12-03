@@ -5,7 +5,12 @@ import { connect } from 'react-redux';
 import Subscribe from '../../components/Modal/subscribe';
 
 // action creators
-import { closeModal, switchModal } from '../../store/reducers/modal';
+import {
+  closeModal,
+  switchModal,
+  resetAnimateModal,
+  animateModal,
+} from '../../store/reducers/modal';
 import {
   onSubmitSubscribe,
   emptyPassword,
@@ -23,11 +28,14 @@ const mapDispatchToProps = dispatch => ({
     dispatch(emptyPassword());
   },
   onSubmitSubscribe: () => {
+    dispatch(resetAnimateModal());
     dispatch(onSubmitSubscribe());
+    dispatch(animateModal('opacity'));
   },
   closeSubscribe: () => {
     dispatch(closeModal('subscribe'));
     dispatch(emptySubscribe());
+    dispatch(resetAnimateModal());
   },
   switchToLogin: () => {
     dispatch(switchModal('subscribe', 'login'));

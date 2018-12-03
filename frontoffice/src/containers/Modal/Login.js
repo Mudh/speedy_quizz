@@ -5,7 +5,12 @@ import { connect } from 'react-redux';
 import Login from '../../components/Modal/login';
 
 // action creators
-import { closeModal, switchModal } from '../../store/reducers/modal';
+import {
+  closeModal,
+  switchModal,
+  resetAnimateModal,
+  animateModal,
+} from '../../store/reducers/modal';
 import { onSubmitLogin } from '../../store/reducers/loginForm';
 import {
   removeSuccess,
@@ -16,6 +21,8 @@ import { emptyLogin } from '../../store/reducers/loginForm';
 // === State (données) ===
 const mapStateToProps = state => ({
   isAuthenticated: state.loginForm.isAuthenticated,
+  isOpacityAnimate: state.modal.opacity,
+  isBounceAnimate: state.modal.bounce,
 });
 
 // === Dispatch (actions) ===
@@ -25,9 +32,11 @@ const mapDispatchToProps = dispatch => ({
     dispatch(closeModal('login'));
     dispatch(emptyLogin());
     dispatch(emptySubscribe());
+    dispatch(resetAnimateModal());
   },
   switchToSubscribe: () => {
     dispatch(switchModal('login', 'subscribe'));
+    dispatch(animateModal('opacity'));
   },
   onSubmitLogin: () => {
     dispatch(onSubmitLogin());
@@ -35,6 +44,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(closeModal('login'));
     dispatch(emptyLogin());
     dispatch(emptySubscribe());
+    dispatch(resetAnimateModal());
   },
 });
 
