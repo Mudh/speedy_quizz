@@ -35,6 +35,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(resetAnimateModal());
   },
   switchToSubscribe: () => {
+    dispatch(resetAnimateModal());
     dispatch(switchModal('login', 'subscribe'));
     dispatch(animateModal('opacity'));
   },

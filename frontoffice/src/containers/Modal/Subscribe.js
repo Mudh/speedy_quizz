@@ -20,6 +20,8 @@ import {
 // === State (données) ===
 const mapStateToProps = state => ({
   isSubscribeSuccess: state.subscribeForm.success,
+  isOpacityAnimate: state.modal.opacity,
+  isBounceAnimate: state.modal.bounce,
 });
 
 // === Dispatch (actions) ===
@@ -28,9 +30,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch(emptyPassword());
   },
   onSubmitSubscribe: () => {
-    dispatch(resetAnimateModal());
     dispatch(onSubmitSubscribe());
-    dispatch(animateModal('opacity'));
+    dispatch(resetAnimateModal());
   },
   closeSubscribe: () => {
     dispatch(closeModal('subscribe'));
@@ -40,6 +41,8 @@ const mapDispatchToProps = dispatch => ({
   switchToLogin: () => {
     dispatch(switchModal('subscribe', 'login'));
     dispatch(emptySubscribe());
+    dispatch(resetAnimateModal());
+    dispatch(animateModal('opacity'));
   },
 });
 

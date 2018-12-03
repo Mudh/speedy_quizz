@@ -33,7 +33,7 @@ const ModalLayout = ({ modalClass, onClick, opacity, bounce, children }) => {
 ModalLayout.propTypes = {
   modalClass: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  opacity: PropTypes.bool.isRequired,
+  opacity: PropTypes.bool,
   bounce: PropTypes.bool.isRequired,
 };
 /**

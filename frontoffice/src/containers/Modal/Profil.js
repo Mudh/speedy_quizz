@@ -5,22 +5,25 @@ import { connect } from 'react-redux';
 import Profil from '../../components/Modal/profil';
 
 // action creators
-import { closeModal } from '../../store/reducers/modal';
+import { closeModal, resetAnimateModal } from '../../store/reducers/modal';
 import { onSubmitProfil } from '../../store/reducers/profilForm';
 
 // === State (données) ===
 const mapStateToProps = state => ({
   isAuthenticated: state.loginForm.isAuthenticated,
+  isBounceAnimate: state.modal.bounce,
 });
 
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({
   closeProfil: () => {
     dispatch(closeModal('profil'));
+    dispatch(resetAnimateModal());
   },
   onSubmitProfil: () => {
     dispatch(onSubmitProfil());
     dispatch(closeModal('profil'));
+    dispatch(resetAnimateModal());
   },
 });
 

@@ -27,7 +27,7 @@ const faq = () => (
         points en cours. Evidemment, plus le joueur va loin, plus il gagne de
         points. Mais UNE mauvaise réponse et tous les points sont perdus !
       </p>
-      <p>
+      <span>
         Le quizz est limité dans le temps. Si le joueur n’a pas fini de répondre
         à l’ensemble des questions des 3 étapes à la fin du temps imparti, alors
         il perd la partie. Pour s’aider, le joueur peut faire appel à 4 jokers :
@@ -40,7 +40,7 @@ const faq = () => (
           </li>
           <li>Timer+ : Rajoute du temps au chronomètre </li>
         </ul>
-      </p>
+      </span>
       <h3>Un quizz est composé de 3 étapes :</h3>
       <ul>
         <li>

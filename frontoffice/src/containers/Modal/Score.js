@@ -5,19 +5,19 @@ import { connect } from 'react-redux';
 import Score from '../../components/Modal/score';
 
 // action creators
-import { closeModal } from '../../store/reducers/modal';
-import { userUpdateEndgame } from '../../store/reducers/sideRightLog';
+import { closeModal, resetAnimateModal } from '../../store/reducers/modal';
 
 // === State (données) ===
 const mapStateToProps = state => ({
   totalOwnedPoints: state.sideRightLog.totalOwnedPoints,
+  isBounceAnimate: state.modal.bounce,
 });
 
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({
   closeScore: () => {
     dispatch(closeModal('score'));
-    // dispatch(userUpdateEndgame());
+    dispatch(resetAnimateModal());
   },
 });
 

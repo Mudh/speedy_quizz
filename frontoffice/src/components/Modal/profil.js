@@ -16,8 +16,12 @@ import './modal.scss';
 /**
  * Code
  */
-const Profil = ({ closeProfil, onSubmitProfil }) => (
-  <ModalLayout modalClass="profil" onClick={closeProfil}>
+const Profil = ({ closeProfil, onSubmitProfil, isBounceAnimate }) => (
+  <ModalLayout
+    bounce={isBounceAnimate}
+    modalClass="profil"
+    onClick={closeProfil}
+  >
     <Button btnClass="close" btnText="+" onClick={closeProfil} />
     <ProfilForm />
     <Button btnClass="primary" btnText="valider" onClick={onSubmitProfil} />
@@ -27,6 +31,7 @@ const Profil = ({ closeProfil, onSubmitProfil }) => (
 Profil.propTypes = {
   closeProfil: PropTypes.func.isRequired,
   onSubmitProfil: PropTypes.func.isRequired,
+  isBounceAnimate: PropTypes.bool.isRequired,
 };
 /**
  * Export

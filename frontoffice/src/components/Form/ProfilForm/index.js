@@ -74,7 +74,7 @@ class ProfilForm extends React.Component {
             className="form-input"
             name="username"
             type="text"
-            placeholder="Votre prénom"
+            placeholder="Votre pseudo"
             autoComplete="off"
             value={username}
             onChange={this.handleChange}

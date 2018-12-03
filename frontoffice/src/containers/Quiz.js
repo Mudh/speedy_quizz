@@ -26,7 +26,7 @@ import {
   looseAllPoints,
   userUpdateEndgame,
 } from '../store/reducers/sideRightLog';
-import { openModal } from '../store/reducers/modal';
+import { openModal, animateModal } from '../store/reducers/modal';
 
 // === State (données) ===
 const mapStateToProps = state => ({
@@ -90,6 +90,7 @@ const mapDispatchToProps = dispatch => ({
   setQuizStop: () => {
     dispatch(setQuizStop());
     dispatch(userUpdateEndgame());
+    dispatch(animateModal('bounce'));
     dispatch(openModal('score'));
     dispatch(userUpdateEndgame());
     dispatch(resetOwnedPoints());

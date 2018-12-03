@@ -74,6 +74,8 @@ class Subscribe extends React.Component {
 Subscribe.propTypes = {
   closeSubscribe: PropTypes.func.isRequired,
   switchToLogin: PropTypes.func.isRequired,
+  isOpacityAnimate: PropTypes.bool.isRequired,
+  isBounceAnimate: PropTypes.bool.isRequired,
 };
 /**
  * Export

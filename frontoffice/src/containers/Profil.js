@@ -6,7 +6,11 @@ import Profil from 'src/components/Profil';
 
 // Actions creators
 import { disconnect } from '../store/reducers/loginForm';
-import { openModal } from '../store/reducers/modal';
+import {
+  openModal,
+  resetAnimateModal,
+  animateModal,
+} from '../store/reducers/modal';
 
 // === State (données) ===
 const mapStateToProps = state => ({
@@ -22,10 +26,8 @@ const mapStateToProps = state => ({
 
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({
-  onClickDisconnect: () => {
-    dispatch(disconnect());
-  },
   openProfil: () => {
+    dispatch(animateModal('bounce'));
     dispatch(openModal('profil'));
   },
   openAddQuestion: () => {

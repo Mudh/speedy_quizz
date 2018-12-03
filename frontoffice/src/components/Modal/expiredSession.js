@@ -19,7 +19,7 @@ const ExpiredSession = ({ closeExpired, openLogin }) => (
   <ModalLayout modalClass="expired" onClick={closeExpired}>
     <Button btnClass="close" btnText="+" onClick={closeExpired} />
     <p>
-      Votre session a expiré, <br /> voulez-vous reconnecter ?
+      Votre session a expiré, <br /> reconnectez-vous !
     </p>
     <Button btnClass="primary" btnText="Se reconnecter" onClick={openLogin} />
   </ModalLayout>
