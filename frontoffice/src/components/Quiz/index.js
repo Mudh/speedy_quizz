@@ -50,7 +50,6 @@ class Quiz extends React.Component {
       questionNumber,
       nextQuestion,
       updateScore,
-      openScore,
       onChangeAnswer,
       setQuizStop,
       looseAllPoints,
@@ -204,6 +203,7 @@ class Quiz extends React.Component {
       filteredQuestion,
       isQuizStart,
       setQuizStop,
+      totalOwnedPoints,
     } = this.props;
     if (data.questionsList === undefined || !isQuizStart)
       return <Redirect to="/" />;

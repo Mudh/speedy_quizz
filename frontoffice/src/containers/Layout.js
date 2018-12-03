@@ -16,6 +16,7 @@ const mapStateToProps = state => ({
   isExpiredOpen: state.modal.expired,
   isQuizStart: state.quiz.isQuizStart,
   themes: state.homeMembre.themes,
+  totalPoints: state.sideRightLog.totalPoints,
 });
 
 // === Dispatch (actions) ===

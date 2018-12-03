@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import Home from 'src/components/HomeMembre';
 
 // action creators
-import { setQuizStart } from '../store/reducers/quiz';
 import { chooseThemeLevel } from '../store/reducers/homeMembre';
-import { setStartTimer } from '../store/reducers/sideRightLog';
+import { resetTotalOwnedPoints } from '../store/reducers/sideRightLog';
 import { openModal } from '../store/reducers/modal';
 
 // === State (données) ===
@@ -20,9 +19,8 @@ const mapStateToProps = state => ({
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({
   startQuiz: (theme, level) => {
-    dispatch(setQuizStart());
+    dispatch(resetTotalOwnedPoints());
     dispatch(chooseThemeLevel(theme, level));
-    dispatch(setStartTimer());
     dispatch(openModal('launch'));
   },
 });

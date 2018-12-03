@@ -8,6 +8,7 @@ export const USER_UPDATE_ENDGAME = 'USER_UPDATE_ENDGAME';
 export const LOOSE_ALL_POINTS = 'LOOSE_ALL_POINTS';
 export const UPDATE_JOKER_COUNT = 'UPDATE_JOKER_COUNT';
 export const RESET_OWNED_POINTS = 'RESET_OWNED_POINTS';
+export const RESET_TOTAL_OWNED_POINTS = 'RESET_TOTAL_OWNED_POINTS';
 export const SET_JOKER_REVIVE = 'SET_JOKER_REVIVE';
 export const SET_JOKER_FIFTY = 'SET_JOKER_FIFTY';
 export const SET_START_TIMER = 'SET_START_TIMER';
@@ -65,7 +66,7 @@ export default (state = initialState, action = {}) => {
         ...state,
         totalPoints: state.totalPoints + action.newPoints,
         ownedPoints: state.ownedPoints + action.newPoints,
-        totalOwnedPoints: state.ownedPoints + action.newPoints,
+        totalOwnedPoints: state.totalOwnedPoints + action.newPoints,
       };
 
     case USER_UPDATE_ENDGAME:
@@ -85,6 +86,13 @@ export default (state = initialState, action = {}) => {
       return {
         ...state,
         ownedPoints: 0,
+      };
+
+    case RESET_TOTAL_OWNED_POINTS:
+      return {
+        ...state,
+        ownedPoints: 0,
+        totalOwnedPoints: 0,
       };
 
     case SET_JOKER_REVIVE:
@@ -167,6 +175,10 @@ export const updateJokerCount = id => ({
 
 export const resetOwnedPoints = () => ({
   type: RESET_OWNED_POINTS,
+});
+
+export const resetTotalOwnedPoints = () => ({
+  type: RESET_TOTAL_OWNED_POINTS,
 });
 
 export const setJokerRevive = () => ({

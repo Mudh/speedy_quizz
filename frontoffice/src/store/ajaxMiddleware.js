@@ -142,13 +142,18 @@ const ajax = store => next => action => {
 
     case RELOAD_PLAYER_INFOS:
       {
+        const state = store.getState();
+
         axios
           .get(urlUserInfos)
           // succes
           .then(response => {
             const userInfos = response.data;
-            store.dispatch(setPlayerInfos(userInfos));
-            store.dispatch(setProfilInfos(userInfos));
+            if (state.sideRightLog.totalPoints <= userInfos.nb_points) {
+              store.dispatch(setPlayerInfos(userInfos));
+              store.dispatch(setProfilInfos(userInfos));
+            }
+            return store.dispatch(setProfilInfos(userInfos));
           })
           // echec
           .catch(error => {
@@ -215,7 +220,7 @@ const ajax = store => next => action => {
           })
           // succes
           .then(response => {
-            console.log('update points', response);
+            // console.log('update points', response);
           })
           // echec
           .catch(error => {

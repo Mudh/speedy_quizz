@@ -41,6 +41,7 @@ const mapStateToProps = state => ({
   revive: state.sideRightLog.revive,
   timer: state.sideRightLog.timer,
   fiftyFifty: state.sideRightLog.fiftyFifty,
+  totalOwnedPoints: state.sideRightLog.totalOwnedPoints,
   ownedPoints: state.sideRightLog.ownedPoints,
   filteredQuestion: state.sideRightLog.filteredQuestion,
   startTimer: state.sideRightLog.startTimer,
@@ -92,8 +93,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(userUpdateEndgame());
     dispatch(animateModal('bounce'));
     dispatch(openModal('score'));
-    dispatch(userUpdateEndgame());
-    dispatch(resetOwnedPoints());
   },
   looseAllPoints: () => {
     dispatch(looseAllPoints());
