@@ -34,7 +34,12 @@ ModalLayout.propTypes = {
   modalClass: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   opacity: PropTypes.bool,
-  bounce: PropTypes.bool.isRequired,
+  bounce: PropTypes.bool,
+};
+
+ModalLayout.defaultProps = {
+  opacity: false,
+  bounce: false,
 };
 /**
  * Export

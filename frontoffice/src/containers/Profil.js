@@ -41,10 +41,4 @@ const ProfilContainer = connect(
   mapDispatchToProps,
 )(Profil);
 
-// Export
-// Ici exceptionnelement avec 'withRouter'
-// car les profilLinks ne s'auto update pas lorqu'ils sont connectés au store
-// et n'appliquent pas la classe css 'is-selected'
-// https://github.com/ReactTraining/react-router/issues/4638
-
 export default ProfilContainer;

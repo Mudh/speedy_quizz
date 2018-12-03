@@ -17,6 +17,12 @@ import './modal.scss';
  * Code
  */
 class Launch extends React.Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+    startQuiz: PropTypes.func.isRequired,
+    setThemeLevel: PropTypes.func.isRequired,
+  };
+
   handleQuizStart = () => {
     const { history, startQuiz } = this.props;
     history.push('/quiz');
@@ -29,7 +35,6 @@ class Launch extends React.Component {
   }
 
   render() {
-    const { closeLaunch } = this.props;
     return (
       <ModalLayout modalClass="launch">
         <p>Prêt pour le Quiz ?</p>
@@ -39,20 +44,12 @@ class Launch extends React.Component {
             btnText="C'est parti !"
             onClick={this.handleQuizStart}
           />
-          <Button
-            btnClass="primary"
-            btnText="Mmmh pas encore..."
-            onClick={closeLaunch}
-          />
         </div>
       </ModalLayout>
     );
   }
 }
 
-Launch.propTypes = {
-  closeLaunch: PropTypes.func.isRequired,
-};
 /**
  * Export
  */
