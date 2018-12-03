@@ -41,8 +41,9 @@ class Layout extends React.Component {
     ) {
       setQuizStop();
     }
-    loadRanking();
-    console.log(history, location);
+    if (location.pathname === '/classement') {
+      loadRanking();
+    }
   }
 
   render() {

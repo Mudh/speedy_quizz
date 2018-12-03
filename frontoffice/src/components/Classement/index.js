@@ -15,23 +15,37 @@ import './classement.scss';
 /**
  * Code
  */
-const Classement = () => {
-  const classements = ['Le nombre de points', 'Le nombre de questions'];
+const Classement = ({ ranking }) => {
   return (
     <Layout layoutClass="classement">
       <h1 className="classement__title">Classements</h1>
       <div className="classement__tables">
-        {classements.map(classement => (
-          <div key={classement} className="table">
-            <div className="table__title">{classement}</div>
-            <ul>
-              <li> nb*** + nickName+name + nb points </li>
-              <li> nb*** + nickName+name + nb points </li>
-              <li> nb*** + nickName+name + nb points </li>
-              <li> nb*** + nickName+name + nb points </li>
-            </ul>
-          </div>
-        ))}
+        <div className="table__title">Le nombre de points</div>
+        <div className="table">
+          <ul>
+            {ranking.map((rank, index) => (
+              <li key={rank.username}>
+                <span>
+                  {index + 1 === 1 ? `${index + 1} er` : `${index + 1} ème`}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <ul>
+            {ranking.map((rank, index) => (
+              <li key={rank.username}>
+                <span>{rank.username}</span>
+              </li>
+            ))}
+          </ul>
+          <ul>
+            {ranking.map((rank, index) => (
+              <li key={rank.username}>
+                <span>{`${rank.nb_points} points`}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </Layout>
   );

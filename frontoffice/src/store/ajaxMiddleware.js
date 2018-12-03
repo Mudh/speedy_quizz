@@ -21,7 +21,7 @@ import {
   setQuizTheme,
 } from '../store/reducers/homeMembre';
 
-import { LOAD_RANKING } from '../store/reducers/classement';
+import { LOAD_RANKING, setRanking } from '../store/reducers/classement';
 
 import {
   SUBMIT_SUBSCRIBE,
@@ -149,7 +149,6 @@ const ajax = store => next => action => {
             const userInfos = response.data;
             store.dispatch(setPlayerInfos(userInfos));
             store.dispatch(setProfilInfos(userInfos));
-            console.log('infos', response);
           })
           // echec
           .catch(error => {
@@ -179,7 +178,7 @@ const ajax = store => next => action => {
           .get(urlRanking)
           // succes
           .then(response => {
-            console.log(response);
+            store.dispatch(setRanking(response.data));
           })
           // echec
           .catch(error => {
