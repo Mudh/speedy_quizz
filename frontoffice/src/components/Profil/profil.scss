@@ -25,17 +25,16 @@
     border-radius: 20px;
     box-shadow: 20px 20px 0 0 rgba($purpleText, 1);
 
-    @media #{$large} {
+    @media #{$xxlarge} {
       padding: rem(30);
-      width: 90%;
+      width: 75%;
     }
   }
 
   &__title {
-    margin-top: rem(50);
+    margin: rem(50) 0;
     font-size: rem(45);
     text-align: center;
-    margin-bottom: 1em;
   }
 
   &__subtitle {
