@@ -1,11 +1,13 @@
 @import '../../styles/functions';
 @import '../../styles/colors';
 @import '../../styles/mediaqueries';
+@import '../../styles/keyframes';
 
 .sideRightLog {
   background: -moz-linear-gradient(-45deg, #f2e346 0%, #fcbd00 100%);
   background: -webkit-linear-gradient(-45deg, #f2e346 0%, #fcbd00 100%);
   background: linear-gradient(135deg, #f2e346 0%, #fcbd00 100%);
+  animation: opacity 0.3s linear forwards;
 
   &__wrapper {
     display: flex;

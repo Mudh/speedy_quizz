@@ -8,6 +8,7 @@ import subscribeForm from './subscribeForm';
 import homeVisitor from './homeVisitor';
 import profilForm from './profilForm';
 import classement from './classement';
+import loader from './loader';
 
 export default combineReducers({
   modal,
@@ -19,4 +20,5 @@ export default combineReducers({
   subscribeForm,
   profilForm,
   classement,
+  loader,
 });

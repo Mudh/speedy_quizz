@@ -6,7 +6,7 @@ import Home from 'src/components/HomeMembre';
 // action creators
 import { chooseThemeLevel } from '../store/reducers/homeMembre';
 import { resetTotalOwnedPoints } from '../store/reducers/sideRightLog';
-import { openModal } from '../store/reducers/modal';
+import { openModal, animateModal } from '../store/reducers/modal';
 
 // === State (données) ===
 const mapStateToProps = state => ({
@@ -21,6 +21,7 @@ const mapDispatchToProps = dispatch => ({
   startQuiz: (theme, level) => {
     dispatch(resetTotalOwnedPoints());
     dispatch(chooseThemeLevel(theme, level));
+    dispatch(animateModal('opacity'));
     dispatch(openModal('launch'));
   },
 });

@@ -21,6 +21,7 @@ class Launch extends React.Component {
     history: PropTypes.object.isRequired,
     startQuiz: PropTypes.func.isRequired,
     setThemeLevel: PropTypes.func.isRequired,
+    isOpacityAnimate: PropTypes.bool.isRequired,
   };
 
   handleQuizStart = () => {
@@ -35,8 +36,9 @@ class Launch extends React.Component {
   }
 
   render() {
+    const { isOpacityAnimate } = this.props;
     return (
-      <ModalLayout modalClass="launch">
+      <ModalLayout opacity={isOpacityAnimate} modalClass="launch">
         <p>Prêt pour le Quiz ?</p>
         <div className="modal__buttons">
           <Button

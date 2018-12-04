@@ -11,7 +11,9 @@ import { setStartTimer } from '../../store/reducers/sideRightLog';
 import { setThemeLevel } from '../../store/reducers/homeMembre';
 
 // === State (données) ===
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  isOpacityAnimate: state.modal.opacity,
+});
 
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({

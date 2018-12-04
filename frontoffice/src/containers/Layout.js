@@ -17,6 +17,8 @@ const mapStateToProps = state => ({
   isQuizStart: state.quiz.isQuizStart,
   themes: state.homeMembre.themes,
   totalPoints: state.sideRightLog.totalPoints,
+  isLoading: state.loader.isLoading,
+  ranking: state.classement.ranking,
 });
 
 // === Dispatch (actions) ===

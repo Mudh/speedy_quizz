@@ -45,7 +45,9 @@ const App = () => {
             <Route exact path="/profil" component={Profil} />
             <Route exact path="/quiz" component={Quiz} />
             <Route
-              render={() => <div className="construc">404 en construction</div>}
+              render={() => (
+                <div className="construc">404 mauvaise route !!</div>
+              )}
             />
           </Switch>
         </div>

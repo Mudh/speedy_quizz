@@ -1,5 +1,28 @@
+@import '../../styles/colors';
+@import '../../styles/keyframes';
+
 .layout {
   background: url('../../assets/img/main_bg_pattern.png') repeat center
     center/7px;
   height: 100%;
+
+  &__main {
+    animation: opacity 0.2s linear forwards;
+  }
+
+  &__loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(darken($purpleText, 25), 1);
+
+    div > div {
+      background-color: $yellowColor;
+    }
+  }
 }

@@ -27,10 +27,13 @@ import {
   SUBMIT_SUBSCRIBE,
   toggleSubscribeSuccess,
 } from '../store/reducers/subscribeForm';
+
 import {
   LOAD_HOME_VISITOR,
   setHomeVisitor,
 } from '../store/reducers/homeVisitor';
+
+import { isLoading } from '../store/reducers/loader';
 
 const urlVisitor = 'http://127.0.0.1:8000/';
 const urlLoggued = 'http://127.0.0.1:8000/home';
@@ -50,12 +53,15 @@ const ajax = store => next => action => {
   switch (action.type) {
     case LOAD_HOME_VISITOR:
       {
+        store.dispatch(isLoading(true));
+
         axios
           .get(urlVisitor)
           // succes
           .then(response => {
             const homeInfos = response.data;
             store.dispatch(setHomeVisitor(homeInfos));
+            store.dispatch(isLoading(false));
           })
           // echec
           .catch(error => {
@@ -67,6 +73,7 @@ const ajax = store => next => action => {
     case SUBMIT_LOGIN:
       {
         const state = store.getState();
+        store.dispatch(isLoading(true));
 
         axios
           .post(urlLogin, {
@@ -83,6 +90,7 @@ const ajax = store => next => action => {
 
             store.dispatch(setCurrentUser(jwt.decode(token)));
             store.dispatch(setPlayerInfos(userInfos));
+            store.dispatch(isLoading(false));
           })
           // echec
           .catch(error => {
@@ -95,6 +103,7 @@ const ajax = store => next => action => {
       {
         const state = store.getState();
 
+        store.dispatch(isLoading(true));
         axios
           .post(urlRegister, {
             email: state.subscribeForm.email,
@@ -107,6 +116,7 @@ const ajax = store => next => action => {
           .then(response => {
             if (response.data.success_message === 'Thank you for registering') {
               store.dispatch(toggleSubscribeSuccess());
+              store.dispatch(isLoading(false));
             }
           })
           // echec
@@ -119,6 +129,7 @@ const ajax = store => next => action => {
     case SUBMIT_PROFIL:
       {
         const state = store.getState();
+        store.dispatch(isLoading(true));
 
         axios
           .post(urlUpdateProfil, {
@@ -132,6 +143,7 @@ const ajax = store => next => action => {
           // succes
           .then(response => {
             store.dispatch(reloadPlayerInfos());
+            store.dispatch(isLoading(false));
           })
           // echec
           .catch(error => {
@@ -143,6 +155,7 @@ const ajax = store => next => action => {
     case RELOAD_PLAYER_INFOS:
       {
         const state = store.getState();
+        store.dispatch(isLoading(true));
 
         axios
           .get(urlUserInfos)
@@ -152,8 +165,11 @@ const ajax = store => next => action => {
             if (state.sideRightLog.totalPoints <= userInfos.nb_points) {
               store.dispatch(setPlayerInfos(userInfos));
               store.dispatch(setProfilInfos(userInfos));
+              store.dispatch(isLoading(false));
+            } else {
+              store.dispatch(setProfilInfos(userInfos));
+              store.dispatch(isLoading(false));
             }
-            return store.dispatch(setProfilInfos(userInfos));
           })
           // echec
           .catch(error => {
@@ -164,11 +180,14 @@ const ajax = store => next => action => {
 
     case LOAD_QUIZ_THEME:
       {
+        store.dispatch(isLoading(true));
+
         axios
           .get(urlLoggued)
           // succes
           .then(response => {
             store.dispatch(setQuizTheme(response.data));
+            store.dispatch(isLoading(false));
           })
           // echec
           .catch(error => {
@@ -179,11 +198,14 @@ const ajax = store => next => action => {
 
     case LOAD_RANKING:
       {
+        store.dispatch(isLoading(true));
+
         axios
           .get(urlRanking)
           // succes
           .then(response => {
             store.dispatch(setRanking(response.data));
+            store.dispatch(isLoading(false));
           })
           // echec
           .catch(error => {
@@ -195,6 +217,7 @@ const ajax = store => next => action => {
     case SET_THEME_LEVEL:
       {
         const state = store.getState();
+        store.dispatch(isLoading(true));
         axios
           .post(urlQuiz, {
             theme: state.homeMembre.theme,
@@ -203,6 +226,7 @@ const ajax = store => next => action => {
           // succes
           .then(response => {
             store.dispatch(setQuizDatas(response.data));
+            store.dispatch(isLoading(false));
           })
           // echec
           .catch(error => {
@@ -219,9 +243,7 @@ const ajax = store => next => action => {
             points: state.sideRightLog.totalPoints,
           })
           // succes
-          .then(response => {
-            // console.log('update points', response);
-          })
+          .then(() => {})
           // echec
           .catch(error => {
             console.error(error);

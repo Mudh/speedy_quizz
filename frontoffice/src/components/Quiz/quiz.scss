@@ -1,6 +1,7 @@
 @import '../../styles/colors';
 @import '../../styles/functions';
 @import '../../styles/mediaqueries';
+@import '../../styles/keyframes';
 
 .quiz {
   display: flex;
@@ -103,6 +104,7 @@
     width: 100%;
     font-size: rem(23);
     color: $purpleText;
+    animation: opacity 0.5s linear forwards;
 
     input {
       position: absolute;
