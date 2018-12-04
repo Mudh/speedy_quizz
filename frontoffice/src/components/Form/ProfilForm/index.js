@@ -120,7 +120,7 @@ class ProfilForm extends React.Component {
             autoComplete="off"
             value={description}
             onChange={this.handleChange}
-            rows="15"
+            rows="12"
           />
         </fieldset>
       </form>
