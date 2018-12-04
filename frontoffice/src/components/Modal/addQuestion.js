@@ -16,8 +16,16 @@ import './modal.scss';
 /**
  * Code
  */
-const AddQuestion = ({ closeAddQuestion, onSubmitAddQuestion }) => (
-  <ModalLayout modalClass="add-question" onClick={closeAddQuestion}>
+const AddQuestion = ({
+  closeAddQuestion,
+  onSubmitAddQuestion,
+  isBounceAnimate,
+}) => (
+  <ModalLayout
+    bounce={isBounceAnimate}
+    modalClass="add-question"
+    onClick={closeAddQuestion}
+  >
     <Button btnClass="close" btnText="+" onClick={closeAddQuestion} />
     <AddQuestionForm />
     <Button

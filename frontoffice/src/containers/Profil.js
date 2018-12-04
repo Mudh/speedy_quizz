@@ -4,13 +4,7 @@ import { connect } from 'react-redux';
 // composant
 import Profil from 'src/components/Profil';
 
-// Actions creators
-import { disconnect } from '../store/reducers/loginForm';
-import {
-  openModal,
-  resetAnimateModal,
-  animateModal,
-} from '../store/reducers/modal';
+import { openModal, animateModal } from '../store/reducers/modal';
 
 // === State (données) ===
 const mapStateToProps = state => ({
@@ -31,6 +25,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(openModal('profil'));
   },
   openAddQuestion: () => {
+    dispatch(animateModal('bounce'));
     dispatch(openModal('addQuestion'));
   },
 });

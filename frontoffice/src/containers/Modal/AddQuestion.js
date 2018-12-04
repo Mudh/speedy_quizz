@@ -5,17 +5,19 @@ import { connect } from 'react-redux';
 import AddQuestion from '../../components/Modal/addQuestion';
 
 // action creators
-import { closeModal } from '../../store/reducers/modal';
+import { closeModal, resetAnimateModal } from '../../store/reducers/modal';
 
 // === State (données) ===
 const mapStateToProps = state => ({
   isAuthenticated: state.loginForm.isAuthenticated,
+  isBounceAnimate: state.modal.bounce,
 });
 
 // === Dispatch (actions) ===
 const mapDispatchToProps = dispatch => ({
   closeAddQuestion: () => {
     dispatch(closeModal('addQuestion'));
+    dispatch(resetAnimateModal());
   },
   onSubmitAddQuestion: () => {
     // dispatch(onSubmitAddQuestion());
