@@ -217,7 +217,6 @@ const ajax = store => next => action => {
     case SET_THEME_LEVEL:
       {
         const state = store.getState();
-        store.dispatch(isLoading(true));
         axios
           .post(urlQuiz, {
             theme: state.homeMembre.theme,
@@ -226,7 +225,6 @@ const ajax = store => next => action => {
           // succes
           .then(response => {
             store.dispatch(setQuizDatas(response.data));
-            store.dispatch(isLoading(false));
           })
           // echec
           .catch(error => {
