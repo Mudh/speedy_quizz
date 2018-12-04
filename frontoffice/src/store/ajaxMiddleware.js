@@ -70,6 +70,24 @@ const ajax = store => next => action => {
       }
       break;
 
+    case LOAD_QUIZ_THEME:
+      {
+        store.dispatch(isLoading(true));
+
+        axios
+          .get(urlLoggued)
+          // succes
+          .then(response => {
+            store.dispatch(setQuizTheme(response.data));
+            store.dispatch(isLoading(false));
+          })
+          // echec
+          .catch(error => {
+            console.error(error);
+          });
+      }
+      break;
+
     case SUBMIT_LOGIN:
       {
         const state = store.getState();
@@ -170,24 +188,6 @@ const ajax = store => next => action => {
               store.dispatch(setProfilInfos(userInfos));
               store.dispatch(isLoading(false));
             }
-          })
-          // echec
-          .catch(error => {
-            console.error(error);
-          });
-      }
-      break;
-
-    case LOAD_QUIZ_THEME:
-      {
-        store.dispatch(isLoading(true));
-
-        axios
-          .get(urlLoggued)
-          // succes
-          .then(response => {
-            store.dispatch(setQuizTheme(response.data));
-            store.dispatch(isLoading(false));
           })
           // echec
           .catch(error => {

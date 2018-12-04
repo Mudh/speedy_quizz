@@ -1,6 +1,7 @@
 @import '../../styles/colors';
 @import '../../styles/functions';
 @import '../../styles/mediaqueries';
+@import '../../styles/keyframes';
 
 .homeMember {
   display: flex;
@@ -37,6 +38,7 @@
     align-items: center;
     flex-direction: column;
     margin: 0 rem(10) rem(105);
+    animation: opacity 0.5s linear forwards;
 
     &__title {
       font-size: rem(25);
