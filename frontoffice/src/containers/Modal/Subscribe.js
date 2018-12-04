@@ -16,6 +16,7 @@ import {
   emptyPassword,
   emptySubscribe,
 } from '../../store/reducers/subscribeForm';
+import { emptyLogin } from '../../store/reducers/loginForm';
 
 // === State (données) ===
 const mapStateToProps = state => ({
@@ -25,6 +26,7 @@ const mapStateToProps = state => ({
 });
 
 // === Dispatch (actions) ===
+
 const mapDispatchToProps = dispatch => ({
   emptyPassword: () => {
     dispatch(emptyPassword());
@@ -36,11 +38,18 @@ const mapDispatchToProps = dispatch => ({
   closeSubscribe: () => {
     dispatch(closeModal('subscribe'));
     dispatch(emptySubscribe());
+    dispatch(emptyLogin());
     dispatch(resetAnimateModal());
   },
   switchToLogin: () => {
     dispatch(switchModal('subscribe', 'login'));
     dispatch(emptySubscribe());
+    dispatch(emptyLogin());
+    dispatch(resetAnimateModal());
+    dispatch(animateModal('opacity'));
+  },
+  switchToLoginSuccess: () => {
+    dispatch(switchModal('subscribe', 'login'));
     dispatch(resetAnimateModal());
     dispatch(animateModal('opacity'));
   },

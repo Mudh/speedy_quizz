@@ -7,7 +7,7 @@ import LoginForm from '../components/Form/LoginForm';
 // action creators
 import { onChangeInput, onSubmitLogin } from '../store/reducers/loginForm';
 import { closeModal } from '../store/reducers/modal';
-import { removeSuccess } from '../store/reducers/subscribeForm';
+import { removeSuccess, emptySubscribe } from '../store/reducers/subscribeForm';
 import { emptyLogin } from '../store/reducers/loginForm';
 
 // === State (données) ===
@@ -23,6 +23,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(removeSuccess());
     dispatch(closeModal('login'));
     dispatch(emptyLogin());
+    dispatch(emptySubscribe());
   },
   onChangeInput: (name, value) => {
     dispatch(onChangeInput(name, value));

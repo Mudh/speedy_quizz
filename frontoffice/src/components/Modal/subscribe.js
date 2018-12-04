@@ -19,16 +19,18 @@ import './modal.scss';
 class Subscribe extends React.Component {
   handleButtonFunctions = () => {
     const {
-      switchToLogin,
+      switchToLoginSuccess,
       isSubscribeSuccess,
       onSubmitSubscribe,
       emptyPassword,
     } = this.props;
     if (isSubscribeSuccess) {
       emptyPassword();
-      switchToLogin();
+      switchToLoginSuccess();
+    } else {
+      onSubmitSubscribe();
+      emptyPassword();
     }
-    return onSubmitSubscribe;
   };
 
   render() {
