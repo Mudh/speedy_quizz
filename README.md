@@ -3,7 +3,8 @@
 ## Introduction
 
 Speedy quizz is a course project made by 4 students of O'clock school during 1 month.
-Malika ([OjTouch](https://github.com/ojtouch)), Eddy ([EddyVe](https://github.com/EddyVe)), Flo ([Flo68](https://github.com/Flo68)) and john ([Mudh](https://github.com/Mudh))
+
+Malika ([OjTouch](https://github.com/ojtouch)), Eddy ([EddyVe](https://github.com/EddyVe)), Flo ([Flo68](https://github.com/Flo68)) and john ([Mudh](https://github.com/Mudh)).
 
 It's a solo quiz game in 3 steps with a timing difficulty. The player can stop at any time and win its current gained points. Obviously, the more the player goes the more he gain points ! But ONE bad answer or the timer endings and the player loose everything !
 
