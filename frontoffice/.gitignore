@@ -8,4 +8,5 @@ Thumbs.db
 .eslintrc
 .prettierrc
 
+package-lock.json
 yarn-error.log
